@@ -5,7 +5,7 @@ scriptencoding utf-8
 if has('vim_starting')
   filetype plugin off
   filetype indent off
-  execute 'set runtimepath+=' . expand('~/.vim/bundle/neobundle.vim')
+  execute 'set runtimepath+=' . expand('~/dotfiles/.vim/bundle/neobundle.vim')
 endif
 
 call neobundle#rc(expand('~/.vim/bundle'))
