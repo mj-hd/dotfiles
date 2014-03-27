@@ -10,6 +10,7 @@ endif
 
 call neobundle#rc(expand('~/.vim/bundle'))
 
+NeoBundleCheck
 NeoBundle 'git://github.com/kien/ctrlp.vim.git'
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/scrooloose/nerdtree.git'
