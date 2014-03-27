@@ -1,0 +1,7 @@
+[user]
+	name = mjhd
+	email = mjhd@devlion.net
+[color]
+	ui = auto
+[credential]
+	helper = cache
