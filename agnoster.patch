@@ -1,0 +1,19 @@
+*** /home/mjhd/Downloads/agnoster.zsh-theme	2014-04-04 10:20:58.054822412 +0900
+--- agnoster.zsh-theme	2014-04-04 10:04:22.184915531 +0900
+***************
+*** 26,32 ****
+  # A few utility functions to make it easy and re-usable to draw segmented prompts
+  
+  CURRENT_BG='NONE'
+! SEGMENT_SEPARATOR=''
+  
+  # Begin a segment
+  # Takes two arguments, background and foreground. Both can be omitted,
+--- 26,32 ----
+  # A few utility functions to make it easy and re-usable to draw segmented prompts
+  
+  CURRENT_BG='NONE'
+! SEGMENT_SEPARATOR='⮀'
+  
+  # Begin a segment
+  # Takes two arguments, background and foreground. Both can be omitted,
