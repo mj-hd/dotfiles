@@ -25,6 +25,9 @@ NeoBundle 'Shougo/vimproc.vim', {
   \   },
   \ }
 NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'xolox/vim-session', {
+  \ 'depends' : 'xolox/vim-misc',
+  \ }
 
 " ---------------------------------
 " 外見
@@ -207,3 +210,16 @@ endfunction
 
 " md as markdown
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+
+" vim-session
+let s:local_session_directory = xolox#misc#path#merge(getcwd(), '.vimsessions')
+if isdirectory(s:local_session_directory)
+  let g:session_directory = s:local_session_directory
+  let g:session_autosave = 'yes'
+  let g:session_autoload = 'yes'
+  let g:session_autosave_periodic = 1
+else
+  let g:session_autosave = 'no'
+  let g:session_autoload = 'no'
+endif
+unlet s:local_session_directory
