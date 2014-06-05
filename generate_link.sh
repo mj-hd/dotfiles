@@ -1,11 +1,12 @@
 #!/bin/bash
 
 if [ ! -d ~/.oh-my-zsh ]; then
-  echo ">>Starting to install oh-my-zsh..."
+  echo -e "\e[31m>> Starting to install oh-my-zsh...\e[m"
   curl -L http://install.ohmyz.sh | sh
 fi
 
-echo ">>Checking fontforge..."
+echo ""
+echo -e "\e[31m>> Checking fontforge...\e[m"
 if [ ! type  "fontforge" > /dev/null 2>&1 ]; then
   echo "Fontforge command not found!!"
   echo "You need to install fontforge before this installation!"
@@ -21,7 +22,8 @@ if [ ! type  "fontforge" > /dev/null 2>&1 ]; then
   exit 1
 fi
 
-echo ">>Patching agnoster.theme to adapt to old powerline font..."
+echo ""
+echo -e "\e[31m>> Patching agnoster.theme to adapt to old powerline font...\e[m"
 pushd ~/.oh-my-zsh/
 pushd themes
 patch < ~/dotfiles/agnoster.patch
@@ -29,7 +31,8 @@ popd
 git stash
 popd
 
-echo ">>Starting to generate Ricty fonts..."
+echo ""
+echo -e "\e[31m>> Starting to generate Ricty fonts...\e[m"
 pushd ~/dotfiles/fonts
 curl -o Inconsolata.otf "http://levien.com/type/myfonts/Inconsolata.otf"
 curl -o migu-1m.zip -L "http://sourceforge.jp/frs/redir.php?m=jaist&f=%2Fmix-mplus-ipa%2F59022%2Fmigu-1m-20130617.zip" && unzip migu-1m.zip -d ./ && rm migu-1m.zip
@@ -46,10 +49,12 @@ rm -rf vim-powerline
 
 popd
 
-echo "Please install generated fonts manually!"
+echo ""
+echo -e "\e[31mPlease install generated fonts manually!"
 echo ""
 echo "You need to donwload Solarized from http://ethanschoonover.com/solarized after this linking."
-echo "And you need to run ':NeoBundleInstall' command in your vim."
+echo -e "And you need to run ':NeoBundleInstall' command in your vim.\e[m"
+echo ""
 
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.vim ~/.vim
