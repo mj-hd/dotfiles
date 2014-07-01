@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo -e "\e[31m>> Updating submodules...\e[m"
+git submodule init
+git submodule update
+
 if [ ! -d ~/.oh-my-zsh ]; then
   echo -e "\e[31m>> Starting to install oh-my-zsh...\e[m"
   curl -L http://install.ohmyz.sh | sh
