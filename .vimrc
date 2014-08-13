@@ -28,6 +28,11 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'xolox/vim-session', {
   \ 'depends' : 'xolox/vim-misc',
   \ }
+NeoBundle 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
+NeoBundle 'ervandew/supertab'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'terryma/vim-multiple-cursors'
 
 " ---------------------------------
 " 外見
@@ -58,9 +63,9 @@ if has("syntax")
 endif
 
 " タブ
-set ts=2 sw=2
-set softtabstop=2
-set expandtab
+set ts=4 sw=4
+set softtabstop=4
+set noexpandtab
 
 set notitle
 set showmatch
@@ -87,6 +92,7 @@ set pastetoggle=<F12>
 set guioptions+=a
 set mouse=a
 set ttymouse=xterm2
+set completeopt=menu,preview
 
 " --------------------------------
 " エンコーディング
@@ -223,3 +229,23 @@ else
   let g:session_autoload = 'no'
 endif
 unlet s:local_session_directory
+
+" for go
+autocmd BufNewFile,BufRead *.go set filetype=go
+
+" Go に付属の plugin と gocode を有効にする
+
+" 保存時に :Fmt する
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4
+au FileType go compiler go
+
+" Clear filetype flags before changing runtimepath to force Vim to reload them.
+if exists("g:did_load_filetypes")
+  filetype off
+  filetype plugin indent off
+endif
+set runtimepath+=$GOROOT/misc/vim " replace $GOROOT with the output of: go env GOROOT
+set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
+filetype plugin indent on
+let g:gofmt_command = 'goimports'

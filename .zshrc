@@ -53,6 +53,15 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
+export INCLUDE="/usr/local/Cellar/opencv/2.4.9/include"
+export PYTHONPATH=/usr/local/Cellar/opencv/2.4.9/lib/python2.7/site-packages:$PYTHONPATH
+
+# for go lang
+if [ -x "`which go`" ]; then
+  export GOROOT=`go env GOROOT`
+  export GOPATH=$HOME/.go
+  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+fi
 
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
