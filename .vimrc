@@ -33,6 +33,7 @@ NeoBundle 'ervandew/supertab'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'kovisoft/slimv'
 
 " ---------------------------------
 " 外見
@@ -216,6 +217,9 @@ endfunction
 
 " md as markdown
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+
+" for slimv
+let g:slimv_lisp = '/usr/local/bin/sbcl'
 
 " vim-session
 let s:local_session_directory = xolox#misc#path#merge(getcwd(), '.vimsessions')
