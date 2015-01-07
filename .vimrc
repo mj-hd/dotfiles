@@ -28,6 +28,7 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'xolox/vim-session', {
   \ 'depends' : 'xolox/vim-misc',
   \ }
+NeoBundle 'jpo/vim-railscasts-theme'
 
 " ---------------------------------
 " 外見

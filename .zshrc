@@ -72,3 +72,5 @@ export TERM=xterm-256color
 if [ $SHLVL = 1 ]; then
   alias tmux="tmux attach || tmux new-session \; source-file ~/.tmux.session"
 fi
+
+alias lj="ls --color=tty --show-control-chars"
