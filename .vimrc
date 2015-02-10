@@ -5,17 +5,18 @@ scriptencoding utf-8
 if has('vim_starting')
   filetype plugin off
   filetype indent off
-  execute 'set runtimepath+=' . expand('~/dotfiles/.vim/bundle/neobundle.vim')
+  execute 'set runtimepath+=' . expand('~/.vim/bundle/neobundle.vim')
 endif
 
-call neobundle#rc(expand('~/.vim/bundle'))
+call neobundle#begin(expand('~/.vim/bundle'))
+
+NeoBundleFetch 'Shougo/neobundle.vim.git' " これ
 
 NeoBundleCheck
-NeoBundle 'git://github.com/kien/ctrlp.vim.git'
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
-NeoBundle 'git://github.com/scrooloose/nerdtree.git'
-NeoBundle 'git://github.com/scrooloose/syntastic.git'
-NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'kien/ctrlp.vim.git'       " Ctrl+pでファイル検索してくれるすごいの
+NeoBundle 'scrooloose/nerdtree.git'  " ファイラ
+NeoBundle 'scrooloose/syntastic.git' " 
+NeoBundle 'itchyny/lightline.vim' " おしゃれ
 NeoBundle 'Shougo/vimproc.vim', {
   \ 'build' : {
   \     'windows' : 'make -f make_mingw32.mak',
@@ -24,17 +25,27 @@ NeoBundle 'Shougo/vimproc.vim', {
   \     'unix'    : 'make -f make_unix.mak',
   \   },
   \ }
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'xolox/vim-session', {
-  \ 'depends' : 'xolox/vim-misc',
-  \ }
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
-NeoBundle 'ervandew/supertab'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'kovisoft/slimv'
+NeoBundle 'Shougo/vimshell.vim'  " 暗黒美夢王
+NeoBundle 'Shougo/neomru.vim'  " 暗黒美夢王
+NeoBundle 'xolox/vim-session'
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'jpo/vim-railscasts-theme' " テーマ
+NeoBundle 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}  " golang用
+NeoBundle 'ervandew/supertab'            " 補完
+NeoBundle 'Shougo/unite.vim'             " なんかすごいやつ
+NeoBundle 'Shougo/vimfiler.vim'          " 高機能ファイラ
+NeoBundle 'terryma/vim-multiple-cursors' " 
+NeoBundle 'kovisoft/slimv'          " lisp用
+NeoBundle 'toyamarinyon/vim-swift'  " swift対応
+NeoBundle 'plasticboy/vim-markdown' " markdown対応
+NeoBundle 'airblade/vim-gitgutter' " gitの変更点を表示
+NeoBundle 'tpope/vim-fugitive'     " Gwrite, Greadでgitのadd, reset
+NeoBundle 'junegunn/vim-easy-align' " 選んでReturn, spaceで整形
+NeoBundle 'bronson/vim-trailing-whitespace' " :FixWhiteSpacesで行末の空白削除
+NeoBundle 'rking/ag.vim' " :Ag で検索
+
+call neobundle#end()
+
 
 " ---------------------------------
 " 外見
@@ -77,7 +88,7 @@ set number
 set ruler
 set cmdheight=2
 set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set listchars=tab:_»,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 set laststatus=2
 set wildmenu
 set wildmode=full:list
@@ -133,19 +144,6 @@ set hidden
 " その他
 " ------------------------------
 au BufEnter * execute ":lcd " . escape(expand("%:p:h"), " #\\")
-
-" for FuzzyFinder
-nnoremap <unique> <silent> <space>fb :FufBuffer!<CR>
-nnoremap <unique> <silent> <space>ff :FufFile!<CR>
-nnoremap <unique> <silent> <space>fm :FufMruFile!<CR>
-nnoremap <unique> <silent> <Space>fc :FufRenewCache<CR>
-autocmd FileType fuf nmap <C-c> <ESC>
-let g:fuf_patternSeparator = ' '
-let g:fuf_modesDisable = ['mrucmd']
-let g:fuf_mrufile_exclude = '\v\.DS_Store|\.git|\.swp|\.svn'
-let g:fuf_mrufile_maxItem = 100
-let g:fuf_enumeratingLimit = 20
-let g:fuf_file_exclude = '\v\.DS_Store|\.git|\.swp|\.svn'
 
 " omnifuncがどうとかいうエラーの対処
 setlocal omnifunc=syntaxcomplete#Complete
@@ -224,7 +222,7 @@ let g:slimv_lisp = '/usr/local/bin/sbcl'
 
 " vim-session
 let s:local_session_directory = xolox#misc#path#merge(getcwd(), '.vimsessions')
-if isdirectory(s:local_session_directory)
+if    isdirectory(s:local_session_directory)
   let g:session_directory = s:local_session_directory
   let g:session_autosave = 'yes'
   let g:session_autoload = 'yes'
@@ -241,8 +239,8 @@ autocmd BufNewFile,BufRead *.go set filetype=go
 " Go に付属の plugin と gocode を有効にする
 
 " 保存時に :Fmt する
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4
+" autocmd FileType go autocmd BufWritePre <buffer> Fmt
+au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4 filetype=go
 au FileType go compiler go
 
 " Clear filetype flags before changing runtimepath to force Vim to reload them.
@@ -254,3 +252,27 @@ set runtimepath+=$GOROOT/misc/vim " replace $GOROOT with the output of: go env G
 set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
 filetype plugin indent on
 let g:gofmt_command = 'goimports'
+
+" Easy align interactive
+vnoremap <silent> <Enter> :EasyAlign<cr>
+
+" unite
+let g:unite_source_history_yank_enable = 1
+try
+	let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
+	call unite#filters#matcher_default#use(['mathcer_fuzzy'])
+	let g:unite_enable_start_insert = 1
+	let g:unite_source_file_mru_limit = 200
+catch
+endtry
+
+" search a file in the filetree
+nnoremap <silent> <space><space> :<C-u>Unite file_rec/async:!<cr>
+nnoremap <silent> <space>y :<C-u>Unite history/yank<cr>
+nnoremap <silent> <space>b :<C-u>Unite buffer<cr>
+nnoremap <silent> <space>r :<C-u>Unite file_mru buffer<cr>
+
+" Ag
+" --- type ~ to search the word in all files in the current dir
+nmap ~ :Ag <c-r>=expand("<cword>")<cr><cr>
+nnoremap <space>/ :Ag
