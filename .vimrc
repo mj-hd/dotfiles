@@ -27,22 +27,19 @@ NeoBundle 'Shougo/vimproc.vim', {
   \ }
 NeoBundle 'Shougo/vimshell.vim'  " 暗黒美夢王
 NeoBundle 'Shougo/neomru.vim'  " 暗黒美夢王
-NeoBundle 'xolox/vim-session'
-NeoBundle 'xolox/vim-misc'
 NeoBundle 'jpo/vim-railscasts-theme' " テーマ
 NeoBundle 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}  " golang用
 NeoBundle 'ervandew/supertab'            " 補完
 NeoBundle 'Shougo/unite.vim'             " なんかすごいやつ
 NeoBundle 'Shougo/vimfiler.vim'          " 高機能ファイラ
-NeoBundle 'terryma/vim-multiple-cursors' " 
 NeoBundle 'kovisoft/slimv'          " lisp用
 NeoBundle 'toyamarinyon/vim-swift'  " swift対応
 NeoBundle 'plasticboy/vim-markdown' " markdown対応
 NeoBundle 'airblade/vim-gitgutter' " gitの変更点を表示
 NeoBundle 'tpope/vim-fugitive'     " Gwrite, Greadでgitのadd, reset
 NeoBundle 'junegunn/vim-easy-align' " 選んでReturn, spaceで整形
-NeoBundle 'bronson/vim-trailing-whitespace' " :FixWhiteSpacesで行末の空白削除
 NeoBundle 'rking/ag.vim' " :Ag で検索
+NeoBundle 'mhinz/vim-startify' " 起動画面を便利に
 
 call neobundle#end()
 
@@ -88,7 +85,7 @@ set number
 set ruler
 set cmdheight=2
 set list
-set listchars=tab:_»,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set listchars=tab:»_,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 set laststatus=2
 set wildmenu
 set wildmode=full:list
@@ -220,19 +217,6 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 " for slimv
 let g:slimv_lisp = '/usr/local/bin/sbcl'
 
-" vim-session
-let s:local_session_directory = xolox#misc#path#merge(getcwd(), '.vimsessions')
-if    isdirectory(s:local_session_directory)
-  let g:session_directory = s:local_session_directory
-  let g:session_autosave = 'yes'
-  let g:session_autoload = 'yes'
-  let g:session_autosave_periodic = 1
-else
-  let g:session_autosave = 'no'
-  let g:session_autoload = 'no'
-endif
-unlet s:local_session_directory
-
 " for go
 autocmd BufNewFile,BufRead *.go set filetype=go
 
@@ -276,3 +260,29 @@ nnoremap <silent> <space>r :<C-u>Unite file_mru buffer<cr>
 " --- type ~ to search the word in all files in the current dir
 nmap ~ :Ag <c-r>=expand("<cword>")<cr><cr>
 nnoremap <space>/ :Ag
+
+" gitgutter
+highlight clear SignColumn
+
+" startify
+let g:startify_files_number = 5
+let g:startify_list_order = [
+        \ ['   最近使ったファイル:'],
+        \ 'files',
+        \ ['   最近使ったファイル(カレントディレクトリ下):'],
+        \ 'dir',
+        \ ['   セッション:'],
+        \ 'sessions',
+        \ ['   ブックマーク:'],
+        \ 'bookmarks',
+        \ ]
+let g:startify_custom_header =
+  \ map(split(system('~/dotfiles/meigen.rb | ~/dotfiles/cowsay'), '\n'), '"   ". v:val') + ['','']
+let g:startify_bookmarks = ["~/.vimrc"]
+
+" 自動的に閉じ括弧を入力
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap ( ()<LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
