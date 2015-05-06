@@ -276,8 +276,6 @@ let g:startify_list_order = [
         \ ['   ブックマーク:'],
         \ 'bookmarks',
         \ ]
-let g:startify_custom_header =
-  \ map(split(system('~/dotfiles/meigen.rb | ~/dotfiles/cowsay'), '\n'), '"   ". v:val') + ['','']
 let g:startify_bookmarks = ["~/.vimrc"]
 
 " 自動的に閉じ括弧を入力
@@ -286,3 +284,5 @@ inoremap [ []<LEFT>
 inoremap ( ()<LEFT>
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
+
+autocmd FileType haskell :set expandtab
