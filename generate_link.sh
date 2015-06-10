@@ -8,3 +8,6 @@ ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.tmux-powerline ~/.tmux-powerline
 ln -s ~/dotfiles/.tmux-powerlinerc ~/.tmux-powerlinerc
+
+mkdir -p ~/.config/fish/
+ln -s ~/dotfiles/config.fish ~/.config/fish/config.fish

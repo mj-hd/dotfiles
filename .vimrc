@@ -1,3 +1,5 @@
+set shell=/bin/bash
+
 set nocompatible
 scriptencoding utf-8
 
@@ -13,8 +15,6 @@ call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim.git' " これ
 
 NeoBundleCheck
-NeoBundle 'kien/ctrlp.vim.git'       " Ctrl+pでファイル検索してくれるすごいの
-NeoBundle 'scrooloose/nerdtree.git'  " ファイラ
 NeoBundle 'scrooloose/syntastic.git' " 
 NeoBundle 'itchyny/lightline.vim' " おしゃれ
 NeoBundle 'Shougo/vimproc.vim', {
@@ -36,7 +36,6 @@ NeoBundle 'kovisoft/slimv'          " lisp用
 NeoBundle 'toyamarinyon/vim-swift'  " swift対応
 NeoBundle 'plasticboy/vim-markdown' " markdown対応
 NeoBundle 'airblade/vim-gitgutter' " gitの変更点を表示
-NeoBundle 'tpope/vim-fugitive'     " Gwrite, Greadでgitのadd, reset
 NeoBundle 'junegunn/vim-easy-align' " 選んでReturn, spaceで整形
 NeoBundle 'rking/ag.vim' " :Ag で検索
 NeoBundle 'mhinz/vim-startify' " 起動画面を便利に
@@ -251,10 +250,10 @@ catch
 endtry
 
 " search a file in the filetree
-nnoremap <silent> <space><space> :<C-u>Unite file_rec/async:!<cr>
-nnoremap <silent> <space>y :<C-u>Unite history/yank<cr>
-nnoremap <silent> <space>b :<C-u>Unite buffer<cr>
-nnoremap <silent> <space>r :<C-u>Unite file_mru buffer<cr>
+nnoremap <silent> ,<space> :<C-u>Unite file_rec/async:!<cr>
+nnoremap <silent> ,y :<C-u>Unite history/yank<cr>
+nnoremap <silent> ,b :<C-u>Unite buffer<cr>
+nnoremap <silent> ,r :<C-u>Unite file_mru buffer<cr>
 
 " Ag
 " --- type ~ to search the word in all files in the current dir

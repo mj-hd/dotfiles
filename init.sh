@@ -2,6 +2,7 @@
 
 ~/dotfiles/update_submodules.sh
 ~/dotfiles/generate_links.sh
-~/dotfiles/patch_agnoster.sh
+~/dotfiles/install_ohmyfish.sh
 ~/dotfiles/install_ohmyzsh.sh
+~/dotfiles/patch_agnoster.sh
 ~/dotfiles/generate_fonts.sh
