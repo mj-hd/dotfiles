@@ -12,7 +12,7 @@ echo -e "\e[31m>> Updating homebrew...\e[m"
 brew update
 
 echo -e "\e[31m>> Installing packages...\e[m"
-brew install brew-cask go the_silver_searcher fish vim git sbcl mysql
+brew install brew-cask go the_silver_searcher fish vim git sbcl mysql wget
 
 echo -e "\e[31m>> Installing apps...\e[m"
 brew install Caskroom/cask/totalspaces Caskroom/cask/bartender Caskroom/cask/caffeine Caskroom/cask/macs-fan-control Caskroom/cask/karabiner Caskroom/cask/iterm2 Caskroom/cask/mplayerx Caskroom/cask/the-unarchiver Caskroom/cask/imageoptim Caskroom/cask/firefox Caskroom/cask/sequel-pro

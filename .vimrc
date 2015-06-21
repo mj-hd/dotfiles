@@ -17,6 +17,8 @@ NeoBundleFetch 'Shougo/neobundle.vim.git' " これ
 NeoBundleCheck
 NeoBundle 'scrooloose/syntastic.git' " 
 NeoBundle 'itchyny/lightline.vim' " おしゃれ
+
+" Shougo
 NeoBundle 'Shougo/vimproc.vim', {
   \ 'build' : {
   \     'windows' : 'make -f make_mingw32.mak',
@@ -25,13 +27,25 @@ NeoBundle 'Shougo/vimproc.vim', {
   \     'unix'    : 'make -f make_unix.mak',
   \   },
   \ }
-NeoBundle 'Shougo/vimshell.vim'  " 暗黒美夢王
-NeoBundle 'Shougo/neomru.vim'  " 暗黒美夢王
+NeoBundle 'Shougo/vimshell', {
+  \ 'depends' : 'Shougo/vimproc',
+  \ 'autoload' : {
+  \   'commands' : [{ 'name' : 'VimShell', 'complete' : 'customlist,vimshell#complete'},
+  \                 'VimShellExecute', 'VimShellInteractive',
+  \                 'VimShellTerminal', 'VimShellPop'],
+  \   'mappings' : ['<Plug>(vimshell_switch)']
+  \ }}
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'Shougo/neocomplete.vim', {
+    \ 'depends' : 'Shougo/vimproc',
+    \ 'autoload' : { 'insert' : 1,}
+    \ }
+
 NeoBundle 'jpo/vim-railscasts-theme' " テーマ
 NeoBundle 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}  " golang用
 NeoBundle 'ervandew/supertab'            " 補完
-NeoBundle 'Shougo/unite.vim'             " なんかすごいやつ
-NeoBundle 'Shougo/vimfiler.vim'          " 高機能ファイラ
 NeoBundle 'kovisoft/slimv'          " lisp用
 NeoBundle 'toyamarinyon/vim-swift'  " swift対応
 NeoBundle 'plasticboy/vim-markdown' " markdown対応
@@ -39,6 +53,9 @@ NeoBundle 'airblade/vim-gitgutter' " gitの変更点を表示
 NeoBundle 'junegunn/vim-easy-align' " 選んでReturn, spaceで整形
 NeoBundle 'rking/ag.vim' " :Ag で検索
 NeoBundle 'mhinz/vim-startify' " 起動画面を便利に
+NeoBundle 'Townk/vim-autoclose' " かっことじ
+NeoBundle 'glidenote/memolist.vim' " メモ
+NeoBundle 'Lokaltog/vim-easymotion' " 移動
 
 call neobundle#end()
 
@@ -50,26 +67,22 @@ syntax on
 colorscheme railscasts
 
 " 全角空白をハイライト
-if has("syntax")
-    syntax on
- 
-    " PODバグ対策
-    syn sync fromstart
- 
-    function! ActivateInvisibleIndicator()
-        " 下の行の"　"は全角スペース
-        syntax match InvisibleJISX0208Space "　" display containedin=ALL
-        highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
-        syntax match InvisibleTrailedSpace "[ \t]\+$" display containedin=ALL
-        highlight InvisibleTrailedSpace term=underline ctermbg=Red guibg=NONE gui=undercurl guisp=darkorange
-        syntax match InvisibleTab "\t" display containedin=ALL
-        highlight InvisibleTab term=underline ctermbg=white gui=undercurl guisp=darkslategray
-    endf
-    augroup invisible
-        autocmd! invisible
-        autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
-    augroup END
-endif
+" PODバグ対策
+syn sync fromstart
+
+function! ActivateInvisibleIndicator()
+    " 下の行の"　"は全角スペース
+    syntax match InvisibleJISX0208Space "　" display containedin=ALL
+    highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
+    syntax match InvisibleTrailedSpace "[ \t]\+$" display containedin=ALL
+    highlight InvisibleTrailedSpace term=underline ctermbg=Red guibg=NONE gui=undercurl guisp=darkorange
+    syntax match InvisibleTab "\t" display containedin=ALL
+    highlight InvisibleTab term=underline ctermbg=white gui=undercurl guisp=darkslategray
+endf
+augroup invisible
+    autocmd! invisible
+    autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
+augroup END
 
 " タブ
 set ts=4 sw=4
@@ -100,8 +113,47 @@ set clipboard=unnamed
 set pastetoggle=<F12>
 set guioptions+=a
 set mouse=a
-set ttymouse=xterm2
+if !has("nvim")
+    set ttymouse=xterm2
+endif
 set completeopt=menu,preview
+
+" 行内でもカーソル移動可能に
+nnoremap <Down> gj
+nnoremap <Up>   gk
+
+" split系
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+nnoremap sn gt
+nnoremap sp gT
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+nnoremap sw <C-w>w
+nnoremap so <C-w>_<C-w>|
+nnoremap sO <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+nnoremap st :<C-u>tabnew<CR>
+nnoremap sT :<C-u>Unite tab<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+
+" インクリメントデクリメント
+nnoremap + <C-a>
+nnoremap - <C-x>
+
+nmap <Tab> %
+vmap <Tab> %
 
 " --------------------------------
 " エンコーディング
@@ -139,16 +191,13 @@ set hidden
 " ------------------------------
 " その他
 " ------------------------------
+" 開いたファイルのディレクトリへ移動
 au BufEnter * execute ":lcd " . escape(expand("%:p:h"), " #\\")
 
-" omnifuncがどうとかいうエラーの対処
-setlocal omnifunc=syntaxcomplete#Complete
- autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
+" ------------------------------
+" プラグイン
+" ------------------------------
+" lightline
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ 'mode_map': { 'c': 'NORMAL' },
@@ -269,13 +318,13 @@ highlight clear SignColumn
 " startify
 let g:startify_files_number = 5
 let g:startify_list_order = [
-        \ ['♻  最近使ったファイル:'],
+        \ ['     ♻  最近使ったファイル:'],
         \ 'files',
-        \ ['♲  最近使ったファイル(カレントディレクトリ下):'],
+        \ ['     ♲  最近使ったファイル(カレントディレクトリ下):'],
         \ 'dir',
-        \ ['⚑  セッション:'],
+        \ ['     ⚑  セッション:'],
         \ 'sessions',
-        \ ['☺  ブックマーク:'],
+        \ ['     ☺  ブックマーク:'],
         \ 'bookmarks',
         \ ]
 let g:startify_bookmarks = ["~/.vimrc"]
@@ -330,15 +379,50 @@ let g:startify_custom_header = s:filter_header([
     \ ])
 
 
-" 自動的に閉じ括弧を入力
-inoremap { {}<LEFT>
-inoremap [ []<LEFT>
-inoremap ( ()<LEFT>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-
 autocmd FileType haskell :set expandtab
 
 " vimfiler
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
+
+" neocomplete
+let g:neocomplete#enable_at_startup               = 1
+let g:neocomplete#auto_completion_start_length    = 3
+let g:neocomplete#enable_ignore_case              = 1
+let g:neocomplete#enable_smart_case               = 1
+let g:neocomplete#enable_camel_case               = 1
+let g:neocomplete#use_vimproc                     = 1
+let g:neocomplete#sources#buffer#cache_limit_size = 1000000
+let g:neocomplete#sources#tags#cache_limit_size   = 30000000
+let g:neocomplete#enable_fuzzy_completion         = 1
+let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
+
+" vimshell
+nmap <silent> vs :<C-u>VimShellPop<CR>
+
+" memolist
+let g:memolist_path = expand('~/.memolist')
+let g:memolist_gfixgrep = 1
+let g:memolist_unite = 1
+let g:memolist_unite_option = "-vertical -start-insert"
+nnoremap mn  :MemoNew<CR>
+nnoremap ml  :MemoList<CR>
+nnoremap mg  :MemoGrep<CR>
+
+" vim-easymotion
+let g:EasyMotion_do_mapping = 0
+nmap f <Plug>(easymotion-s2)
+xmap f <Plug>(easymotion-s2)
+omap z <Plug>(easymotion-s2)
+nmap g/ <Plug>(easymotion-sn)
+xmap g/ <Plug>(easymotion-sn)
+omap g/ <Plug>(easymotion-tn)
+let g:EasyMotion_smartcase = 1
+map ,j <Plug>(easymotion-j)
+map ,k <Plug>(easymotion-k)
+let g:EasyMotion_startofline = 0
+let g:EasyMotion_keys = 'QZASDFGHJKL;'
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_space_jump_first = 1
+hi EasyMotionTarget guifg=#80a0ff ctermfg=81
