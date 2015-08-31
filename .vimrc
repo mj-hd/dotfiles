@@ -45,7 +45,6 @@ NeoBundle 'Shougo/neocomplete.vim', {
 
 NeoBundle 'jpo/vim-railscasts-theme' " テーマ
 NeoBundle 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}  " golang用
-NeoBundle 'ervandew/supertab'            " 補完
 NeoBundle 'kovisoft/slimv'          " lisp用
 NeoBundle 'toyamarinyon/vim-swift'  " swift対応
 NeoBundle 'plasticboy/vim-markdown' " markdown対応
@@ -53,9 +52,19 @@ NeoBundle 'airblade/vim-gitgutter' " gitの変更点を表示
 NeoBundle 'junegunn/vim-easy-align' " 選んでReturn, spaceで整形
 NeoBundle 'rking/ag.vim' " :Ag で検索
 NeoBundle 'mhinz/vim-startify' " 起動画面を便利に
-NeoBundle 'Townk/vim-autoclose' " かっことじ
-NeoBundle 'glidenote/memolist.vim' " メモ
 NeoBundle 'Lokaltog/vim-easymotion' " 移動
+NeoBundle 'mrtazz/simplenote.vim'
+NeoBundle 'Raimondi/delimitMate'
+
+NeoBundleLazy 'nosami/Omnisharp', {
+	\   'autoload': {'filetypes': ['cs']},
+	\   'build': {
+	\     'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
+	\     'mac': 'xbuild server/OmniSharp.sln',
+	\     'unix': 'xbuild server/OmniSharp.sln',
+	\   }
+	\ }
+
 
 call neobundle#end()
 
@@ -109,7 +118,8 @@ set statusline=[%L]\ %t\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/
 " --------------------------------
 set autoindent
 set backspace=indent,eol,start
-set clipboard=unnamed
+set clipboard+=autoselect
+set clipboard+=unnamed
 set pastetoggle=<F12>
 set guioptions+=a
 set mouse=a
@@ -397,17 +407,10 @@ let g:neocomplete#sources#tags#cache_limit_size   = 30000000
 let g:neocomplete#enable_fuzzy_completion         = 1
 let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
 
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
 " vimshell
 nmap <silent> vs :<C-u>VimShellPop<CR>
-
-" memolist
-let g:memolist_path = expand('~/.memolist')
-let g:memolist_gfixgrep = 1
-let g:memolist_unite = 1
-let g:memolist_unite_option = "-vertical -start-insert"
-nnoremap mn  :MemoNew<CR>
-nnoremap ml  :MemoList<CR>
-nnoremap mg  :MemoGrep<CR>
 
 " vim-easymotion
 let g:EasyMotion_do_mapping = 0
@@ -426,3 +429,28 @@ let g:EasyMotion_use_upper = 1
 let g:EasyMotion_enter_jump_first = 1
 let g:EasyMotion_space_jump_first = 1
 hi EasyMotionTarget guifg=#80a0ff ctermfg=81
+
+" simplenote
+let g:SimplenoteUsername = "username"
+let g:SimplenotePassword = "password"
+let g:SimplenoteFiletype = "mkd"
+
+nmap <silent> todo  :Simplenote -o ToDo<CR>
+
+nmap <silent> memo  :Simplenote -l<CR>
+nmap <silent> nmemo :Simplenote -n<CR>
+nmap <silent> smemo :Simplenote -u<CR>
+nmap <silent> dmemo :Simplenote -d<CR>
+nmap <silent> Dmemo :Simplenote -D<CR>
+nmap <silent> pmemo :Simplenote -p<CR>
+nmap <silent> Pmemo :Simplenote -P<CR>
+nmap <silent> tmemo :Simplenote -t<CR>
+
+" OmniSharp
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+let g:OmniSharp_selector_ui = 'unite'
+autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
