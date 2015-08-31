@@ -65,6 +65,9 @@ NeoBundleLazy 'nosami/Omnisharp', {
 	\   }
 	\ }
 
+NeoBundle 'darfink/vim-plist'
+NeoBundle 'enomsg/vim-haskellConcealPlus'
+NeoBundle 'suan/vim-instant-markdown'
 
 call neobundle#end()
 
@@ -96,7 +99,7 @@ augroup END
 " タブ
 set ts=4 sw=4
 set softtabstop=4
-set noexpandtab
+set expandtab
 
 set notitle
 set showmatch
@@ -159,8 +162,8 @@ nnoremap sq :<C-u>q<CR>
 nnoremap sQ :<C-u>bd<CR>
 
 " インクリメントデクリメント
-nnoremap + <C-a>
-nnoremap - <C-x>
+nnoremap + <C-x>
+nnoremap - <C-a>
 
 nmap <Tab> %
 vmap <Tab> %
@@ -203,6 +206,7 @@ set hidden
 " ------------------------------
 " 開いたファイルのディレクトリへ移動
 au BufEnter * execute ":lcd " . escape(expand("%:p:h"), " #\\")
+set timeoutlen=1000 ttimeoutlen=0
 
 " ------------------------------
 " プラグイン
@@ -270,10 +274,11 @@ function! MyMode()
 endfunction
 
 " md as markdown
-autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=mkd
 
 " for slimv
-let g:slimv_lisp = '/usr/local/bin/sbcl'
+let g:slimv_lisp = '~/.cim/bin/cl --repl'
+let g:slimv_impl = 'cl'
 
 " for go
 autocmd BufNewFile,BufRead *.go set filetype=go
@@ -301,10 +306,10 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 " unite
 let g:unite_source_history_yank_enable = 1
 try
-	let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
-	call unite#filters#matcher_default#use(['mathcer_fuzzy'])
-	let g:unite_enable_start_insert = 1
-	let g:unite_source_file_mru_limit = 200
+    let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
+    call unite#filters#matcher_default#use(['mathcer_fuzzy'])
+    let g:unite_enable_start_insert = 1
+    let g:unite_source_file_mru_limit = 200
 catch
 endtry
 
@@ -410,7 +415,7 @@ let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " vimshell
-nmap <silent> vs :<C-u>VimShellPop<CR>
+nnoremap <silent> vs :<C-u>VimShellPop<CR>
 
 " vim-easymotion
 let g:EasyMotion_do_mapping = 0
@@ -431,20 +436,21 @@ let g:EasyMotion_space_jump_first = 1
 hi EasyMotionTarget guifg=#80a0ff ctermfg=81
 
 " simplenote
-let g:SimplenoteUsername = "username"
+let g:SimplenoteUsername = "mail_address"
 let g:SimplenotePassword = "password"
 let g:SimplenoteFiletype = "mkd"
+nnoremap <silent> memo :Simplenote -l<CR>
+nnoremap <silent> memon :Simplenote -n<CR>
+nnoremap <silent> memos :Simplenote -u<CR>
+nnoremap <silent> memod :Simplenote -d<CR>
+nnoremap <silent> memoD :Simplenote -D<CR>
+nnoremap <silent> memot :Simplenote -t<CR>
+nnoremap <silent> memop :Simplenote -p<CR>
+nnoremap <silent> memoP :Simplenote -P<CR>
 
-nmap <silent> todo  :Simplenote -o ToDo<CR>
-
-nmap <silent> memo  :Simplenote -l<CR>
-nmap <silent> nmemo :Simplenote -n<CR>
-nmap <silent> smemo :Simplenote -u<CR>
-nmap <silent> dmemo :Simplenote -d<CR>
-nmap <silent> Dmemo :Simplenote -D<CR>
-nmap <silent> pmemo :Simplenote -p<CR>
-nmap <silent> Pmemo :Simplenote -P<CR>
-nmap <silent> tmemo :Simplenote -t<CR>
+" instant-markdown
+let g:instant_markdown_autostart = 0
+au FileType mkd nmap <silent> <buffer> mkd :InstantMarkdownPreview<CR>
 
 " OmniSharp
 if !exists('g:neocomplete#sources#omni#input_patterns')
