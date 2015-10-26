@@ -59,6 +59,8 @@ NeoBundle 'mrtazz/simplenote.vim'
 NeoBundle 'enomsg/vim-haskellConcealPlus'
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'open-browser.vim'
+NeoBundle 'mjhd-devlion/vimhot'
 
 call neobundle#end()
 
@@ -120,6 +122,8 @@ if !has("nvim")
     set ttymouse=xterm2
 endif
 set completeopt=menu,preview
+set tags+=.git/tags
+set tags+=./tags
 
 " 行内でもカーソル移動可能に
 nnoremap <Down> gj
@@ -267,8 +271,8 @@ endfunction
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=mkd
 
 " for slimv
-let g:slimv_lisp = '~/.cim/bin/cl --repl'
-let g:slimv_impl = 'cl'
+let g:slimv_lisp = 'ros run'
+let g:slimv_impl = 'sbcl'
 
 " for go
 autocmd BufNewFile,BufRead *.go set filetype=go
@@ -295,19 +299,21 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 
 " unite
 let g:unite_source_history_yank_enable = 1
-try
-    let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
-    call unite#filters#matcher_default#use(['mathcer_fuzzy'])
-    let g:unite_enable_start_insert = 1
-    let g:unite_source_file_mru_limit = 200
-catch
-endtry
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
+"call unite#filters#matcher_default#use(['mathcer_fuzzy'])
+let g:unite_enable_start_insert = 1
+let g:unite_source_file_mru_limit = 200
 
 " search a file in the filetree
 nnoremap <silent> ,<space> :<C-u>Unite file_rec/async:!<cr>
+nnoremap <silent> ,, :<C-u>UniteResume<CR>
 nnoremap <silent> ,y :<C-u>Unite history/yank<cr>
 nnoremap <silent> ,b :<C-u>Unite buffer<cr>
 nnoremap <silent> ,r :<C-u>Unite file_mru buffer<cr>
+nnoremap <silent> ,g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
@@ -383,6 +389,8 @@ let g:startify_custom_header = s:filter_header([
     \ '                                   ▒█▓',
     \ ])
 
+nnoremap <silent> ! :Startify<CR>
+
 
 autocmd FileType haskell :set expandtab
 
@@ -424,7 +432,7 @@ let g:EasyMotion_space_jump_first = 1
 hi EasyMotionTarget guifg=#80a0ff ctermfg=81
 
 " simplenote
-let g:SimplenoteUsername = "mail_address"
+let g:SimplenoteUsername = "username"
 let g:SimplenotePassword = "password"
 let g:SimplenoteFiletype = "mkd"
 nnoremap <silent> memo :Simplenote -l<CR>
@@ -439,3 +447,17 @@ nnoremap <silent> memoP :Simplenote -P<CR>
 " instant-markdown
 let g:instant_markdown_autostart = 0
 au FileType mkd nmap <silent> <buffer> mkd :InstantMarkdownPreview<CR>
+
+" hsp
+autocmd BufRead *.hsp call FileTypeHsp()
+function FileTypeHsp()
+  compiler hsp
+  set filetype=hsp
+endfunction
+
+" autocmd FileType hsp autocmd BufWrite <buffer> :!~/Projects/vimhot/htags.pl -R
+
+let g:syntastic_hsp_checkers = ['hsp']
+
+noremap <F1> :execute "OpenBrowser" . " http://ohdl.hsproom.me/?q=" . expand( "<cword>" )<CR>
+noremap <F5> :make<CR>
