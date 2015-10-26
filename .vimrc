@@ -45,7 +45,6 @@ NeoBundle 'Shougo/neocomplete.vim', {
 
 NeoBundle 'jpo/vim-railscasts-theme' " テーマ
 NeoBundle 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}  " golang用
-NeoBundle 'ervandew/supertab'            " 補完
 NeoBundle 'kovisoft/slimv'          " lisp用
 NeoBundle 'toyamarinyon/vim-swift'  " swift対応
 NeoBundle 'plasticboy/vim-markdown' " markdown対応
@@ -54,8 +53,19 @@ NeoBundle 'junegunn/vim-easy-align' " 選んでReturn, spaceで整形
 NeoBundle 'rking/ag.vim' " :Ag で検索
 NeoBundle 'mhinz/vim-startify' " 起動画面を便利に
 NeoBundle 'Lokaltog/vim-easymotion' " 移動
-NeoBundle 'darfink/vim-plist'
 NeoBundle 'mrtazz/simplenote.vim'
+NeoBundle 'Raimondi/delimitMate'
+
+NeoBundleLazy 'nosami/Omnisharp', {
+	\   'autoload': {'filetypes': ['cs']},
+	\   'build': {
+	\     'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
+	\     'mac': 'xbuild server/OmniSharp.sln',
+	\     'unix': 'xbuild server/OmniSharp.sln',
+	\   }
+	\ }
+
+NeoBundle 'darfink/vim-plist'
 NeoBundle 'enomsg/vim-haskellConcealPlus'
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'jiangmiao/auto-pairs'
@@ -114,7 +124,8 @@ set statusline=[%L]\ %t\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/
 " --------------------------------
 set autoindent
 set backspace=indent,eol,start
-set clipboard=unnamed
+set clipboard+=autoselect
+set clipboard+=unnamed
 set pastetoggle=<F12>
 set guioptions+=a
 set mouse=a
@@ -410,6 +421,8 @@ let g:neocomplete#sources#tags#cache_limit_size   = 30000000
 let g:neocomplete#enable_fuzzy_completion         = 1
 let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
 
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
 " vimshell
 nnoremap <silent> vs :<C-u>VimShellPop<CR>
 
@@ -461,3 +474,12 @@ let g:syntastic_hsp_checkers = ['hsp']
 
 noremap <F1> :execute "OpenBrowser" . " http://ohdl.hsproom.me/?q=" . expand( "<cword>" )<CR>
 noremap <F5> :make<CR>
+
+" OmniSharp
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+let g:OmniSharp_selector_ui = 'unite'
+autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
