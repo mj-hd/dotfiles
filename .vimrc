@@ -3,6 +3,8 @@ set shell=/bin/bash
 set nocompatible
 scriptencoding utf-8
 
+set term=screen-256color
+
 " for neobundle
 if has('vim_starting')
   filetype plugin off
@@ -68,6 +70,7 @@ NeoBundleLazy 'nosami/Omnisharp', {
 NeoBundle 'darfink/vim-plist'
 NeoBundle 'enomsg/vim-haskellConcealPlus'
 NeoBundle 'suan/vim-instant-markdown'
+NeoBundle 'vim-scripts/sudo.vim'
 
 call neobundle#end()
 
@@ -126,8 +129,12 @@ set clipboard+=unnamed
 set pastetoggle=<F12>
 set guioptions+=a
 set mouse=a
-if !has("nvim")
-    set ttymouse=xterm2
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    if !has("nvim")
+        set ttymouse=xterm2
+    endif
 endif
 set completeopt=menu,preview
 
@@ -436,7 +443,7 @@ let g:EasyMotion_space_jump_first = 1
 hi EasyMotionTarget guifg=#80a0ff ctermfg=81
 
 " simplenote
-let g:SimplenoteUsername = "mail_address"
+let g:SimplenoteUsername = "username"
 let g:SimplenotePassword = "password"
 let g:SimplenoteFiletype = "mkd"
 nnoremap <silent> memo :Simplenote -l<CR>
@@ -460,3 +467,14 @@ endif
 let g:OmniSharp_selector_ui = 'unite'
 autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
+
+" HSP
+autocmd BufRead *.hsp call FileTypeHsp()
+function FileTypeHsp()
+    compiler hsp
+    set filetype=hsp
+    noremap <F1> :execute "!cd ~/.wine32/drive_c/hsp34/hsphelp/; wine helpman.exe ".expand("<cword>")."; cd -"<CR>
+    noremap <F5> :make<CR>
+    set noexpandtab
+endfunction
+set shellpipe=\|&nkf\ -wLu\|tee
