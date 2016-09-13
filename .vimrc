@@ -55,17 +55,8 @@ NeoBundle 'junegunn/vim-easy-align' " 選んでReturn, spaceで整形
 NeoBundle 'rking/ag.vim' " :Ag で検索
 NeoBundle 'mhinz/vim-startify' " 起動画面を便利に
 NeoBundle 'Lokaltog/vim-easymotion' " 移動
-NeoBundle 'mrtazz/simplenote.vim'
 NeoBundle 'Raimondi/delimitMate'
-
-NeoBundleLazy 'nosami/Omnisharp', {
-	\   'autoload': {'filetypes': ['cs']},
-	\   'build': {
-	\     'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
-	\     'mac': 'xbuild server/OmniSharp.sln',
-	\     'unix': 'xbuild server/OmniSharp.sln',
-	\   }
-	\ }
+NeoBundle 'vim-scripts/DirDiff.vim'
 
 NeoBundle 'darfink/vim-plist'
 NeoBundle 'enomsg/vim-haskellConcealPlus'
@@ -74,6 +65,12 @@ NeoBundle 'vim-scripts/sudo.vim'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'open-browser.vim'
 NeoBundle 'mjhd-devlion/vimhot'
+NeoBundle 'justmao945/vim-clang', {
+    \   'autoload': {'filetypes': ['c', 'cpp']}
+    \ }
+NeoBundle 'osyo-manga/vim-anzu'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tomtom/tcomment_vim'
 
 call neobundle#end()
 
@@ -105,7 +102,7 @@ augroup END
 " タブ
 set ts=4 sw=4
 set softtabstop=4
-set expandtab
+set noexpandtab
 
 set notitle
 set showmatch
@@ -121,6 +118,10 @@ set wildmenu
 set wildmode=full:list
 
 set statusline=[%L]\ %t\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
+
+set showtabline=2
+
+set breakindent
 
 " --------------------------------
 " 編集
@@ -228,7 +229,7 @@ let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ 'mode_map': { 'c': 'NORMAL' },
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+      \   'left': [ [ 'mode', 'paste', 'anzu' ], [ 'fugitive', 'filename' ] ]
       \ },
       \ 'component_function': {
       \   'modified': 'MyModified',
@@ -239,6 +240,7 @@ let g:lightline = {
       \   'filetype': 'MyFiletype',
       \   'fileencoding': 'MyFileencoding',
       \   'mode': 'MyMode',
+      \   'anzu': 'anzu#search_status'
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
@@ -270,7 +272,7 @@ function! MyFugitive()
 endfunction
 
 function! MyFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
+  return winwidth(0) > 70 ? 'FF ' . &fileformat : ''
 endfunction
 
 function! MyFiletype()
@@ -278,12 +280,14 @@ function! MyFiletype()
 endfunction
 
 function! MyFileencoding()
-  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+  return winwidth(0) > 70 ? 'FE ' . (strlen(&fenc) ? &fenc : &enc) : ''
 endfunction
 
 function! MyMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
+
+let g:syntastic_cpp_compiler_options = " -std=c++14"
 
 " md as markdown
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=mkd
@@ -291,6 +295,7 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=mkd
 " for slimv
 let g:slimv_lisp = 'ros run'
 let g:slimv_impl = 'sbcl'
+autocmd BufNewFile,BufRead *.asd   set filetype=lisp
 
 " for go
 autocmd BufNewFile,BufRead *.go set filetype=go
@@ -365,48 +370,6 @@ function! s:filter_header(lines) abort
     return centered_lines
 endfunction
 
-let g:startify_custom_header = s:filter_header([
-    \ '      ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁    ░▓▓▒         ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁',
-    \ '     ▕                        ▁  ░░▓▓▒▒▒     ▁▔                        ▔▏',
-    \ '    ▕ ▗▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚  ░░░▓▓▓▓▓▒▒▒  ▕ ▗▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▖▒▒',
-    \ '    ▕ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒ ▓▓▓▓▓▓▓▓▓▒▒ ▕ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒',
-    \ '    ▕ ▝▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚ ▒▓▓▓▓▓▓▓▓▓▓▓▒▒▒ ▝▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▀▘▒',
-    \ '     ▕     ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒    ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▏',
-    \ '      ▔▔▔▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒  ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓    ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓    ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓   ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓    ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓▓▓    ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓    ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▒▒',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓   ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▒▓▓▒▒▒',
-    \ '        ░▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓   ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▒▒▒',
-    \ '       ░░▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓    ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓▓▓▒▒▒',
-    \ '     ░░░▓▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓    ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒',
-    \ '   ░░░▓▓▓▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒    ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒',
-    \ ' ░░░▓▓▓▓▓▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒  ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒',
-    \ '▒▒▒▓▓▓▓▓▓▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒',
-    \ ' ▒▒▒▓▓▓▓▓▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓████',
-    \ '   ▒▒▒▓▓▓▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███',
-    \ '     ▒▒▓▓▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▖▖▖▖▖▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███',
-    \ '      ▒▒▒▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▚▚▚▚▚▘▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███',
-    \ '       ▒▒▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒ ▚▚▚▚▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███',
-    \ '        ▒▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▚▚▚▚▚▚▚▚▓▓▓▚▚▚▚▚▚▖▓▓▗▚▚▚▚▚▖██ ▗▚▚▚▚▚',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▓▓▓▚▚▚▚▘▓▓▓▓▓▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▓▓▓▓▚▚▚▚▚▎▓▓▓▓▓▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▒▓▓▓▓▚▚▚▚▚▎▓▓▓▓▓▚▚▚▚▓▓▓▓▞▚▚▚▚▚      ▚▚▚▚▚',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▚▚▒▒▓▓▓▓▓▚▚▚▚▚▘▓▓▓▓▓▚▚▚▚▚▓▓██▞▚▚▚▚▚     ▚▚▚▚▚',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▚▚▒▒▒▒▓▓▓▓▓▚▚▚▚▚▘▓▓▓▓▚▚▚▚▚▓███  ▚▚▚▚      ▚▚▚▚▚',
-    \ '         ▏ ▚▚▚▚▚▚▚▚▚▒▒▒▒▒▒▒▓▓▓▚▚▚▚▞▞▓▓▓▓▓▚▚▚▚▓██   ▚▚▚▚▚     ▚▚▚▚▚',
-    \ '         ▏ ▚▚▚▚▚▚▒▒▒▒    ▒▒▒▒▚▚▚▚▚▚▓▓▓▓▓▚▚▚▚▚██    ▚▚▚▚     ▚▚▚▚▚▚',
-    \ '         ▔▁▀▒▒▒▒▒▒         ▒▒▚▚▚▚▚▚▚▚▓▓▓▚▚▚▚▚▚    ▚▚▚▚▚▚    ▚▚▚▚▚▚▚',
-    \ '           ▔                  ▒▒▓▓▓▓▓▓▓▓███',
-    \ '                               ▒▒▒▓▓▓▓███',
-    \ '                                 ▒▒▒▓██▓',
-    \ '                                   ▒█▓',
-    \ ])
-
 nnoremap <silent> ! :Startify<CR>
 
 
@@ -427,6 +390,44 @@ let g:neocomplete#sources#buffer#cache_limit_size = 1000000
 let g:neocomplete#sources#tags#cache_limit_size   = 30000000
 let g:neocomplete#enable_fuzzy_completion         = 1
 let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
+if !exists('g:neocomplete#force_omni_input_patterns')
+      let g:neocomplete#force_omni_input_patterns = {} 
+endif
+let g:neocomplete#force_overwrite_completefunc = 1
+let g:neocomplete#force_omni_input_patterns.c =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.cpp =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+" vim-clang
+" disable auto completion for vim-clang
+let g:clang_auto = 0
+
+" default 'longest' can not work with neocomplete
+let g:clang_c_completeopt   = 'menuone'
+let g:clang_cpp_completeopt = 'menuone'
+
+if executable('clang-3.6')
+    let g:clang_exec = 'clang-3.6'
+elseif executable('clang-3.5')
+    let g:clang_exec = 'clang-3.5'
+elseif executable('clang-3.4')
+    let g:clang_exec = 'clang-3.4'
+else
+    let g:clang_exec = 'clang'
+endif
+
+if executable('clang-format-3.6')
+    let g:clang_format_exec = 'clang-format-3.6'
+elseif executable('clang-format-3.5')
+    let g:clang_format_exec = 'clang-format-3.5'
+elseif executable('clang-format-3.4')
+    let g:clang_format_exec = 'clang-format-3.4'
+else
+    let g:clang_exec = 'clang-format'
+endif
+
+let g:clang_cpp_options = '-std=c++14 -stdlib=libc++'
 
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -451,31 +452,9 @@ let g:EasyMotion_enter_jump_first = 1
 let g:EasyMotion_space_jump_first = 1
 hi EasyMotionTarget guifg=#80a0ff ctermfg=81
 
-" simplenote
-let g:SimplenoteUsername = "username"
-let g:SimplenotePassword = "password"
-let g:SimplenoteFiletype = "mkd"
-nnoremap <silent> memo :Simplenote -l<CR>
-nnoremap <silent> memon :Simplenote -n<CR>
-nnoremap <silent> memos :Simplenote -u<CR>
-nnoremap <silent> memod :Simplenote -d<CR>
-nnoremap <silent> memoD :Simplenote -D<CR>
-nnoremap <silent> memot :Simplenote -t<CR>
-nnoremap <silent> memop :Simplenote -p<CR>
-nnoremap <silent> memoP :Simplenote -P<CR>
-
 " instant-markdown
 let g:instant_markdown_autostart = 0
 au FileType mkd nmap <silent> <buffer> mkd :InstantMarkdownPreview<CR>
-
-" OmniSharp
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-
-let g:OmniSharp_selector_ui = 'unite'
-autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
 
 " HSP
 autocmd BufRead *.hsp call FileTypeHsp()
@@ -486,3 +465,18 @@ function FileTypeHsp()
     noremap <F5> :make<CR>
     set noexpandtab
 endfunction
+
+" VimFiler
+let g:vimfiler_enable_auto_cd = 1
+
+" vim-anzu
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+
+nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+
+augroup vim-anzu
+    autocmd!
+    autocmd CursorHold,CursorHoldI,WinLeave,TabLeave * call anzu#clear_search_status()
