@@ -1,0 +1,3 @@
+(define default-im-name 'anthy)
+(define-key generic-on-key? '("end" "<Control> "))
+(define-key generic-off-key? '("home" "<Control> "))
