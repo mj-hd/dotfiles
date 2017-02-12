@@ -13,3 +13,5 @@ ln -s ~/dotfiles/.tmux-powerlinerc ~/.tmux-powerlinerc
 
 mkdir -p ~/.config/fish/
 ln -s ~/dotfiles/config.fish ~/.config/fish/config.fish
+
+ln -s ~/dotfiles/.vim ~/.config/nvim

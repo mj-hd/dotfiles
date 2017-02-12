@@ -1,0 +1,1 @@
+/home/mjhd/.vimrc
