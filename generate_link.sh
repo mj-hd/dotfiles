@@ -15,3 +15,5 @@ mkdir -p ~/.config/fish/
 ln -s ~/dotfiles/config.fish ~/.config/fish/config.fish
 
 ln -s ~/dotfiles/.vim ~/.config/nvim
+ln ~/dotfiles/.dein.toml ~/.dein.toml
+ln ~/dotfiles/.dein_lazy.toml ~/.dein_lazy.toml
