@@ -9,13 +9,6 @@ depends = ['context_filetype.vim']
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = 'toml'
-
-[[plugins]]
-repo = 'Shougo/vimproc.vim'
-
-[[plugins]]
 repo = 'Shougo/vimproc.vim'
 hook_post_update = '''
   if dein#util#_is_windows()
@@ -40,13 +33,7 @@ repo = 'mhinz/vim-startify'
 repo = 'Lokaltog/vim-easymotion'
 
 [[plugins]]
-repo = 'Raimondi/delimitMate'
-
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
+repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
 repo = 'jpo/vim-railscasts-theme'
@@ -56,4 +43,7 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'osyo-manga/vim-anzu'
+repo = 'ConradIrwin/vim-bracketed-paste'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'

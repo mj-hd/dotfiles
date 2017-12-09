@@ -5,3 +5,5 @@
 	ui = auto
 [credential]
 	helper = cache
+[http]
+[https]

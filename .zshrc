@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="af-magic"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -84,3 +84,8 @@ if [ $SHLVL = 1 ]; then
 fi
 
 alias lj="ls --color=tty --show-control-chars"
+alias vim="nvim"
+
+alias dummysmtp="sudo python -m smtpd -n -c DebuggingServer localhost:25"
+
+export PATH=$PATH:~/Projects/memo:~/.local/bin

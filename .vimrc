@@ -42,14 +42,7 @@ if has("nvim")
 		call dein#end()
 		call dein#save_state()
 	endif
-	" プラグインの追加・削除やtomlファイルの設定を変更した後は
-	" 適宜 call dein#update や call dein#clear_state を呼んでください。
-	" そもそもキャッシュしなくて良いならload_state/save_stateを呼ばないようにしてください。
 	
-	" vimprocだけは最初にインストールしてほしい
-	if dein#check_install(['vimproc'])
-		call dein#install(['vimproc'])
-	endif
 	" その他インストールしていないものはこちらに入れる
 	if dein#check_install()
 		call dein#install()
@@ -65,7 +58,9 @@ endif
 " 外見
 " ---------------------------------
 syntax on
-colorscheme railscasts
+if has("nvim")
+	colorscheme railscasts
+endif
 
 " 全角空白をハイライト
 " PODバグ対策
@@ -132,7 +127,7 @@ set tags+=./tags
 
 " 行内でもカーソル移動可能に
 nnoremap <Down> gj
-nnoremap <Up>	 gk
+nnoremap <Up>   gk
 
 " split系
 nnoremap s <Nop>
@@ -161,8 +156,8 @@ nnoremap sq :<C-u>q<CR>
 nnoremap sQ :<C-u>bd<CR>
 
 " インクリメントデクリメント
-nnoremap + <C-x>
-nnoremap - <C-a>
+nnoremap - <C-x>
+nnoremap + <C-a>
 
 nmap <Tab> %
 vmap <Tab> %
@@ -184,7 +179,7 @@ set nohlsearch
 set incsearch
 
 if v:version < 700
-	 set migemo
+	set migemo
 endif
 
 " ------------------------------
@@ -201,11 +196,116 @@ let g:explUseSeparators=1
 set hidden
 
 " ------------------------------
+" 言語
+" ------------------------------
+" Lisp
+" for slimv
+" let g:slimv_lisp = 'ros run'
+" let g:slimv_impl = 'sbcl'
+" autocmd BufNewFile,BufRead *.asd set filetype=lisp
+
+" Go
+au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4 filetype=go
+au FileType go nmap <F6> <Plug>(go-build)
+au FileType go nmap <F5> <Plug>(go-run)
+au FileType go nmap <F7> <Plug>(go-test)
+au FileType go compiler go
+
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+" Clear filetype flags before changing runtimepath to force Vim to reload them.
+if exists("g:did_load_filetypes")
+	filetype off
+	filetype plugin indent off
+endif
+set runtimepath+=$GOROOT/misc/vim " replace $GOROOT with the output of: go env GOROOT
+set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
+filetype plugin indent on
+let g:go_fmt_command = 'goimports'
+let g:go_fmt_fail_silently = 1
+let g:go_addtags_transform = "camelcase"
+let g:go_highlight_types = 1
+"let g:go_highlight_fields = 1
+"let g:go_highlight_functions = 1
+"let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_deadline = "5s"
+let g:go_auto_type_info = 1
+let g:go_auto_sameids = 1
+set updatetime=100
+
+" Haskell
+autocmd FileType haskell :set expandtab
+
+" C/C++
+" vim-clang
+" disable auto completion for vim-clang
+let g:clang_auto = 0
+
+" default 'longest' can not work with neocomplete
+let g:clang_c_completeopt	 = 'menuone'
+let g:clang_cpp_completeopt = 'menuone'
+
+if executable('clang-3.6')
+	let g:clang_exec = 'clang-3.6'
+elseif executable('clang-3.5')
+	let g:clang_exec = 'clang-3.5'
+elseif executable('clang-3.4')
+	let g:clang_exec = 'clang-3.4'
+else
+	let g:clang_exec = 'clang'
+endif
+
+if executable('clang-format-3.6')
+	let g:clang_format_exec = 'clang-format-3.6'
+elseif executable('clang-format-3.5')
+	let g:clang_format_exec = 'clang-format-3.5'
+elseif executable('clang-format-3.4')
+	let g:clang_format_exec = 'clang-format-3.4'
+else
+	let g:clang_exec = 'clang-format'
+endif
+
+let g:clang_cpp_options = '-std=c++14 -stdlib=libc++'
+
+" HSP
+" autocmd BufNewFile,BufRead *.hsp call FileTypeHsp()
+" function FileTypeHsp()
+" 	compiler hsp
+" 	set filetype=hsp
+" 	noremap <F1> :execute "OpenBrowser http://ohdl.hsproom.me/?q=" . expand( "<cword>" )<CR>
+" 	noremap <F5> :make<CR>
+" 	set noexpandtab
+" endfunction
+
+" Javascript/TypeScript
+" vim-js-indent
+" let g:js_indent_typescript = 1
+" 
+" if has("nvim")
+" 	autocmd FileType typescript setlocal completeopt-=menu
+" 	let g:tsuquyomi_completion_detail = 1
+" 	let g:tsuquyomi_disable_quickfix = 1
+" 	let g:syntastic_typescript_checkers = ['tsuquyomi']
+" endif
+
+" ------------------------------
 " その他
 " ------------------------------
 " 開いたファイルのディレクトリへ移動
 au BufEnter * execute ":lcd " . escape(expand("%:p:h"), " #\\")
 set timeoutlen=1000 ttimeoutlen=0
+set autowrite
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
 
 " ------------------------------
 " プラグイン
@@ -215,7 +315,7 @@ let g:lightline = {
 	\ 'colorscheme': 'jellybeans',
 	\ 'mode_map': { 'c': 'NORMAL' },
 	\ 'active': {
-	\	 'left': [ [ 'mode', 'paste', 'anzu' ], [ 'fugitive', 'filename' ] ]
+	\	 'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
 	\ },
 	\ 'component_function': {
 	\	 'modified': 'MyModified',
@@ -225,8 +325,7 @@ let g:lightline = {
 	\	 'fileformat': 'MyFileformat',
 	\	 'filetype': 'MyFiletype',
 	\	 'fileencoding': 'MyFileencoding',
-	\	 'mode': 'MyMode',
-	\	 'anzu': 'anzu#search_status'
+	\	 'mode': 'MyMode'
 	\ },
 	\ 'separator': { 'left': '', 'right': '' },
 	\ 'subseparator': { 'left': '', 'right': '' }
@@ -275,31 +374,6 @@ endfunction
 
 " md as markdown
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=mkd
-
-" for slimv
-" let g:slimv_lisp = 'ros run'
-" let g:slimv_impl = 'sbcl'
-" autocmd BufNewFile,BufRead *.asd	 set filetype=lisp
-
-" for go
-autocmd BufNewFile,BufRead *.go set filetype=go
-
-" Go に付属の plugin と gocode を有効にする
-
-" 保存時に :Fmt する
-" autocmd FileType go autocmd BufWritePre <buffer> Fmt
-au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4 filetype=go
-au FileType go compiler go
-
-" Clear filetype flags before changing runtimepath to force Vim to reload them.
-if exists("g:did_load_filetypes")
-	filetype off
-	filetype plugin indent off
-endif
-set runtimepath+=$GOROOT/misc/vim " replace $GOROOT with the output of: go env GOROOT
-set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
-filetype plugin indent on
-let g:gofmt_command = 'goimports'
 
 " Easy align interactive
 vnoremap <silent> <Enter> :EasyAlign<cr>
@@ -356,89 +430,9 @@ endfunction
 
 nnoremap <silent> ! :Startify<CR>
 
-
-autocmd FileType haskell :set expandtab
-
 " vimfiler
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
-
-" neocomplete
-if !has("nvim")
-	let g:neocomplete#enable_at_startup							 = 1
-	let g:neocomplete#auto_completion_start_length		= 3
-	let g:neocomplete#enable_ignore_case							= 1
-	let g:neocomplete#enable_smart_case							 = 1
-	let g:neocomplete#enable_camel_case							 = 1
-	let g:neocomplete#use_vimproc										 = 1
-	let g:neocomplete#sources#buffer#cache_limit_size = 1000000
-	let g:neocomplete#sources#tags#cache_limit_size	 = 30000000
-	let g:neocomplete#enable_fuzzy_completion				 = 1
-	let g:neocomplete#lock_buffer_name_pattern				= '\*ku\*'
-	if !exists('g:neocomplete#force_omni_input_patterns')
-		let g:neocomplete#force_omni_input_patterns = {} 
-	endif
-	let g:neocomplete#force_overwrite_completefunc = 1
-	let g:neocomplete#force_omni_input_patterns.c =
-		\ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-	let g:neocomplete#force_omni_input_patterns.cpp =
-		\ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-	
-	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-	function! s:my_cr_function()
-		"return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-		" For no inserting <CR> key.
-		return pumvisible() ? "\<C-y>" : "\<CR>"
-	endfunction
-	" <TAB>: completion.
-	inoremap <expr><TAB>	pumvisible() ? "\<C-n>" : "\<TAB>"
-	" <C-h>, <BS>: close popup and delete backword char.
-	inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-	inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-	
-	autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-	autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-	autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-	autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-	
-	imap <expr><TAB>
-		\ pumvisible() ? "\<C-n>" :
-		\ neosnippet#expandable_or_jumpable() ?
-		\		"\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-	smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-		\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"	>
-endif
-
-" vim-clang
-" disable auto completion for vim-clang
-let g:clang_auto = 0
-
-" default 'longest' can not work with neocomplete
-let g:clang_c_completeopt	 = 'menuone'
-let g:clang_cpp_completeopt = 'menuone'
-
-if executable('clang-3.6')
-	let g:clang_exec = 'clang-3.6'
-elseif executable('clang-3.5')
-	let g:clang_exec = 'clang-3.5'
-elseif executable('clang-3.4')
-	let g:clang_exec = 'clang-3.4'
-else
-	let g:clang_exec = 'clang'
-endif
-
-if executable('clang-format-3.6')
-	let g:clang_format_exec = 'clang-format-3.6'
-elseif executable('clang-format-3.5')
-	let g:clang_format_exec = 'clang-format-3.5'
-elseif executable('clang-format-3.4')
-	let g:clang_format_exec = 'clang-format-3.4'
-else
-	let g:clang_exec = 'clang-format'
-endif
-
-let g:clang_cpp_options = '-std=c++14 -stdlib=libc++'
 
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -467,75 +461,43 @@ let g:EasyMotion_enter_jump_first = 1
 let g:EasyMotion_space_jump_first = 1
 hi EasyMotionTarget guifg=#80a0ff ctermfg=81
 
-" instant-markdown
-let g:instant_markdown_autostart = 0
-au FileType mkd nmap <silent> <buffer> mkd :InstantMarkdownPreview<CR>
-
-" HSP
-autocmd BufNewFile,BufRead *.hsp call FileTypeHsp()
-function FileTypeHsp()
-	compiler hsp
-	set filetype=hsp
-	noremap <F1> :execute "OpenBrowser http://ohdl.hsproom.me/?q=" . expand( "<cword>" )<CR>
-	noremap <F5> :make<CR>
-	set noexpandtab
-endfunction
-
 " VimFiler
 let g:vimfiler_enable_auto_cd = 1
-
-" vim-anzu
-nmap n <Plug>(anzu-n-with-echo)
-nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
-
-nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
-
-augroup vim-anzu
-	autocmd!
-	autocmd CursorHold,CursorHoldI,WinLeave,TabLeave * call anzu#clear_search_status()
 
 " tcomment
 let g:tcommentMapLeader1 = '<C-/>'
 
-" vim-ref
-let g:ref_phpmanual_path='/home/mjhd/.vim/php-chunked-xhtml'
-
-" detectindent
-" au BufReadPost * :DetectIndent
-
 " neomake
-" color
-autocmd! BufWritePost * Neomake
-au MyAutoCmd ColorScheme * hi NeomakeErrorSign cterm=bold ctermfg=7 ctermbg=9
-au MyAutoCmd ColorScheme * hi NeomakeWarningSign cterm=bold ctermfg=8 ctermbg=216
-au MyAutoCmd ColorScheme * hi NeomakeMessageSign cterm=bold ctermfg=8 ctermbg=150
-au MyAutoCmd ColorScheme * hi NeomakeInfoSign cterm=bold ctermfg=8 ctermbg=110
-" text
-let g:neomake_error_sign = {'text': 'E✖', 'texthl': 'NeomakeErrorSign'}
-let g:neomake_warning_sign = {
-	\	 'text': 'W➤',
-	\	 'texthl': 'NeomakeWarningSign',
-	\ }
-let g:neomake_message_sign = {
-	\	 'text': 'M➤',
-	\	 'texthl': 'NeomakeMessageSign',
-	\ }
-let g:neomake_info_sign = {'text': 'ℹ➤',
-	\ 'texthl': 'NeomakeInfoSign'}
-
-" vim-js-indent
-let g:js_indent_typescript = 1
-
 if has("nvim")
-	autocmd FileType typescript setlocal completeopt-=menu
-	let g:tsuquyomi_completion_detail = 1
-	let g:tsuquyomi_disable_quickfix = 1
-	let g:syntastic_typescript_checkers = ['tsuquyomi']
+	" color
+	autocmd! BufWritePost * Neomake
+	au MyAutoCmd ColorScheme * hi NeomakeErrorSign cterm=bold ctermfg=7 ctermbg=9
+	au MyAutoCmd ColorScheme * hi NeomakeWarningSign cterm=bold ctermfg=8 ctermbg=216
+	au MyAutoCmd ColorScheme * hi NeomakeMessageSign cterm=bold ctermfg=8 ctermbg=150
+	au MyAutoCmd ColorScheme * hi NeomakeInfoSign cterm=bold ctermfg=8 ctermbg=110
+	" text
+	let g:neomake_error_sign = {'text': 'E✖', 'texthl': 'NeomakeErrorSign'}
+	let g:neomake_warning_sign = {
+		\	 'text': 'W➤',
+		\	 'texthl': 'NeomakeWarningSign',
+		\ }
+	let g:neomake_message_sign = {
+		\	 'text': 'M➤',
+		\	 'texthl': 'NeomakeMessageSign',
+		\ }
+	let g:neomake_info_sign = {'text': 'ℹ➤',
+		\ 'texthl': 'NeomakeInfoSign'}
 endif
 
+" deoplete
 if has("nvim")
 	let g:deoplete#enable_at_startup = 1
+	let g:deoplete#sources#go#package_dot = 1
+	let g:deoplete#sources#go#pointer = 1
+endif
+
+" ultisnips
+if has("nvim")
+	let g:UltiSnipsExpandTrigger="<tab>"
 endif
 

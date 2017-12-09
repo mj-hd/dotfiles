@@ -7,3 +7,53 @@ on_source = ['unite.vim']
 
 [[plugins]]
 repo = 'neomake/neomake'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'joonty/vdebug'
+on_ft = ['php', 'go']
+
+[[plugins]]
+repo = 'zchee/deoplete-go'
+build = 'make'
+on_ft = 'go'
+depends = ['deoplete.nvim']
+hook_source = '''
+    let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
+'''
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+
+[[plugins]]
+repo = 'Shougo/neco-vim'
+on_ft = 'vim'
+
+[[plugins]]
+repo = 'zchee/deoplete-clang'
+on_ft = 'cpp'
+
+[[plugins]]
+repo = 'AndrewRadev/splitjoin.vim'
+on_ft = 'go'
+
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors'
+on_i = 1
+
+[[plugins]]
+repo = 'Raimondi/delimitMate'
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+on_i = 1
+
+[[plugins]]
+repo = 'SirVer/ultisnips'
+on_i = 1
+
