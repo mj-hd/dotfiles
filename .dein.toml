@@ -36,6 +36,9 @@ repo = 'Lokaltog/vim-easymotion'
 repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
+repo = 'SirVer/ultisnips'
+
+[[plugins]]
 repo = 'jpo/vim-railscasts-theme'
 hook_add = '''
   set background=dark
@@ -47,3 +50,12 @@ repo = 'ConradIrwin/vim-bracketed-paste'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
+
+[[plugins]]
+repo = 'tobyS/vmustache'
+
+[[plugins]]
+repo = 'w0rp/ale'
+
+[[plugins]]
+repo = "tpope/vim-fugitive"

@@ -206,6 +206,7 @@ set hidden
 
 " Go
 au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4 filetype=go
+au BufNewFile,BufRead *.gox set sw=4 noexpandtab ts=4 filetype=go
 au FileType go nmap <F6> <Plug>(go-build)
 au FileType go nmap <F5> <Plug>(go-run)
 au FileType go nmap <F7> <Plug>(go-test)
@@ -247,31 +248,31 @@ autocmd FileType haskell :set expandtab
 " C/C++
 " vim-clang
 " disable auto completion for vim-clang
-let g:clang_auto = 0
-
-" default 'longest' can not work with neocomplete
-let g:clang_c_completeopt	 = 'menuone'
-let g:clang_cpp_completeopt = 'menuone'
-
-if executable('clang-3.6')
-	let g:clang_exec = 'clang-3.6'
-elseif executable('clang-3.5')
-	let g:clang_exec = 'clang-3.5'
-elseif executable('clang-3.4')
-	let g:clang_exec = 'clang-3.4'
-else
-	let g:clang_exec = 'clang'
-endif
-
-if executable('clang-format-3.6')
-	let g:clang_format_exec = 'clang-format-3.6'
-elseif executable('clang-format-3.5')
-	let g:clang_format_exec = 'clang-format-3.5'
-elseif executable('clang-format-3.4')
-	let g:clang_format_exec = 'clang-format-3.4'
-else
-	let g:clang_exec = 'clang-format'
-endif
+" let g:clang_auto = 0
+" 
+" " default 'longest' can not work with neocomplete
+" let g:clang_c_completeopt	 = 'menuone'
+" let g:clang_cpp_completeopt = 'menuone'
+" 
+" if executable('clang-3.6')
+" 	let g:clang_exec = 'clang-3.6'
+" elseif executable('clang-3.5')
+" 	let g:clang_exec = 'clang-3.5'
+" elseif executable('clang-3.4')
+" 	let g:clang_exec = 'clang-3.4'
+" else
+" 	let g:clang_exec = 'clang'
+" endif
+" 
+" if executable('clang-format-3.6')
+" 	let g:clang_format_exec = 'clang-format-3.6'
+" elseif executable('clang-format-3.5')
+" 	let g:clang_format_exec = 'clang-format-3.5'
+" elseif executable('clang-format-3.4')
+" 	let g:clang_format_exec = 'clang-format-3.4'
+" else
+" 	let g:clang_exec = 'clang-format'
+" endif
 
 let g:clang_cpp_options = '-std=c++14 -stdlib=libc++'
 
@@ -296,6 +297,21 @@ let g:clang_cpp_options = '-std=c++14 -stdlib=libc++'
 " 	let g:syntastic_typescript_checkers = ['tsuquyomi']
 " endif
 
+" deoplete
+if has("nvim")
+	let g:deoplete#enable_at_startup = 1
+	let g:deoplete#sources#go#package_dot = 1
+	let g:deoplete#sources#go#pointer = 1
+endif
+
+" PHP
+let g:pdv_template_dir = $HOME ."/.cache/dein/repos/github.com/tobyS/pdv/templates_snip"
+nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+if has("nvim")
+	let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+	let g:deoplete#ignore_sources.php = ['omni']
+endif
+
 " ------------------------------
 " その他
 " ------------------------------
@@ -303,9 +319,6 @@ let g:clang_cpp_options = '-std=c++14 -stdlib=libc++'
 au BufEnter * execute ":lcd " . escape(expand("%:p:h"), " #\\")
 set timeoutlen=1000 ttimeoutlen=0
 set autowrite
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
 
 " ------------------------------
 " プラグイン
@@ -489,15 +502,7 @@ if has("nvim")
 		\ 'texthl': 'NeomakeInfoSign'}
 endif
 
-" deoplete
-if has("nvim")
-	let g:deoplete#enable_at_startup = 1
-	let g:deoplete#sources#go#package_dot = 1
-	let g:deoplete#sources#go#pointer = 1
-endif
-
-" ultisnips
-if has("nvim")
-	let g:UltiSnipsExpandTrigger="<tab>"
-endif
-
+" ale
+let g:ale_lint_on_enter = 1
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1

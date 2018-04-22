@@ -34,10 +34,6 @@ repo = 'Shougo/neco-vim'
 on_ft = 'vim'
 
 [[plugins]]
-repo = 'zchee/deoplete-clang'
-on_ft = 'cpp'
-
-[[plugins]]
 repo = 'AndrewRadev/splitjoin.vim'
 on_ft = 'go'
 
@@ -54,6 +50,22 @@ repo = 'Shougo/deoplete.nvim'
 on_i = 1
 
 [[plugins]]
-repo = 'SirVer/ultisnips'
-on_i = 1
+repo = 'tobyS/pdv'
+on_ft = 'php'
 
+[[plugins]]
+repo = 'lvht/phpcd.vim'
+on_ft = 'php'
+build = 'composer install'
+
+[[plugins]]
+repo = 'tomlion/vim-solidity'
+on_ft = 'solidity'
+
+[[plugins]]
+repo = 'ianks/vim-tsx'
+on_ft = 'tsx'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+on_ft = ['tsx', 'ts']
