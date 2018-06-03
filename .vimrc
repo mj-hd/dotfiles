@@ -127,7 +127,7 @@ set tags+=./tags
 
 " 行内でもカーソル移動可能に
 nnoremap <Down> gj
-nnoremap <Up>   gk
+nnoremap <Up>	 gk
 
 " split系
 nnoremap s <Nop>
@@ -149,7 +149,7 @@ nnoremap sO <C-w>=
 nnoremap sN :<C-u>bn<CR>
 nnoremap sP :<C-u>bp<CR>
 nnoremap st :<C-u>tabnew<CR>
-nnoremap sT :<C-u>Unite tab<CR>
+nnoremap sT :<C-u>Denite tab<CR>
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
 nnoremap sq :<C-u>q<CR>
@@ -216,6 +216,7 @@ autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+au FileType go nmap <F1> <Plug>(go-def)
 
 " Clear filetype flags before changing runtimepath to force Vim to reload them.
 if exists("g:did_load_filetypes")
@@ -227,19 +228,23 @@ set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
 filetype plugin indent on
 let g:go_fmt_command = 'goimports'
 let g:go_fmt_fail_silently = 1
-let g:go_addtags_transform = "camelcase"
-let g:go_highlight_types = 1
-"let g:go_highlight_fields = 1
-"let g:go_highlight_functions = 1
-"let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
+let g:go_addtags_transform = "snakecase"
 let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
-let g:go_metalinter_deadline = "5s"
+let g:go_metalinter_deadline = "3s"
 let g:go_auto_type_info = 1
 let g:go_auto_sameids = 1
+let g:go_fmt_fail_silently = 1
 set updatetime=100
 
 " Haskell
@@ -391,23 +396,16 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=mkd
 " Easy align interactive
 vnoremap <silent> <Enter> :EasyAlign<cr>
 
-" unite
-let g:unite_source_history_yank_enable = 1
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nocolor --nogroup'
-let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
-"call unite#filters#matcher_default#use(['mathcer_fuzzy'])
-let g:unite_enable_start_insert = 1
-let g:unite_source_file_mru_limit = 200
+" denite
+highlight CursorLine ctermbg=white
 
 " search a file in the filetree
-nnoremap <silent> ,<space> :<C-u>Unite file_rec/async:!<cr>
-nnoremap <silent> ,, :<C-u>UniteResume<CR>
-nnoremap <silent> ,y :<C-u>Unite history/yank<cr>
-nnoremap <silent> ,b :<C-u>Unite buffer<cr>
-nnoremap <silent> ,r :<C-u>Unite file_mru buffer<cr>
-nnoremap <silent> ,g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+nnoremap <silent> ,<space> :<C-u>Denite file_rec<cr>
+nnoremap <silent> ,y :<C-u>Denite neo_yank<cr>
+nnoremap <silent> ,b :<C-u>Denite buffer<cr>
+nnoremap <silent> ,r :<C-u>Denite file_mru buffer<cr>
+nnoremap <silent> ,, :<C-u>Denite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> ,cg :<C-u>Denite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
@@ -506,3 +504,10 @@ endif
 let g:ale_lint_on_enter = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
+
+au BufNewFile,BufRead *.js set sw=2 expandtab ts=2
+au BufNewFile,BufRead *.jsx set sw=2 expandtab ts=2
+
+let g:python3_host_prog = '/usr/local/bin/python3'
+
+let g:loaded_sql_completion = 0

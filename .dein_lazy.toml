@@ -1,9 +1,17 @@
 [[plugins]]
-repo = 'Shougo/unite.vim'
+repo = 'Shougo/denite.nvim'
+hook_post_source = '''
+call denite#custom#var('file/rec', 'command',
+\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+call denite#custom#var('grep', 'command', ['ag'])
+'''
 
 [[plugins]]
-repo      = 'Shougo/neomru.vim'
-on_source = ['unite.vim']
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
 
 [[plugins]]
 repo = 'neomake/neomake'
@@ -69,3 +77,14 @@ on_ft = 'tsx'
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
 on_ft = ['tsx', 'ts']
+
+[[plugins]]
+repo = 'prettier/vim-prettier'
+on_ft = ['js', 'jsx']
+
+[[plugins]]
+repo = 'google/vim-maktaba'
+
+[[plugins]]
+repo = 'bazelbuild/vim-bazel'
+depends = ['google/vim-maktaba']
