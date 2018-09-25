@@ -133,5 +133,6 @@ if [ -t 1 ]; then
 	cd ~
 	# jupyter notebook > /dev/null &
 	# gnome-terminal -x uim-fep -e zsh && exit
+	export "$(dbus-launch | head -n 1)"
 	gnome-terminal --disable-factory && exit
 fi
