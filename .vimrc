@@ -1,5 +1,4 @@
-set shell=/bin/bash
-
+set shell=/bin/bash 
 set nocompatible
 scriptencoding utf-8
 
@@ -59,7 +58,9 @@ endif
 " ---------------------------------
 syntax on
 if has("nvim")
-	colorscheme railscasts
+	let g:rehash256 = 1
+	let g:molokai_original = 1
+	colorscheme molokai
 endif
 
 " 全角空白をハイライト
@@ -107,10 +108,11 @@ set showtabline=2
 " --------------------------------
 " 編集
 " --------------------------------
+let mapleader=","
 set autoindent
 set backspace=indent,eol,start
 " set clipboard+=autoselect
-set clipboard+=unnamed,unnamedplus
+set clipboard+=unnamedplus
 set pastetoggle=<F12>
 set guioptions+=a
 set mouse=a
@@ -204,7 +206,7 @@ set hidden
 " let g:slimv_impl = 'sbcl'
 " autocmd BufNewFile,BufRead *.asd set filetype=lisp
 
-" Go
+" Golang
 au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4 filetype=go
 au BufNewFile,BufRead *.gox set sw=4 noexpandtab ts=4 filetype=go
 au FileType go nmap <F6> <Plug>(go-build)
@@ -224,7 +226,8 @@ if exists("g:did_load_filetypes")
 	filetype plugin indent off
 endif
 set runtimepath+=$GOROOT/misc/vim " replace $GOROOT with the output of: go env GOROOT
-set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
+set rtp+=$GOPATH/src/github.com/mdempsky/gocode/vim
+let g:deoplete#sources#go#gocode_binary="$GOPATH/src/github.com/mdempsky/gocode/vim"
 filetype plugin indent on
 let g:go_fmt_command = 'goimports'
 let g:go_fmt_fail_silently = 1
@@ -242,10 +245,13 @@ let g:go_highlight_operators = 1
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_deadline = "3s"
-let g:go_auto_type_info = 1
+let g:go_auto_type_info = 0
 let g:go_auto_sameids = 1
 let g:go_fmt_fail_silently = 1
+let g:go_snippet_engine = 'neosnippet'
 set updatetime=100
+
+nmap gdd :GoDefPop
 
 " Haskell
 autocmd FileType haskell :set expandtab
@@ -309,14 +315,6 @@ if has("nvim")
 	let g:deoplete#sources#go#pointer = 1
 endif
 
-" PHP
-let g:pdv_template_dir = $HOME ."/.cache/dein/repos/github.com/tobyS/pdv/templates_snip"
-nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
-if has("nvim")
-	let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-	let g:deoplete#ignore_sources.php = ['omni']
-endif
-
 " ------------------------------
 " その他
 " ------------------------------
@@ -333,7 +331,8 @@ let g:lightline = {
 	\ 'colorscheme': 'jellybeans',
 	\ 'mode_map': { 'c': 'NORMAL' },
 	\ 'active': {
-	\	 'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+	\	 'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
+	\	 'right': [ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype'], ['ale'] ]
 	\ },
 	\ 'component_function': {
 	\	 'modified': 'MyModified',
@@ -343,10 +342,11 @@ let g:lightline = {
 	\	 'fileformat': 'MyFileformat',
 	\	 'filetype': 'MyFiletype',
 	\	 'fileencoding': 'MyFileencoding',
-	\	 'mode': 'MyMode'
+	\	 'mode': 'MyMode',
+	\	 'ale': 'ALE'
 	\ },
 	\ 'separator': { 'left': '', 'right': '' },
-	\ 'subseparator': { 'left': '', 'right': '' }
+	\ 'subseparator': { 'left': '', 'right': '|' }
 	\ }
 
 function! MyModified()
@@ -375,19 +375,36 @@ function! MyFugitive()
 endfunction
 
 function! MyFileformat()
-	return winwidth(0) > 70 ? 'FF ' . &fileformat : ''
+	return winwidth(0) > 70 ?
+		\ (&fileformat == 'unix' ? '' :
+		\ &fileformat == 'dos' ? '' :
+		\ &fileformat == 'mac' ? '' : &fileformat) : ''
 endfunction
 
 function! MyFiletype()
-	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+	return winwidth(0) > 70 ?
+		\ (strlen(&filetype) ?
+		\  (&filetype == 'go' ? '' :
+		\   &filetype == 'typescript' ? '' :
+		\   &filetype == 'typescript.jsx' ? 'TSX' :
+		\   &filetype == 'javascript' ? '' :
+		\   &filetype == 'vim' ? '' :
+		\   &filetype == 'php' ? '' : &filetype) : '') : ''
 endfunction
 
 function! MyFileencoding()
-	return winwidth(0) > 70 ? 'FE ' . (strlen(&fenc) ? &fenc : &enc) : ''
+	return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
 endfunction
 
 function! MyMode()
 	return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+function! ALE()
+	let l:counts = ale#statusline#Count(bufnr(''))
+	let l:all_errors = l:counts.error + l:counts.style_error
+	let l:all_non_errors = l:counts.total - l:all_errors
+	return l:counts.total == 0 ? ' ' : printf('ﮏ %d  %d', all_errors, all_non_errors)
 endfunction
 
 " md as markdown
@@ -478,32 +495,29 @@ let g:vimfiler_enable_auto_cd = 1
 " tcomment
 let g:tcommentMapLeader1 = '<C-/>'
 
-" neomake
-if has("nvim")
-	" color
-	autocmd! BufWritePost * Neomake
-	au MyAutoCmd ColorScheme * hi NeomakeErrorSign cterm=bold ctermfg=7 ctermbg=9
-	au MyAutoCmd ColorScheme * hi NeomakeWarningSign cterm=bold ctermfg=8 ctermbg=216
-	au MyAutoCmd ColorScheme * hi NeomakeMessageSign cterm=bold ctermfg=8 ctermbg=150
-	au MyAutoCmd ColorScheme * hi NeomakeInfoSign cterm=bold ctermfg=8 ctermbg=110
-	" text
-	let g:neomake_error_sign = {'text': 'E✖', 'texthl': 'NeomakeErrorSign'}
-	let g:neomake_warning_sign = {
-		\	 'text': 'W➤',
-		\	 'texthl': 'NeomakeWarningSign',
-		\ }
-	let g:neomake_message_sign = {
-		\	 'text': 'M➤',
-		\	 'texthl': 'NeomakeMessageSign',
-		\ }
-	let g:neomake_info_sign = {'text': 'ℹ➤',
-		\ 'texthl': 'NeomakeInfoSign'}
-endif
-
 " ale
 let g:ale_lint_on_enter = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
+let g:ale_sign_error = "ﮏ"
+let g:ale_sign_warning = ""
+let g:ale_set_loclist = 0
+hi ALEWarningSign ctermfg=Yellow
+hi ALEErrorSign ctermfg=Red
+
+" neosnippet
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 au BufNewFile,BufRead *.js set sw=2 expandtab ts=2
 au BufNewFile,BufRead *.jsx set sw=2 expandtab ts=2

@@ -28,10 +28,10 @@ repo = 'airblade/vim-gitgutter'
 repo = 'SirVer/ultisnips'
 
 [[plugins]]
-repo = 'jpo/vim-railscasts-theme'
+repo = 'fatih/molokai'
 hook_add = '''
   set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme railscasts
+  au MyAutoCmd VimEnter * nested colorscheme molokai
 '''
 
 [[plugins]]
@@ -54,3 +54,6 @@ repo = 'tpope/vim-abolish'
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
