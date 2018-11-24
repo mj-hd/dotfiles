@@ -1,13 +1,4 @@
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-hook_post_source = '''
-call denite#custom#var('file/rec', 'command',
-\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-
-call denite#custom#var('grep', 'command', ['ag'])
-'''
-
-[[plugins]]
 repo = 'Shougo/neomru.vim'
 
 [[plugins]]
@@ -22,7 +13,7 @@ repo = 'joonty/vdebug'
 on_ft = ['php', 'go']
 
 [[plugins]]
-repo = 'zchee/deoplete-go'
+repo = 'mjhd-devlion/deoplete-go'
 build = 'make'
 on_ft = 'go'
 depends = ['deoplete.nvim']

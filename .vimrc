@@ -2,6 +2,9 @@ set shell=/bin/bash
 set nocompatible
 scriptencoding utf-8
 
+set shortmess=a
+set cmdheight=2
+
 augroup MyAutoCmd
 	autocmd!
 augroup END
@@ -413,25 +416,6 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=mkd
 " Easy align interactive
 vnoremap <silent> <Enter> :EasyAlign<cr>
 
-" denite
-highlight CursorLine ctermbg=white
-
-" search a file in the filetree
-nnoremap <silent> ,<space> :<C-u>Denite file_rec<cr>
-nnoremap <silent> ,y :<C-u>Denite neo_yank<cr>
-nnoremap <silent> ,b :<C-u>Denite buffer<cr>
-nnoremap <silent> ,r :<C-u>Denite file_mru buffer<cr>
-nnoremap <silent> ,, :<C-u>Denite grep:. -buffer-name=search-buffer<CR>
-nnoremap <silent> ,cg :<C-u>Denite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
-
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-
-" Ag
-" --- type ~ to search the word in all files in the current dir
-nmap ~ :Ag <c-r>=expand("<cword>")<cr><cr>
-nnoremap <space>/ :Ag
-
 " gitgutter
 highlight clear SignColumn
 
@@ -510,10 +494,6 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" SuperTab like snippets behavior.
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
 " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
@@ -522,6 +502,31 @@ endif
 au BufNewFile,BufRead *.js set sw=2 expandtab ts=2
 au BufNewFile,BufRead *.jsx set sw=2 expandtab ts=2
 
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
+let g:python3_host_skip_check = 1
 
 let g:loaded_sql_completion = 0
+
+" FZF
+fun! FzfOmniFiles()
+  let is_git = system('git status')
+  if v:shell_error
+    :Files
+  else
+    :GitFiles
+  endif
+endfun
+
+nnoremap <C-b> :Buffers<CR>
+nnoremap <C-g> :Rg<Space>
+nnoremap <leader><leader> :Commands<CR>
+nnoremap <C-p> :call FzfOmniFiles()<CR>
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#pointer = 1
+let g:deoplete#sources#go#use_cache = 1
+let g:deoplete#sources#go#package_dot = 1
+let g:deoplete#sources#go#source_importer = 0
+let g:deoplete#sources#go#gocode_binary = '~/.go/bin/gocode'
+let g:deopelte#sources#go#unimported_packages = 1
+let g:deoplete#sources#go#fallback_to_source = 1
