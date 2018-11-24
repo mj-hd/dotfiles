@@ -518,7 +518,7 @@ fun! FzfOmniFiles()
 endfun
 
 nnoremap <C-b> :Buffers<CR>
-nnoremap <C-g> :Rg<Space>
+nnoremap <C-f> :Rg<CR>
 nnoremap <leader><leader> :Commands<CR>
 nnoremap <C-p> :call FzfOmniFiles()<CR>
 

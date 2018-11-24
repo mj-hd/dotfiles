@@ -5,10 +5,9 @@ zplug "mollifier/anyframe"
 zplug "mollifier/cd-gitroot"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
 zplug "chrissicool/zsh-256color"
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
-zplug "b4b4r07/zsh-gomi", as:command, use:bin, rename-to:rm
+zplug "junegunn/fzf-bin", as:command, from:gh-r
+zplug "b4b4r07/zsh-gomi", as:command, use:bin
 zplug "mafredri/zsh-async", from:github
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 
@@ -25,19 +24,26 @@ zplug load
 fbr() {
 	local branches branch
 	branches=$(git branch -vv) &&
-	branch=$(echo "$branches" | fzf +m) &&
+	branch=$(echo "$branches" | fzf-bin +m) &&
 	git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
 fd() {
 	local dir
 	dir=$(find ${1:-.} -path '*/\.*' -prune \
-		-o -type d -print 2> /dev/null | fzf +m) &&
+		-o -type d -print 2> /dev/null | fzf-bin +m) &&
 	pushd "$dir"
 }
 
 fdd() {
 	popd
+}
+
+fvim() {
+	local file
+	file=$(find ${1:-.} -path '*/\.*' -prune \
+		-o -type f -print 2> /dev/null | fzf-bin +m) &&
+	vim "$file"
 }
 
 # User configuration
@@ -74,10 +80,9 @@ if [ $SHLVL = 1 ]; then
   alias tmux="tmux attach || tmux new-session \; source-file ~/.tmux.session"
 fi
 
-alias ls="ls -G"
-alias la="ls -a"
-alias ll="ls -lh"
-alias lj="ls --color=tty --show-control-chars"
+alias ls="ls --color=tty --show-control-chars -G"
+alias la="ls --color=tty --show-control-chars -a"
+alias ll="ls --color=tty --show-control-chars -lh"
 alias vim="nvim"
 
 alias dummysmtp="sudo python -m smtpd -n -c DebuggingServer localhost:25"
