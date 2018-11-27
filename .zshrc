@@ -21,7 +21,7 @@ fi
 zplug load
 
 # func
-fbr() {
+fbra() {
 	local branches branch
 	branches=$(git branch -vv) &&
 	branch=$(echo "$branches" | fzf-bin +m) &&
@@ -39,11 +39,41 @@ fdd() {
 	popd
 }
 
-fvim() {
+fv() {
 	local file
 	file=$(find ${1:-.} -path '*/\.*' -prune \
 		-o -type f -print 2> /dev/null | fzf-bin +m) &&
-	vim "$file"
+	nvim "$file"
+}
+
+fh() {
+	local cmd
+	cmd=$(history -n -r 1 | fzf-bin +m) &&
+	print -z "$cmd"
+}
+
+fk() {
+	local pid
+	if [ "$UID" != "0" ]; then
+		pid=$(ps -f -u $UID | sed 1d | fzf-bin -m | awk '{print $2}')
+	else
+		pid=$(ps -ef | sed 1d | fzf-bin -m | awk '{print $2}')
+	fi
+	if [ "x$pid" != "x" ]
+	then
+		echo $pid | xargs kill -${1:-9}
+	fi
+}
+
+fshow() {
+	git log --graph --color=always \
+		--format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+	fzf-bin --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+	  --bind "ctrl-m:execute:
+				(grep -o '[a-f0-9]\{7\}' | head -1 |
+				xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+				{}
+FZF-EOF"
 }
 
 # User configuration
@@ -61,20 +91,12 @@ if [ -x "`which go`" ]; then
   export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 fi
 
-# # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
+export EDITOR=nvim
 export TERM=xterm-256color
+export HISTFILE=~/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=100000
+setopt hist_ignore_dups
 
 if [ $SHLVL = 1 ]; then
   alias tmux="tmux attach || tmux new-session \; source-file ~/.tmux.session"
