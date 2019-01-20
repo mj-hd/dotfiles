@@ -13,6 +13,7 @@ ln -s ~/dotfiles/.tmux-powerlinerc ~/.tmux-powerlinerc
 ln -s ~/dotfiles/.tigrc ~/.tigrc
 
 mkdir -p ~/.config/fish/
+ln -s ~/dotfiles/fishfile ~/.config/fish/fishfile
 ln -s ~/dotfiles/config.fish ~/.config/fish/config.fish
 
 ln -s ~/dotfiles/.vim ~/.config/nvim
