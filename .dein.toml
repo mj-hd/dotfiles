@@ -25,9 +25,6 @@ repo = 'Lokaltog/vim-easymotion'
 repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
-repo = 'SirVer/ultisnips'
-
-[[plugins]]
 repo = 'fatih/molokai'
 hook_add = '''
   set background=dark
@@ -56,12 +53,17 @@ repo = 'tpope/vim-abolish'
 repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
 repo = 'junegunn/fzf'
 build = './install --all'
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 depends = 'fzf'
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+
+[[plugins]]
+repo = 'liuchengxu/vista.vim'
+depends = 'coc.nvim'
+do = 'coc#util#install()'

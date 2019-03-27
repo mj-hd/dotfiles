@@ -230,7 +230,7 @@ if exists("g:did_load_filetypes")
 endif
 set runtimepath+=$GOROOT/misc/vim " replace $GOROOT with the output of: go env GOROOT
 set rtp+=$GOPATH/src/github.com/mdempsky/gocode/vim
-let g:deoplete#sources#go#gocode_binary="$GOPATH/src/github.com/mdempsky/gocode/vim"
+
 filetype plugin indent on
 let g:go_fmt_command = 'goimports'
 let g:go_fmt_fail_silently = 1
@@ -251,10 +251,7 @@ let g:go_metalinter_deadline = "3s"
 let g:go_auto_type_info = 0
 let g:go_auto_sameids = 1
 let g:go_fmt_fail_silently = 1
-let g:go_snippet_engine = 'neosnippet'
 set updatetime=100
-
-nmap gdd :GoDefPop
 
 " Haskell
 autocmd FileType haskell :set expandtab
@@ -334,7 +331,7 @@ let g:lightline = {
 	\ 'colorscheme': 'jellybeans',
 	\ 'mode_map': { 'c': 'NORMAL' },
 	\ 'active': {
-	\	 'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
+	\	 'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'vista' ] ],
 	\	 'right': [ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype'], ['ale'] ]
 	\ },
 	\ 'component_function': {
@@ -342,6 +339,7 @@ let g:lightline = {
 	\	 'readonly': 'MyReadonly',
 	\	 'fugitive': 'MyFugitive',
 	\	 'filename': 'MyFilename',
+	\	 'vista': 'Vista',
 	\	 'fileformat': 'MyFileformat',
 	\	 'filetype': 'MyFiletype',
 	\	 'fileencoding': 'MyFileencoding',
@@ -403,11 +401,15 @@ function! MyMode()
 	return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
-function! ALE()
+function! ALE() abort
 	let l:counts = ale#statusline#Count(bufnr(''))
 	let l:all_errors = l:counts.error + l:counts.style_error
 	let l:all_non_errors = l:counts.total - l:all_errors
 	return l:counts.total == 0 ? ' ' : printf('ﮏ %d  %d', all_errors, all_non_errors)
+endfunction
+
+function! Vista() abort
+	return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 
 " md as markdown
@@ -481,8 +483,8 @@ let g:tcommentMapLeader1 = '<C-/>'
 
 " ale
 let g:ale_lint_on_enter = 1
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
+let g:ale_fix_on_save = 0
+let g:ale_completion_enabled = 0
 let g:ale_sign_error = "ﮏ"
 let g:ale_sign_warning = ""
 let g:ale_set_loclist = 0
@@ -502,7 +504,7 @@ endif
 au BufNewFile,BufRead *.js set sw=2 expandtab ts=2
 au BufNewFile,BufRead *.jsx set sw=2 expandtab ts=2
 
-let g:python3_host_prog = '/usr/bin/python3'
+let g:python3_host_prog = '/usr/local/bin/python3'
 let g:python3_host_skip_check = 1
 
 let g:loaded_sql_completion = 0
@@ -522,11 +524,113 @@ nnoremap <C-f> :Rg<CR>
 nnoremap <leader><leader> :Commands<CR>
 nnoremap <C-p> :call FzfOmniFiles()<CR>
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#pointer = 1
-let g:deoplete#sources#go#use_cache = 1
-let g:deoplete#sources#go#package_dot = 1
-let g:deoplete#sources#go#source_importer = 0
-let g:deoplete#sources#go#gocode_binary = '~/.go/bin/gocode'
-let g:deopelte#sources#go#unimported_packages = 1
-let g:deoplete#sources#go#fallback_to_source = 1
+let g:vista_sidebar_position = 'vertical botright'
+let g:vista_sidebar_width = 30
+let g:vista_echo_cursor = 1
+let g:vista_cursor_delay = 400
+let g:vista_close_on_jump = 0
+let g:vista_stay_on_open = 1
+let g:vista_blink = [2, 100]
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_default_executive = 'ctags'
+let g:vista_ctags_cmd = {
+  \ 'haskell': 'hasktags -o - -c',
+  \ 'go': 'gotags -sort -silent',
+  \ }
+let g:vista_fzf_preview = ['right:50%']
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+	if &filetype == 'vim'
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+	autocmd!
+	" Setup formatexpr specified filetype(s).
+	autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+	" Update signature help on jump placeholder
+	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+vmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use `:Format` for format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` for fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>

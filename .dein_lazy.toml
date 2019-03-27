@@ -13,16 +13,6 @@ repo = 'joonty/vdebug'
 on_ft = ['php', 'go']
 
 [[plugins]]
-repo = 'mjhd-devlion/deoplete-go'
-build = 'make'
-on_ft = 'go'
-depends = ['deoplete.nvim']
-
-[[plugins]]
-repo = 'fatih/vim-go'
-on_ft = 'go'
-
-[[plugins]]
 repo = 'Shougo/neco-vim'
 on_ft = 'vim'
 
@@ -41,6 +31,10 @@ on_i = 1
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 on_i = 1
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
 
 [[plugins]]
 repo = 'tobyS/pdv'
