@@ -62,8 +62,8 @@ depends = 'fzf'
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
+do = 'coc#util#install()'
 
 [[plugins]]
 repo = 'liuchengxu/vista.vim'
 depends = 'coc.nvim'
-do = 'coc#util#install()'
