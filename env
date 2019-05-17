@@ -1,0 +1,4 @@
+export GOPATH=~/.go
+export PATH=$PATH:$GOPATH/bin
+alias vim="nvim"
+alias ls="ls -G"

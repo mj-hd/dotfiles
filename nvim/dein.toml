@@ -1,0 +1,82 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = 'call hooks#lightline#init()'
+
+[[plugins]]
+repo = 'mhinz/vim-startify'
+hook_add = 'call hooks#startify#init()'
+
+[[plugins]]
+repo = 'Lokaltog/vim-easymotion'
+hook_add = 'call hooks#easymotion#init()'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+	highlight clear SignColumn
+'''
+
+[[plugins]]
+repo = 'fatih/molokai'
+hook_add = '''
+	set background=dark
+	au MyAutoCmd VimEnter * nested colorscheme molokai
+'''
+
+[[plugins]]
+repo = 'ConradIrwin/vim-bracketed-paste'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+hook_add = '''
+	vnoremap <silent> <Enter> :EasyAlign<cr>
+'''
+
+[[plugins]]
+repo = 'tobyS/vmustache'
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = 'call hooks#ale#init()'
+
+[[plugins]]
+repo = "tpope/vim-fugitive"
+
+[[plugins]]
+repo = 'tpope/vim-abolish'
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+hook_add = 'call hooks#fzf#init()'
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+build = './install.sh'
+hook_add = 'call hooks#coc#init()'
+
+[[plugins]]
+repo = 'liuchengxu/vista.vim'
+depends = 'coc.nvim'
+hook_add = 'call hooks#vista#init()'

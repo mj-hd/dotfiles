@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "coc-dictionary": "^1.2.2",
+    "coc-emoji": "^1.2.2",
+    "coc-json": "^1.0.15",
+    "coc-snippets": "^2.0.10",
+    "coc-solargraph": "^1.0.7",
+    "coc-syntax": "^1.2.2",
+    "coc-tag": "^1.2.2"
+  }
+}

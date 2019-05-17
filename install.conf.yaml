@@ -1,0 +1,11 @@
+- default:
+    link:
+      relink: true
+      create: true
+
+- clean: ['~']
+
+- link:
+    ~/.config/nvim: nvim
+    ~/.zshrc: zshrc
+    ~/.env: env

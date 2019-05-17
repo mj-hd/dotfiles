@@ -1,0 +1,64 @@
+- tap:
+    - caskroom/fonts
+
+- brew:
+    # build-essentials
+    - git
+    - autoconf
+
+    # env
+    - docker
+
+    # editing
+    - neovim
+
+    # utils
+    - htop
+    - wget
+    - cmake
+    - k9s
+    - openssl
+    - tig
+    - zsh
+
+    # deps
+    - readline
+    - ncurses
+    - oniguruma
+
+    # langs
+    - ruby
+    - elixir
+    - erlang
+    - go
+    - lua
+    - python
+    - sbcl
+
+    # golang
+    - dep
+
+    # js
+    - nodenv
+    - yarn
+
+    # for work at CyberAgent
+    - bazel
+    - prototool
+    - kubernetes-helm
+
+    # hobby
+    - heroku
+    - rbenv
+
+- cask:
+    - iterm2
+    - bartender
+    - caffeine
+    - docker
+    - karabiner-elements
+
+    # fonts
+    - font-input
+    - font-noto-sans-cjk-jp
+    - font-awesome-terminal-fonts
