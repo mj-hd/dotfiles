@@ -31,15 +31,19 @@ au BufNewFile,BufRead *.go set sw=8 noexpandtab ts=8 filetype=go
 au FileType go compiler go
 
 " Haskell
-autocmd FileType haskell :set expandtab
+au FileType haskell :set expandtab
 
 " Markdown
-autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=mkd
+au BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=mkd
 
 " JS/TS
 au BufNewFile,BufRead *.js set sw=2 expandtab ts=2
 au BufNewFile,BufRead *.jsx set sw=2 expandtab ts=2
 au BufNewFile,BufRead *.ts set sw=2 expandtab ts=2
+
+" json
+au FileType json syntax match Comment +\/\/.\+$+
+au BufNewFile,BufRead *.json set sw=2 expandtab ts=2 conceallevel=0
 
 " ------------------------------
 " その他

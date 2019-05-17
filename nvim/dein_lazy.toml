@@ -38,11 +38,11 @@ on_ft = 'php'
 
 [[plugins]]
 repo = 'ianks/vim-tsx'
-on_ft = 'tsx'
+on_ft = ['tsx', 'ts', 'typescript']
 
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
-on_ft = ['tsx', 'ts']
+on_ft = ['tsx', 'ts', 'typescript']
 
 [[plugins]]
 repo = 'prettier/vim-prettier'

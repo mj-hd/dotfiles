@@ -20,6 +20,8 @@
     - openssl
     - tig
     - zsh
+    - ranger
+    - highlight
 
     # deps
     - readline
