@@ -32,10 +32,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'fatih/molokai'
-hook_add = '''
-	set background=dark
-	au MyAutoCmd VimEnter * nested colorscheme molokai
-'''
+hook_add = 'call hooks#molokai#init()'
 
 [[plugins]]
 repo = 'ConradIrwin/vim-bracketed-paste'
