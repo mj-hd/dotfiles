@@ -3,25 +3,25 @@ scriptencoding utf-8
 set runtimepath^=~/.config/nvim
 
 " 基本設定
-call configs#basic#init()
+source ~/.config/nvim/basic.vim
 
 " dein読み込み
-call configs#dein#init()
+source ~/.config/nvim/dein.vim
 
 " 外見
-call configs#appearance#init()
+source ~/.config/nvim/appearance.vim
 
 " 編集
-call configs#edit#init()
+source ~/.config/nvim/edit.vim
 
 " エンコーディング
-call configs#encoding#init()
+source ~/.config/nvim/encoding.vim
 
 " 検索
-call configs#search#init()
+source ~/.config/nvim/search.vim
 
 " エクスプローラ
-call configs#explorer#init()
+source ~/.config/nvim/explorer.vim
 
 " ------------------------------
 " 言語

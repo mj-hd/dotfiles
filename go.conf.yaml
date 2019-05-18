@@ -1,2 +1,3 @@
-- go
-    - golang.org/x/tools/cmd/gopls
+- go:
+    - package: golang.org/x/tools/cmd/gopls
+      flags: [-u]

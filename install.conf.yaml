@@ -10,3 +10,4 @@
     ~/.config/ranger: ranger
     ~/.zshrc: zshrc
     ~/.env: env
+    ~/.zshfuncs: zshfuncs

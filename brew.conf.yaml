@@ -7,7 +7,7 @@
     - autoconf
 
     # env
-    - docker
+    # - docker
 
     # editing
     - neovim
@@ -57,10 +57,10 @@
     - iterm2
     - bartender
     - caffeine
-    - docker
+    # - docker
     - karabiner-elements
 
     # fonts
-    - font-input
-    - font-noto-sans-cjk-jp
-    - font-awesome-terminal-fonts
+    - caskroom/fonts/font-input
+    - caskroom/fonts/font-noto-sans-cjk-jp
+    - caskroom/fonts/font-awesome-terminal-fonts

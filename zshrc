@@ -12,6 +12,10 @@ zplug "zsh-users/zsh-completions"
 # テーマ
 zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 
+# interactiveなtab保管
+zplug "changyuheng/fz", defer:1
+zplug "rupa/z", use:z.sh
+
 # 未インストールプラグインのチェック
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -26,3 +30,4 @@ zplug load
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.env ] && source ~/.env
+[ -f ~/.zshfuncs ] && source ~/.zshfuncs
