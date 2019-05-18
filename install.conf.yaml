@@ -8,6 +8,7 @@
 - link:
     ~/.config/nvim: nvim
     ~/.config/ranger: ranger
+    ~/.config/coc: coc
     ~/.zshrc: zshrc
     ~/.env: env
     ~/.zshfuncs: zshfuncs

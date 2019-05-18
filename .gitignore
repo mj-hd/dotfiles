@@ -2,3 +2,7 @@ node_modules
 *.log
 .build
 .netrwlist
+lists
+memos.json
+history.json
+db.json
