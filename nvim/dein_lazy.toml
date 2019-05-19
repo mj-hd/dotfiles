@@ -57,3 +57,11 @@ repo = 'osyo-manga/vim-over'
 [[plugins]]
 repo = 'bazelbuild/vim-bazel'
 depends = ['google/vim-maktaba']
+
+[[plugins]]
+repo = 'fleischie/vim-styled-components'
+on_ft = ['js', 'jsx', 'typescript']
+
+[[plugins]]
+repo = 'peitalin/vim-jsx-typescript'
+on_ft = ['js', 'jsx', 'typescript']
