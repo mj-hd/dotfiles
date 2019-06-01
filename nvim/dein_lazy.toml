@@ -1,24 +1,6 @@
 [[plugins]]
-repo = 'Shougo/neomru.vim'
-
-[[plugins]]
-repo = 'Shougo/neoyank.vim'
-
-[[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
-
-[[plugins]]
-repo = 'joonty/vdebug'
-on_ft = ['php', 'go']
-
-[[plugins]]
-repo = 'Shougo/neco-vim'
-on_ft = 'vim'
-
-[[plugins]]
-repo = 'AndrewRadev/splitjoin.vim'
-on_ft = 'go'
 
 [[plugins]]
 repo = 'terryma/vim-multiple-cursors'
@@ -27,14 +9,6 @@ on_i = 1
 [[plugins]]
 repo = 'Raimondi/delimitMate'
 on_i = 1
-
-[[plugins]]
-repo = 'fatih/vim-go'
-on_ft = 'go'
-
-[[plugins]]
-repo = 'tobyS/pdv'
-on_ft = 'php'
 
 [[plugins]]
 repo = 'ianks/vim-tsx'
@@ -47,16 +21,6 @@ on_ft = ['tsx', 'ts', 'typescript']
 [[plugins]]
 repo = 'prettier/vim-prettier'
 on_ft = ['js', 'jsx']
-
-[[plugins]]
-repo = 'google/vim-maktaba'
-
-[[plugins]]
-repo = 'osyo-manga/vim-over'
-
-[[plugins]]
-repo = 'bazelbuild/vim-bazel'
-depends = ['google/vim-maktaba']
 
 [[plugins]]
 repo = 'fleischie/vim-styled-components'
