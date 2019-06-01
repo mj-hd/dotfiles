@@ -35,3 +35,6 @@ zplug load
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.env ] && source ~/.env
 [ -f ~/.zshfuncs ] && source ~/.zshfuncs
+
+export YVM_DIR=/usr/local/opt/yvm
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
