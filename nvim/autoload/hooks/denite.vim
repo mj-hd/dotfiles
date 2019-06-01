@@ -6,6 +6,10 @@ function! hooks#denite#init()
 		\ 'split': 'floating',
 		\ 'direction': 'rightbelow',
 		\ 'matchers': 'matcher/fruzzy',
+		\ 'winwidth': &columns * 4 / 5,
+		\ 'wincol': (&columns - (&columns * 4 / 5)) / 2,
+		\ 'winheight': &lines * 3 / 5 ,
+		\ 'winrow': (&lines - (&lines * 3 / 5)) / 2,
 		\ })
 
 	call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', [

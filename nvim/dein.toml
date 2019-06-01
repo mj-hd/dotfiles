@@ -55,6 +55,9 @@ hook_add = 'call hooks#deoplete#init()'
 repo = 'lighttiger2505/deoplete-vim-lsp'
 depends = ['deoplete.nvim', 'vim-lsp']
 
+[[plugins]]
+repo = 'ncm2/float-preview.nvim'
+
 # LSP
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
