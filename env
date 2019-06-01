@@ -7,3 +7,6 @@ alias r="ranger"
 
 # nodenv
 eval "$(nodenv init -)"
+
+# goenv
+eval "$(goenv init -)"

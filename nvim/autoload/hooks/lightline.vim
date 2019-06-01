@@ -11,7 +11,7 @@ function! hooks#lightline#init()
 		\	 'readonly': 'hooks#lightline#readonly',
 		\	 'fugitive': 'hooks#lightline#fugitive',
 		\	 'filename': 'hooks#lightline#filename',
-		\	 'vista': 'hooks#lightline#vista',
+		\	 'vista': 'NearestMethodOrFunction',
 		\	 'fileformat': 'hooks#lightline#fileformat',
 		\	 'filetype': 'hooks#lightline#filetype',
 		\	 'fileencoding': 'hooks#lightline#fileencoding',
@@ -49,21 +49,14 @@ function! hooks#lightline#fugitive()
 endfunction
 
 function! hooks#lightline#fileformat()
-	return winwidth(0) > 70 ?
-		\ (&fileformat == 'unix' ? '' :
-		\ &fileformat == 'dos' ? '' :
-		\ &fileformat == 'mac' ? '' : &fileformat) : ''
+	return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
 
 function! hooks#lightline#filetype()
 	return winwidth(0) > 70 ?
 		\ (strlen(&filetype) ?
-		\  (&filetype == 'go' ? '' :
-		\   &filetype == 'typescript' ? '' :
-		\   &filetype == 'typescript.jsx' ? 'TSX' :
-		\   &filetype == 'javascript' ? '' :
-		\   &filetype == 'vim' ? '' :
-		\   &filetype == 'php' ? '' : &filetype) : '') : ''
+		\ &filetype . ' ' . WebDevIconsGetFileTypeSymbol() :
+		\ 'no ft') : ''
 endfunction
 
 function! hooks#lightline#fileencoding()
@@ -79,8 +72,4 @@ function! hooks#lightline#ale() abort
 	let l:all_errors = l:counts.error + l:counts.style_error
 	let l:all_non_errors = l:counts.total - l:all_errors
 	return l:counts.total == 0 ? ' ' : printf('ﮏ %d  %d', all_errors, all_non_errors)
-endfunction
-
-function! hooks#lightline#vista() abort
-	return get(b:, 'vista_nearest_method_or_function', '')
 endfunction

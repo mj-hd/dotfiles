@@ -4,8 +4,8 @@ function! hooks#vimlsp#init()
 	call hooks#vimlsp#ruby()
 	call hooks#vimlsp#docker()
 
-	nmap <silent> <space>k :LspPreviousDiagnostics<CR>
-	nmap <silent> <space>j :LspNextDiagnostics<CR>
+	nmap <silent> <space>k :LspPreviousError<CR>
+	nmap <silent> <space>j :LspNextError<CR>
 	
 	nmap <silent> gd :LspDefinition<CR>
 	nmap <silent> gy :LspTypeDefinition<CR>
@@ -18,7 +18,6 @@ function! hooks#vimlsp#init()
 	
 	vmap <leader>f :LspDocumentRangeFormat<CR>
 	nmap <leader>f :LspDocumentFormat<CR>
-	
 
 	nmap <leader>a :LspCodeAction<CR>
 	

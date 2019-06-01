@@ -22,7 +22,7 @@
     - zsh
     - ranger
     - highlight
-    - rg
+    - ag
 
     # deps
     - readline

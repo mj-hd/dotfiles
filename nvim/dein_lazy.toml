@@ -10,22 +10,45 @@ on_i = 1
 repo = 'Raimondi/delimitMate'
 on_i = 1
 
+# TS/JS
 [[plugins]]
-repo = 'ianks/vim-tsx'
-on_ft = ['tsx', 'ts', 'typescript']
+repo = 'HerringtonDarkholme/yats.vim'
+on_ft = ['typescript', 'typescript.tsx']
 
 [[plugins]]
-repo = 'leafgarland/typescript-vim'
-on_ft = ['tsx', 'ts', 'typescript']
+repo = 'othree/yajs.vim'
+on_ft = ['javascript', 'javascript.jsx']
 
 [[plugins]]
 repo = 'prettier/vim-prettier'
-on_ft = ['js', 'jsx']
+on_ft = ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx']
 
 [[plugins]]
-repo = 'fleischie/vim-styled-components'
-on_ft = ['js', 'jsx', 'typescript']
+repo = 'maxmellon/vim-jsx-pretty'
+on_ft = ['javascript', 'javascript.jsx']
 
 [[plugins]]
 repo = 'peitalin/vim-jsx-typescript'
-on_ft = ['js', 'jsx', 'typescript']
+on_ft = ['typescript', 'typescript.tsx']
+
+[[plugins]]
+repo = 'fleischie/vim-styled-components'
+on_ft = ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx']
+
+[[plugins]]
+repo = 'othree/javascript-libraries-syntax.vim'
+on_ft = ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx']
+
+# Fuzzy Search
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+depends = 'vim-devicons'
+on_cmd = 'Denite'
+hook_add = 'call hooks#denite#keymaps()'
+hook_post_source = 'call hooks#denite#init()'
+
+[[plugins]]
+repo = 'raghur/fruzzy'
+depends = 'denite.nvim'
+hook_post_update = 'call fruzzy#install()'
+hook_post_source = 'call hooks#fruzzy#init()'

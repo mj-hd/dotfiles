@@ -45,6 +45,9 @@ au BufNewFile,BufRead *.ts set sw=2 expandtab ts=2
 au FileType json syntax match Comment +\/\/.\+$+
 au BufNewFile,BufRead *.json set sw=2 expandtab ts=2 conceallevel=0
 
+" yaml
+au FileType yaml :set cursorcolumn
+
 " ------------------------------
 " その他
 " ------------------------------

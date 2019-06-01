@@ -7,10 +7,9 @@ function! hooks#vista#init()
 	let g:vista_stay_on_open = 1
 	let g:vista_blink = [2, 100]
 	let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-	let g:vista_default_executive = 'ctags'
-	let g:vista_ctags_cmd = {
-		\ 'haskell': 'hasktags -o - -c',
-		\ 'go': 'gotags -sort -silent',
-		\ }
+	let g:vista_default_executive = 'vim_lsp'
 	let g:vista_fzf_preview = ['right:50%']
+	let g:vista#renderer#enable_icon = 1
+
+  nnoremap <silent> vv :Vista!!<CR>
 endfunction

@@ -46,16 +46,6 @@ repo = "tpope/vim-fugitive"
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
-# Fuzzy Search
-[[plugins]]
-repo = 'junegunn/fzf'
-build = './install --all'
-
-[[plugins]]
-repo = 'junegunn/fzf.vim'
-depends = 'fzf'
-hook_add = 'call hooks#fzf#init()'
-
 # Completion
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
@@ -79,3 +69,7 @@ repo = 'prabirshrestha/async.vim'
 repo = 'liuchengxu/vista.vim'
 depends = 'vim-lsp'
 hook_add = 'call hooks#vista#init()'
+
+# icons
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
