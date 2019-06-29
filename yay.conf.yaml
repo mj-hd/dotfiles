@@ -41,6 +41,7 @@
     # js
     - nodenv
     - yarn
+    - nodenv-node-build
 
     # for work at CyberAgent
     - bazel

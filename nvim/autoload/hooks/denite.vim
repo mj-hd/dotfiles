@@ -13,7 +13,7 @@ function! hooks#denite#init()
 		\ })
 
 	call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', [
-		\ '.git/', '.ropeproject/', '__pycache__/',
+		\ '.git/', '.ropeproject/', '__pycache__/', 'dist/',
 		\ 'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
 		\ 'node_modules/', 'vendor/', '.cache/', '*.log',
 		\ ])
@@ -59,7 +59,7 @@ function! hooks#denite#keymaps()
 	nnoremap <C-p> :DeniteProjectDir file/rec<CR>
 	nnoremap <C-f> :DeniteProjectDir grep<CR>
 	nnoremap <C-b> :DeniteProjectDir buffer<CR>
-	nnoremap <C-m> :DeniteProjectDir menu<CR>
+	nnoremap <C-n> :DeniteProjectDir menu<CR>
 endfunction
 
 function! s:denite() abort

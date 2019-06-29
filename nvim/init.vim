@@ -64,5 +64,5 @@ if has('conceal')
 	set conceallevel=2 concealcursor=niv
 endif
 
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
 let g:python3_host_skip_check = 1
