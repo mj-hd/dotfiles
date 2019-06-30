@@ -12,11 +12,13 @@ function! hooks#denite#init()
 		\ 'winrow': (&lines - (&lines * 3 / 5)) / 2,
 		\ })
 
-	call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', [
+	let s:ignore_globs = [
 		\ '.git/', '.ropeproject/', '__pycache__/', 'dist/',
 		\ 'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
 		\ 'node_modules/', 'vendor/', '.cache/', '*.log',
-		\ ])
+		\ ]
+
+	call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', s:ignore_globs)
 
 	call denite#custom#source('grep', 'args', ['', '', '!'])
 	" 検索結果がチラつくバグがあるっぽいので一時的に無効に
@@ -39,8 +41,14 @@ function! hooks#denite#init()
 	call denite#custom#var('menu', 'menus', s:menus)
 
 	if executable("ag")
-		call denite#custom#var('file/rec', 'command',
-			\ ['ag', '--follow', '--nogroup', '-g', ''])
+		call denite#custom#var('file/rec', 'command', [
+			\ 'ag',
+			\ '--follow',
+			\ ] + map(deepcopy(s:ignore_globs), { k, v -> '--ignore=' . v }) + [
+			\ '--nogroup',
+			\ '-g',
+			\ ''
+			\ ])
 
 		call denite#custom#var('grep', 'command', ['ag'])
 		call denite#custom#var('grep', 'default_opts',

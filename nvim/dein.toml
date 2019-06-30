@@ -28,8 +28,8 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'fatih/molokai'
-hook_add = 'call hooks#molokai#init()'
+repo = 'hzchirs/vim-material'
+hook_add = 'call hooks#theme#init()'
 
 [[plugins]]
 repo = 'ConradIrwin/vim-bracketed-paste'
