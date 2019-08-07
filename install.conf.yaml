@@ -11,3 +11,5 @@
     ~/.zshrc: zshrc
     ~/.env: env
     ~/.zshfuncs: zshfuncs
+    ~/.yabairc: yabairc
+    ~/.skhdrc: skhdrc
