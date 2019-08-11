@@ -47,9 +47,3 @@ depends = 'vim-devicons'
 on_cmd = 'Denite'
 hook_add = 'call hooks#denite#keymaps()'
 hook_post_source = 'call hooks#denite#init()'
-
-[[plugins]]
-repo = 'raghur/fruzzy'
-depends = 'denite.nvim'
-hook_post_update = 'call fruzzy#install()'
-hook_post_source = 'call hooks#fruzzy#init()'

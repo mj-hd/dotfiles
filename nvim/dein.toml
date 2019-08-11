@@ -18,10 +18,6 @@ repo = 'mhinz/vim-startify'
 hook_add = 'call hooks#startify#init()'
 
 [[plugins]]
-repo = 'Lokaltog/vim-easymotion'
-hook_add = 'call hooks#easymotion#init()'
-
-[[plugins]]
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
 	highlight clear SignColumn
@@ -46,28 +42,18 @@ repo = "tpope/vim-fugitive"
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
-# Completion
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = 'call hooks#deoplete#init()'
-
-[[plugins]]
-repo = 'lighttiger2505/deoplete-vim-lsp'
-depends = ['deoplete.nvim', 'vim-lsp']
-
 # LSP
 [[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-depends = 'async.vim'
-hook_add = 'call hooks#vimlsp#init()'
-
-[[plugins]]
-repo = 'prabirshrestha/async.vim'
+repo = 'neoclide/coc.nvim'
+build = './install.sh'
+hook_add = 'call hooks#coc#init()'
+merged = '0'
+rev = 'release'
 
 # Side Panel
 [[plugins]]
 repo = 'liuchengxu/vista.vim'
-depends = 'vim-lsp'
+depends = 'coc.nvim'
 hook_add = 'call hooks#vista#init()'
 
 # icons

@@ -1,5 +1,6 @@
 " 編集
 let mapleader=","
+let maplocalleader=","
 set autoindent
 set backspace=indent,eol,start
 set clipboard+=unnamedplus

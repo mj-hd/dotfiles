@@ -5,7 +5,7 @@ function! hooks#denite#init()
 		\ 'auto_resume': v:true,
 		\ 'split': 'floating',
 		\ 'direction': 'rightbelow',
-		\ 'matchers': 'matcher/fruzzy',
+		\ 'matchers': 'matcher/fuzzy',
 		\ 'winwidth': &columns * 4 / 5,
 		\ 'wincol': (&columns - (&columns * 4 / 5)) / 2,
 		\ 'winheight': &lines * 3 / 5 ,
@@ -17,8 +17,6 @@ function! hooks#denite#init()
 		\ 'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
 		\ 'node_modules/', 'vendor/', '.cache/', '*.log',
 		\ ]
-
-	call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', s:ignore_globs)
 
 	call denite#custom#source('grep', 'args', ['', '', '!'])
 	" 検索結果がチラつくバグがあるっぽいので一時的に無効に

@@ -10,6 +10,7 @@
     ~/.config/ranger: ranger
     ~/.zshrc: zshrc
     ~/.env: env
+    ~/.config/coc: coc
     ~/.zshfuncs: zshfuncs
     ~/.yabairc: yabairc
     ~/.skhdrc: skhdrc
