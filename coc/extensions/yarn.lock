@@ -17,25 +17,35 @@ coc-emoji@^1.2.3:
   resolved "https://registry.yarnpkg.com/coc-emoji/-/coc-emoji-1.2.3.tgz#e4657414c14b957be44f0a0c1369b136f6e90fab"
   integrity sha512-XyrHPx7pdY1IuTTxJ/1DJtsyUvB+J5WbK1i6dg0RCQhymAa4SDgEBLHA1deh9cFWEIhv3qejCQBj+xx4wdfAxw==
 
+coc-eslint@>=1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/coc-eslint/-/coc-eslint-1.2.1.tgz#f92f000209926934ce1f431658ea59b05bafaed4"
+  integrity sha512-Vvv5u5mj7jd9VirRKS+o6RbBQ2kyHyjZYlwQteFEUEHHL+EI0FXwkH1e91h/vJBXRsMEC+Z9h4P7xyHzRHQXVg==
+
 coc-json@^1.0.17:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/coc-json/-/coc-json-1.2.3.tgz#74fd20ce91387086fdc864011e28348b90063c2b"
   integrity sha512-JlM2CqVuDcxHAxVRcCTd2PsEzAU6jCwJ3N8jaszD3m2HSjq5I796Y7zFmoW6TK/7IOqAiYWCq1l+1yqjTSBedQ==
 
-coc-snippets@^2.0.11:
-  version "2.1.10"
-  resolved "https://registry.yarnpkg.com/coc-snippets/-/coc-snippets-2.1.10.tgz#c0389d45135eeb0bf3d75a9d0e1d84598a0c6825"
-  integrity sha512-q7DNO9+eQ/F4G/Th5pYOk0xZzP4fwqNMgYZdQHfEIwVXF48w4jAEQuGT0oQ1t7/qi7TBQY7jqWmlO4hi+zoY0A==
+coc-snippets@^2.1.11:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/coc-snippets/-/coc-snippets-2.1.11.tgz#97813f52478bb05e520cf31690b65737202fdcd9"
+  integrity sha512-TIbB4miHDzQ+b/mg+3VG20wBTf9WjjuhAZ9NSchD65nfdbz+2Y/PfDEcOCWyglfZN91ogVhcncDbuFp12I8bKA==
 
-coc-solargraph@^1.0.7:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/coc-solargraph/-/coc-solargraph-1.1.2.tgz#8ca580495de63d3157c260f642a37f4d3fd37c50"
-  integrity sha512-Cmh5zrp7paE+rIR8ogHDJBsPjzpB0yg0RfZT195WVwsV2leCkVvrCIhNTXUi9CV2XKOkIkXAONZ7EbAsySCHdg==
+coc-solargraph@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/coc-solargraph/-/coc-solargraph-1.1.3.tgz#9b4bed62c8dcd8aa0196c0bc49d5e37be750799d"
+  integrity sha512-/jykN0Myd0X5vVwXGVhEFTR8mpgl6VE3KCTPRIkYleM8o9xKQnQDBbcb9jvYRpM8Mvq0ZMExs0MTDoctNZ2w3A==
 
 coc-syntax@^1.2.3:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/coc-syntax/-/coc-syntax-1.2.4.tgz#1030f077f0f74c2d6a7176b462010613707b0d31"
   integrity sha512-XRCvFL8yjPvTID0XY0Y7JjzGk9Gl2g6NOEVezWIuoIE2Dk68upjOyldoCrm2rKBQC9ebTTK7xX9ZcWyKj7+Zcg==
+
+coc-tabnine@^1.1.12:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/coc-tabnine/-/coc-tabnine-1.1.12.tgz#b7caf23428fd97e65b1e561c8509f0f73498e330"
+  integrity sha512-BZNjZXz85W6mZcNARrrEmaFXBRbXEOFkwDjdmSGVy65oJsQo5iHhhDRlQEN2TMhUAupJWk6yzSa3aoud66dWpw==
 
 coc-tag@^1.2.2:
   version "1.2.4"
