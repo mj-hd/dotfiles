@@ -14,10 +14,6 @@ repo = 'itchyny/lightline.vim'
 hook_add = 'call hooks#lightline#init()'
 
 [[plugins]]
-repo = 'mhinz/vim-startify'
-hook_add = 'call hooks#startify#init()'
-
-[[plugins]]
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
 	highlight clear SignColumn
@@ -30,11 +26,6 @@ hook_add = 'call hooks#theme#init()'
 [[plugins]]
 repo = 'ConradIrwin/vim-bracketed-paste'
 
-[[plugins]]
-repo = 'junegunn/vim-easy-align'
-hook_add = '''
-	vnoremap <silent> <Enter> :EasyAlign<cr>
-'''
 
 [[plugins]]
 repo = "tpope/vim-fugitive"
@@ -50,15 +41,35 @@ hook_add = 'call hooks#coc#init()'
 merged = '0'
 rev = 'release'
 
-# Side Panel
-[[plugins]]
-repo = 'liuchengxu/vista.vim'
-depends = 'coc.nvim'
-hook_add = 'call hooks#vista#init()'
-
 # icons
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
 repo = 'rhysd/clever-f.vim'
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+hook_add = 'call hooks#easymotion#init()'
+depends = 'incsearch-easymotion.vim'
+
+[[plugins]]
+repo = 'haya14busa/incsearch.vim'
+
+[[plugins]]
+repo = 'haya14busa/incsearch-fuzzy.vim'
+depends = 'incsearch.vim'
+
+[[plugins]]
+repo = 'haya14busa/incsearch-easymotion.vim'
+depends = 'incsearch-fuzzy.vim'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+hook_add = 'call hooks#defx#init()'
+
+[[plugins]]
+repo = 'kristijanhusak/defx-icons'

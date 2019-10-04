@@ -19,10 +19,11 @@
 
   // coc
   "coc.preferences.hoverTarget": "float",
+  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown"],
 
   // eslint
   "eslint.packageManager": "yarn",
-  "eslint.autoFixOnSave": true,
+  "eslint.autoFix": true,
   "eslint.filetypes": [
     "javascript",
     "javascriptreact",
@@ -30,9 +31,15 @@
     "typescriptreact"
   ],
 
+  // tslint
+  "tslint.autoFixOnSave": true,
+
   // tsserver
   "tsserver.enable": true,
   "typescript.preferences.importModuleSpecifier": "auto",
+
+  // stylelint
+  "stylelintplus.autoFixOnFormat": true,
 
   // yaml
   "yaml.schemas": {
