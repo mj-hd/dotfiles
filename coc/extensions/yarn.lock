@@ -17,22 +17,22 @@ coc-emoji@^1.2.3:
   resolved "https://registry.yarnpkg.com/coc-emoji/-/coc-emoji-1.2.3.tgz#e4657414c14b957be44f0a0c1369b136f6e90fab"
   integrity sha512-XyrHPx7pdY1IuTTxJ/1DJtsyUvB+J5WbK1i6dg0RCQhymAa4SDgEBLHA1deh9cFWEIhv3qejCQBj+xx4wdfAxw==
 
-coc-eslint@>=1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/coc-eslint/-/coc-eslint-1.2.1.tgz#f92f000209926934ce1f431658ea59b05bafaed4"
-  integrity sha512-Vvv5u5mj7jd9VirRKS+o6RbBQ2kyHyjZYlwQteFEUEHHL+EI0FXwkH1e91h/vJBXRsMEC+Z9h4P7xyHzRHQXVg==
+coc-eslint@>=1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/coc-eslint/-/coc-eslint-1.2.2.tgz#9c9f949483a999c5313d495ed29b22b9f0102936"
+  integrity sha512-zTCot/sVgGWwAj1gaIn6KVaNALTjfpUqbO1xgvhy8F83mPmExfFcksryoE8bJ0X3cfHpHvue0KaG/vlJ/3i4kQ==
 
 coc-json@^1.0.17:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/coc-json/-/coc-json-1.2.3.tgz#74fd20ce91387086fdc864011e28348b90063c2b"
   integrity sha512-JlM2CqVuDcxHAxVRcCTd2PsEzAU6jCwJ3N8jaszD3m2HSjq5I796Y7zFmoW6TK/7IOqAiYWCq1l+1yqjTSBedQ==
 
-coc-snippets@^2.1.11:
+coc-snippets@>=2.1.11:
   version "2.1.11"
   resolved "https://registry.yarnpkg.com/coc-snippets/-/coc-snippets-2.1.11.tgz#97813f52478bb05e520cf31690b65737202fdcd9"
   integrity sha512-TIbB4miHDzQ+b/mg+3VG20wBTf9WjjuhAZ9NSchD65nfdbz+2Y/PfDEcOCWyglfZN91ogVhcncDbuFp12I8bKA==
 
-coc-solargraph@^1.1.3:
+coc-solargraph@>=1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/coc-solargraph/-/coc-solargraph-1.1.3.tgz#9b4bed62c8dcd8aa0196c0bc49d5e37be750799d"
   integrity sha512-/jykN0Myd0X5vVwXGVhEFTR8mpgl6VE3KCTPRIkYleM8o9xKQnQDBbcb9jvYRpM8Mvq0ZMExs0MTDoctNZ2w3A==
@@ -42,24 +42,24 @@ coc-syntax@^1.2.3:
   resolved "https://registry.yarnpkg.com/coc-syntax/-/coc-syntax-1.2.4.tgz#1030f077f0f74c2d6a7176b462010613707b0d31"
   integrity sha512-XRCvFL8yjPvTID0XY0Y7JjzGk9Gl2g6NOEVezWIuoIE2Dk68upjOyldoCrm2rKBQC9ebTTK7xX9ZcWyKj7+Zcg==
 
-coc-tabnine@^1.1.12:
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/coc-tabnine/-/coc-tabnine-1.1.12.tgz#b7caf23428fd97e65b1e561c8509f0f73498e330"
-  integrity sha512-BZNjZXz85W6mZcNARrrEmaFXBRbXEOFkwDjdmSGVy65oJsQo5iHhhDRlQEN2TMhUAupJWk6yzSa3aoud66dWpw==
+coc-tabnine@>=1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/coc-tabnine/-/coc-tabnine-1.2.1.tgz#c3cf96b7b1b76e82c3aec199e54bb595dde73399"
+  integrity sha512-Jp5LOWLURr8s3PoTd+eMNIjHBDDxbwFypRI7ds7ya6TXdNSPwwhst0A6eYoTyI8Vb87W2bXNgdgz3cA1ai4itA==
 
 coc-tag@^1.2.2:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/coc-tag/-/coc-tag-1.2.4.tgz#5d302ad525aa9f1bd73ea35814cc194f232111f6"
   integrity sha512-nalUxIfP8GcQvpqg7j8Lt7g8hKYI72CnIFTyDX1FFwPrYrfL08sKqbq0SPvl/nvaN+PhAyHT5juKtL1PpQ47pA==
 
-coc-tsserver@^1.3.15:
-  version "1.3.15"
-  resolved "https://registry.yarnpkg.com/coc-tsserver/-/coc-tsserver-1.3.15.tgz#e1632e2143a055f4655693837e459906f559a4e5"
-  integrity sha512-LwM+0Slg7JbaoaRrhhKzXt5fWBlpuBLE5na5/fTTnOTD5SEDtj+ThKm2MfRP1oztvLZsRiJ3QFO3+9D+bk3ktQ==
+coc-tsserver@>=1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/coc-tsserver/-/coc-tsserver-1.4.2.tgz#7321137a868a199d1fea5ba0f513240ef8245920"
+  integrity sha512-PlD+IQRx4IdAl+otgehZ5CHQI3rXpoZElsBEYK0g4YqgjCJBlruZufhnGDCRc4nE9Cz7ZBUxY3Pb0ejA31eIpA==
   dependencies:
-    typescript "3.5.1"
+    typescript "3.6.2"
 
-typescript@3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.1.tgz#ba72a6a600b2158139c5dd8850f700e231464202"
-  integrity sha512-64HkdiRv1yYZsSe4xC1WVgamNigVYjlssIoaH2HcZF0+ijsk5YK2g0G34w9wJkze8+5ow4STd22AynfO6ZYYLw==
+typescript@3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.2.tgz#105b0f1934119dde543ac8eb71af3a91009efe54"
+  integrity sha512-lmQ4L+J6mnu3xweP8+rOrUwzmN+MRAj7TgtJtDaXE5PMyX2kCrklhg3rvOsOIfNeAWMQWO2F1GPc1kMD2vLAfw==

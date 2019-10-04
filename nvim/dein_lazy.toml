@@ -40,6 +40,10 @@ on_ft = ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx']
 repo = 'othree/javascript-libraries-syntax.vim'
 on_ft = ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx']
 
+[[plugins]]
+repo = 'dart-lang/dart-vim-plugin'
+on_ft = ['dart']
+
 # Fuzzy Search
 [[plugins]]
 repo = 'Shougo/denite.nvim'

@@ -54,8 +54,6 @@ au FileType yaml :set cursorcolumn
 " terminalでESC
 tnoremap <silent> <ESC> <C-\><C-n>
 
-" 開いたファイルのディレクトリへ移動
-au BufEnter * execute ":lcd " . escape(expand("%:p:h"), " #\\")
 set timeoutlen=1000 ttimeoutlen=0
 set autowrite
 

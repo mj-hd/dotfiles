@@ -1,12 +1,2 @@
-export GOPATH=~/.go
-export PATH=$PATH:$GOPATH/bin
-export EDITOR=nvim
-alias vim="nvim"
-alias ls="ls -G"
-alias r="ranger"
+export PATH=$PATH:/opt/flutter/bin
 
-# nodenv
-eval "$(nodenv init -)"
-
-# goenv
-eval "$(goenv init -)"
