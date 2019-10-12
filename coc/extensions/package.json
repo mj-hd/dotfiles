@@ -13,7 +13,7 @@
     "coc-tabnine": ">=1.2.1",
     "coc-tag": "^1.2.2",
     "coc-tslint": ">=1.0.17",
-    "coc-tsserver": ">=1.4.2",
+    "coc-tsserver": ">=1.4.4",
     "coc-prettier": ">=1.1.8",
     "coc-calc": ">=1.4.0"
   }

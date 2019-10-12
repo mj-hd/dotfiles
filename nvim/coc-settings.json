@@ -12,8 +12,7 @@
         "--lsp"
       ],
       "filetypes": ["dart"],
-      "disableDynamicRegister": true,
-      "trace.server": "verbose"
+      "disableDynamicRegister": true
     }
   },
 

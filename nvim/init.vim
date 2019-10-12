@@ -54,6 +54,9 @@ au FileType yaml :set cursorcolumn
 " terminalでESC
 tnoremap <silent> <ESC> <C-\><C-n>
 
+" htop
+call hooks#htop#init()
+
 set timeoutlen=1000 ttimeoutlen=0
 set autowrite
 

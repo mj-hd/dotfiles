@@ -21,3 +21,5 @@ set wildmode=full:list
 set statusline=[%L]\ %t\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
 
 set showtabline=2
+
+set pumblend=15

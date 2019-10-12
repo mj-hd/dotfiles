@@ -56,6 +56,12 @@ function! hooks#denite#init()
 		call denite#custom#var('grep', 'separator', ['--'])
 		call denite#custom#var('grep', 'final_opts', [])
 	endif
+
+	augroup transparent-windows
+		autocmd!
+		autocmd FileType denite set winblend=15
+		autocmd FileType denite-filter set winblend=15
+	augroup END
 endfunction
 
 function! hooks#denite#keymaps()
