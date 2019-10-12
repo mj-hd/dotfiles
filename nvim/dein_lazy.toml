@@ -44,6 +44,11 @@ on_ft = ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx']
 repo = 'dart-lang/dart-vim-plugin'
 on_ft = ['dart']
 
+[[plugins]]
+repo = 'thosakwe/vim-flutter'
+on_ft = ['dart']
+hook_add = 'call hooks#flutter#init()'
+
 # Fuzzy Search
 [[plugins]]
 repo = 'Shougo/denite.nvim'
