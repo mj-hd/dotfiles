@@ -1,5 +1,5 @@
 # open terminal
-cmd + shift - return : /Applications/Hyper.app/Contents/MacOS/hyper
+cmd + shift - return : /Applications/kitty.app/Contents/MacOS/kitty --directory="~/"
 
 # restart
 ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"

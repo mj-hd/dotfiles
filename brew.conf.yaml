@@ -55,7 +55,7 @@
     - rbenv
 
 - cask:
-    - iterm2
+    - kitty
     - bartender
     - caffeine
     # - docker

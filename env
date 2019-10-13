@@ -1,2 +1,2 @@
-export PATH=$PATH:/opt/flutter/bin
+export PATH=$PATH:/opt/flutter/bin:/opt/flutter/.pub-cache/bin
 
