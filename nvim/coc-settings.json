@@ -31,6 +31,7 @@
   ],
 
   // tslint
+  "tslint.enable": true,
   "tslint.autoFixOnSave": true,
 
   // tsserver

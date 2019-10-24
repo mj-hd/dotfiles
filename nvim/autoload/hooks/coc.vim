@@ -33,6 +33,8 @@ function! hooks#coc#init()
 	nmap <silent> gy <Plug>(coc-type-definition)
 	nmap <silent> gi <Plug>(coc-implementation)
 	nmap <silent> gr <Plug>(coc-references)
+	nmap <silent> ,r <Plug>(coc-refactor)
+	nmap <silent> ,g :CocSearch -w 
 
  	" Use K for show documentation in preview window
 	nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -66,14 +68,10 @@ function! hooks#coc#init()
 
 	augroup end
 
- 	" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-	vmap <space>a  <Plug>(coc-codeaction-selected)
-	nmap <space>a  <Plug>(coc-codeaction-selected)
-
  	" Remap for do codeAction of current line
-	nmap <space>ac  <Plug>(coc-codeaction)
+	nmap ,d  <Plug>(coc-codeaction)
 	" Fix autofix problem of current line
-	nmap <space>qf  <Plug>(coc-fix-current)
+	nmap ,q  <Plug>(coc-fix-current)
 
  	" Use `:Format` for format current buffer
 	command! -nargs=0 Format :call CocAction('format')

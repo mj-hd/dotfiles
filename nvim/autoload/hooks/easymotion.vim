@@ -1,8 +1,5 @@
 function! hooks#easymotion#init()
 	let g:EasyMotion_do_mapping = 0
-	nmap <space>f <Plug>(easymotion-s2)
-	xmap <space>f <Plug>(easymotion-s2)
-	omap <space>f <Plug>(easymotion-s2)
 	nmap g/ <Plug>(easymotion-sn)
 	xmap g/ <Plug>(easymotion-sn)
 	omap g/ <Plug>(easymotion-tn)
