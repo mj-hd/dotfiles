@@ -18,7 +18,7 @@
 
   // coc
   "coc.preferences.hoverTarget": "float",
-  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown"],
+  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "dart"],
 
   // eslint
   "eslint.packageManager": "yarn",
@@ -37,9 +37,6 @@
   // tsserver
   "tsserver.enable": true,
   "typescript.preferences.importModuleSpecifier": "auto",
-
-  // stylelint
-  "stylelintplus.autoFixOnFormat": true,
 
   // yaml
   "yaml.schemas": {

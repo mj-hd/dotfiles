@@ -1,5 +1,5 @@
 # open terminal
-cmd + shift - return : /Applications/kitty.app/Contents/MacOS/kitty --directory="~/"
+cmd + shift - return : /Applications/iTerm.app/Contents/MacOS/iTerm2
 
 # restart
 ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
