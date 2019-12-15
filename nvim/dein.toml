@@ -73,3 +73,9 @@ hook_add = 'call hooks#defx#init()'
 
 [[plugins]]
 repo = 'kristijanhusak/defx-icons'
+
+[[plugins]]
+repo = 'wakatime/vim-wakatime'
+
+[[plugins]]
+repo = 'neoclide/coc-denite'

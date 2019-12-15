@@ -72,6 +72,9 @@ function! hooks#denite#keymaps()
 	nnoremap <C-f> :DeniteProjectDir grep<CR>
 	nnoremap <C-b> :DeniteProjectDir buffer<CR>
 	nnoremap <C-n> :DeniteProjectDir menu<CR>
+	nnoremap <space>p :DeniteProjectDir coc-command<CR>
+	nnoremap <space>[ :DeniteProjectDir coc-diagnostic<CR>
+	nnoremap <space><space> :DeniteProjectDir coc-symbols<CR>
 endfunction
 
 function! s:denite() abort
