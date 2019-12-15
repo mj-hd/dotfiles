@@ -78,4 +78,5 @@ repo = 'kristijanhusak/defx-icons'
 repo = 'wakatime/vim-wakatime'
 
 [[plugins]]
-repo = 'neoclide/coc-denite'
+repo = 'mjhd-devlion/coc-denite'
+rev = 'feat/support-code-action'

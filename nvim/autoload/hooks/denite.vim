@@ -75,6 +75,7 @@ function! hooks#denite#keymaps()
 	nnoremap <space>p :DeniteProjectDir coc-command<CR>
 	nnoremap <space>[ :DeniteProjectDir coc-diagnostic<CR>
 	nnoremap <space><space> :DeniteProjectDir coc-symbols<CR>
+	nnoremap <space>. :DeniteProjectDir coc-action<CR>
 endfunction
 
 function! s:denite() abort
