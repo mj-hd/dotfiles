@@ -19,6 +19,7 @@
   // coc
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "dart"],
+  "signature.hideOnTextChange": true,
 
   // eslint
   "eslint.packageManager": "yarn",

@@ -34,6 +34,7 @@ function! hooks#coc#init()
 	nmap <silent> gi <Plug>(coc-implementation)
 	nmap <silent> gr <Plug>(coc-references)
 	nmap <silent> ,r <Plug>(coc-refactor)
+	nmap <silent> ,l <Plug>(coc-codelens-action)
 	nmap <silent> ,g :CocSearch -w 
 
  	" Use K for show documentation in preview window
