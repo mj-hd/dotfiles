@@ -1,7 +1,10 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-# カーソルの位置でシンタックス切り替え
+# syntax
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
 depends = 'context_filetype.vim'
@@ -26,10 +29,11 @@ hook_add = 'call hooks#theme#init()'
 [[plugins]]
 repo = 'ConradIrwin/vim-bracketed-paste'
 
-
+# cvs
 [[plugins]]
 repo = "tpope/vim-fugitive"
 
+# edit
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
@@ -45,6 +49,7 @@ rev = 'release'
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
 
+# motions
 [[plugins]]
 repo = 'rhysd/clever-f.vim'
 
@@ -52,6 +57,9 @@ repo = 'rhysd/clever-f.vim'
 repo = 'easymotion/vim-easymotion'
 hook_add = 'call hooks#easymotion#init()'
 depends = 'incsearch-easymotion.vim'
+
+[[plugins]]
+repo = 'machakann/vim-sandwich'
 
 [[plugins]]
 repo = 'haya14busa/incsearch.vim'
@@ -64,9 +72,7 @@ depends = 'incsearch.vim'
 repo = 'haya14busa/incsearch-easymotion.vim'
 depends = 'incsearch-fuzzy.vim'
 
-[[plugins]]
-repo = 'tpope/vim-surround'
-
+# filer
 [[plugins]]
 repo = 'Shougo/defx.nvim'
 hook_add = 'call hooks#defx#init()'
@@ -74,6 +80,7 @@ hook_add = 'call hooks#defx#init()'
 [[plugins]]
 repo = 'kristijanhusak/defx-icons'
 
+# misc
 [[plugins]]
 repo = 'wakatime/vim-wakatime'
 

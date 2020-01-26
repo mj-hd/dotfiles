@@ -18,8 +18,8 @@
 
   // coc
   "coc.preferences.hoverTarget": "float",
-  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "dart"],
   "signature.hideOnTextChange": true,
+  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "dart", "javascript", "javascriptreact", "typescript", "typescriptreact"],
 
   // eslint
   "eslint.packageManager": "yarn",
@@ -30,10 +30,6 @@
     "typescript",
     "typescriptreact"
   ],
-
-  // tslint
-  "tslint.enable": true,
-  "tslint.autoFixOnSave": true,
 
   // tsserver
   "tsserver.enable": true,

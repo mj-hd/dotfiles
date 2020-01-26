@@ -12,34 +12,10 @@ on_i = 1
 
 # TS/JS
 [[plugins]]
-repo = 'HerringtonDarkholme/yats.vim'
-on_ft = ['typescript', 'typescript.tsx']
-
-[[plugins]]
-repo = 'othree/yajs.vim'
-on_ft = ['javascript', 'javascript.jsx']
-
-[[plugins]]
-repo = 'prettier/vim-prettier'
-on_ft = ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx']
-hook_add = 'call hooks#prettier#init()'
-
-[[plugins]]
-repo = 'maxmellon/vim-jsx-pretty'
-on_ft = ['javascript', 'javascript.jsx']
-
-[[plugins]]
-repo = 'peitalin/vim-jsx-typescript'
-on_ft = ['typescript', 'typescript.tsx']
-
-[[plugins]]
 repo = 'fleischie/vim-styled-components'
 on_ft = ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx']
 
-[[plugins]]
-repo = 'othree/javascript-libraries-syntax.vim'
-on_ft = ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx']
-
+# Dart
 [[plugins]]
 repo = 'dart-lang/dart-vim-plugin'
 on_ft = ['dart']

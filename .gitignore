@@ -7,3 +7,6 @@ memos.json
 history.json
 db.json
 /coc/extensions/coc-tabnine-data
+/coc/extensions/coc-omnisharp-data
+/coc/extensions/commands
+/coc/ultisnips/
