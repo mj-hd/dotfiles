@@ -23,6 +23,7 @@
     - ranger
     - highlight
     - ag
+    - github/gh/gh
 
     # deps
     - readline

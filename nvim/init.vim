@@ -60,6 +60,9 @@ call hooks#htop#init()
 " yarn
 call hooks#yarn#init()
 
+" github
+call hooks#github#init()
+
 set timeoutlen=1000 ttimeoutlen=0
 set autowrite
 
