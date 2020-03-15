@@ -49,13 +49,13 @@ function! hooks#lightline#fugitive()
 endfunction
 
 function! hooks#lightline#fileformat()
-	return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+	return winwidth(0) > 70 ? WebDevIconsGetFileFormatSymbol() : ''
 endfunction
 
 function! hooks#lightline#filetype()
 	return winwidth(0) > 70 ?
 		\ (strlen(&filetype) ?
-		\ &filetype . ' ' . WebDevIconsGetFileTypeSymbol() :
+		\ WebDevIconsGetFileTypeSymbol() :
 		\ 'no ft') : ''
 endfunction
 

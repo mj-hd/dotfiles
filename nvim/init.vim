@@ -54,9 +54,6 @@ au FileType yaml :set cursorcolumn
 " terminalでESC
 tnoremap <silent> <ESC> <C-\><C-n>
 
-" htop
-call hooks#htop#init()
-
 " yarn
 call hooks#yarn#init()
 

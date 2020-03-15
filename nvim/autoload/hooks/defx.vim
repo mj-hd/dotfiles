@@ -1,5 +1,5 @@
 function! hooks#defx#init()
-	nnoremap <silent> <space>e :<C-u>Defx -split=floating -toggle -columns=icons:indent:filename:type -show-ignored-files -search=`expand('%:p')` `expand('%:p:h')`<CR>
+	nnoremap <silent> <space>e :<C-u>Defx -split=floating -toggle -columns=git:icons:indent:filename:type -show-ignored-files -search=`expand('%:p')` `expand('%:p:h')`<CR>
 
 	autocmd FileType defx call s:defx_my_settings()
 endfunction

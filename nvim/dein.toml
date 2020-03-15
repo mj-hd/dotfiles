@@ -23,7 +23,7 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'hzchirs/vim-material'
+repo = 'cocopon/iceberg.vim'
 hook_add = 'call hooks#theme#init()'
 
 [[plugins]]
@@ -78,7 +78,17 @@ repo = 'Shougo/defx.nvim'
 hook_add = 'call hooks#defx#init()'
 
 [[plugins]]
+repo = 'kristijanhusak/defx-git'
+depends = 'defx.nvim'
+
+[[plugins]]
 repo = 'kristijanhusak/defx-icons'
+depends = 'defx.nvim'
+
+# animate
+[[plugins]]
+repo = 'camspiers/animate.vim'
+hook_add = 'call hooks#animate#init()'
 
 # misc
 [[plugins]]

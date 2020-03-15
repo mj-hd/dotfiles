@@ -1,15 +1,20 @@
 function! hooks#denite#init()
 	call denite#custom#option('_', {
-		\ 'prompt': '»',
+		\ 'prompt': '綠',
 		\ 'auto_resize': v:true,
 		\ 'auto_resume': v:true,
 		\ 'split': 'floating',
-		\ 'direction': 'rightbelow',
 		\ 'matchers': 'matcher/fuzzy',
 		\ 'winwidth': &columns * 4 / 5,
 		\ 'wincol': (&columns - (&columns * 4 / 5)) / 2,
 		\ 'winheight': &lines * 3 / 5 ,
 		\ 'winrow': (&lines - (&lines * 3 / 5)) / 2,
+		\ 'winminheight': 15,
+		\ 'highlight_filter_background': 'Pmenu',
+		\ 'highlight_prompt': 'PmenuSbar',
+		\ 'highlight_preview_line': 'PmenuSel',
+		\ 'highlight_matched_char': 'CtrlPMode1',
+		\ 'highlight_matched_range': 'CtrlPMode1',
 		\ })
 
 	let s:ignore_globs = [
@@ -21,22 +26,6 @@ function! hooks#denite#init()
 	call denite#custom#source('grep', 'args', ['', '', '!'])
 	" 検索結果がチラつくバグがあるっぽいので一時的に無効に
 	" call denite#custom#source('file/rec', 'converters', ['devicons_denite_converter'])
-
-	let s:menus = {}
-	let s:menus.dotfiles = { 'description': 'configration files' }
-	let s:menus.dotfiles.file_candidates = [
-		\ ['vimrc', '~/.config/nvim/init.vim'],
-		\ ['zshrc', '~/.zshrc'],
-		\ ['env', '~/.env'],
-		\ ['env', '~/.env'],
-		\ ['ranger_rc', '~/.config/ranger/rc.conf'],
-		\ ['ranger_commands', '~/.config/ranger/commands.py'],
-		\ ['ranger_rifle', '~/.config/ranger/rifle.conf'],
-		\ ['ranger_scope', '~/.config/ranger/scope.sh'],
-		\ ['ranger_commands_full', '~/.config/ranger/commands_full.py'],
-		\ ]
-
-	call denite#custom#var('menu', 'menus', s:menus)
 
 	if executable("ag")
 		call denite#custom#var('file/rec', 'command', [
@@ -74,7 +63,7 @@ function! hooks#denite#keymaps()
 	nnoremap <C-n> :DeniteProjectDir menu<CR>
 	nnoremap <space>p :DeniteProjectDir coc-command<CR>
 	nnoremap <space>[ :DeniteProjectDir coc-diagnostic<CR>
-	nnoremap <space><space> :DeniteProjectDir coc-symbols<CR>
+	nnoremap <space><cr> :DeniteProjectDir coc-symbols<CR>
 	nnoremap <space>. :DeniteProjectDir coc-action<CR>
 endfunction
 

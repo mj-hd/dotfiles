@@ -51,10 +51,7 @@ function! hooks#coc#init()
  	" Highlight symbol under cursor on CursorHold
 	autocmd CursorHold * silent call CocActionAsync('highlight')
 
- 	" Remap for rename current word
-	nmap <space>rn <Plug>(coc-rename)
-
- 	" Remap for format selected region
+	" Remap for format selected region
 	" vmap <space>f  <Plug>(coc-format-selected)
 	" nmap <space>f  <Plug>(coc-format-selected)
 
@@ -69,29 +66,11 @@ function! hooks#coc#init()
 
 	augroup end
 
- 	" Remap for do codeAction of current line
-	nmap ,d  <Plug>(coc-codeaction)
-	" Fix autofix problem of current line
-	nmap ,q  <Plug>(coc-fix-current)
-
- 	" Use `:Format` for format current buffer
+	" Use `:Format` for format current buffer
 	command! -nargs=0 Format :call CocAction('format')
 
  	" Use `:Fold` for fold current buffer
 	command! -nargs=? Fold :call	 CocAction('fold', <f-args>)
 
-	" navigate chunks of current buffer
-	nmap [g <Plug>(coc-git-prevchunk)
-	nmap ]g <Plug>(coc-git-nextchunk)
-	" show chunk diff at current position
-	nmap gs <Plug>(coc-git-chunkinfo)
-	" show commit contains current position
-	nmap gc <Plug>(coc-git-commit)
-	" create text object for git chunks
-	omap ig <Plug>(coc-git-chunk-inner)
-	xmap ig <Plug>(coc-git-chunk-inner)
-	omap ag <Plug>(coc-git-chunk-outer)
-	xmap ag <Plug>(coc-git-chunk-outer)
-
-	set updatetime=300
+	set updatetime=100
 endfunction
