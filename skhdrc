@@ -1,5 +1,5 @@
 # open finder
-cmd + shift - f : open -a Finder
+cmd + shift - e : nnn
 # open terminal
 cmd + shift - return : /Applications/iTerm.app/Contents/MacOS/iTerm2
 

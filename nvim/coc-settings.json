@@ -1,51 +1,14 @@
 {
-  "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", "Gopkg.toml", ".git/"],
-      "filetypes": ["go"]
-    },
-    "dart": {
-      "command": "dart",
-      "args": [
-        "/usr/local/opt/dart/libexec/bin/snapshots/analysis_server.dart.snapshot",
-        "--lsp"
-      ],
-      "filetypes": ["dart"],
-      "disableDynamicRegister": true
-    }
-  },
-
-  // coc
-  "coc.preferences.hoverTarget": "float",
-  "signature.hideOnTextChange": true,
-  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "dart", "javascript", "javascriptreact", "typescript", "typescriptreact"],
-
-  // eslint
-  "eslint.packageManager": "yarn",
-  "eslint.autoFix": true,
-  "eslint.filetypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-
-  // tsserver
-  "tsserver.enable": true,
-  "typescript.preferences.importModuleSpecifier": "auto",
-
-  // yaml
-  "yaml.schemas": {
-    "kubernetes": "/*.yaml"
-  },
-  "yaml.format.enable": true,
-
-  // json
-  "json.schemas": [
-    {"schemaURL": "http://json.schemastore.org/package"},
-    {"schemaURL": "http://json.schemastore.org/eslintrc"},
-    {"schemaURL": "http://json.schemastore.org/circleciconfig"},
-    {"schemaURL": "http://json.schemastore.org/prettierrc"}
-  ]
+	"coc.preferences.useQuickfixForLocations": true,
+	"coc.preferences.snippets.enable": false,
+	"coc.preferences.formatOnSaveFiletypes": [
+		"css",
+		"Markdown",
+		"dart",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	],
+	"tslint.autoFixOnSave": true
 }

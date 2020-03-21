@@ -1,4 +1,4 @@
-function! hooks#coc#init()
+function! plugins#coc#load()
 	" Use tab for trigger completion with characters ahead and navigate.
 	" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 	inoremap <silent><expr> <TAB>
@@ -16,9 +16,6 @@ function! hooks#coc#init()
 	inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
  	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
- 	" Use <c-space> for trigger completion.
-	inoremap <silent><expr> <c-space> coc#refresh()
 
  	" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 	" Coc only does snippet and additional edit on confirm.
@@ -51,10 +48,6 @@ function! hooks#coc#init()
  	" Highlight symbol under cursor on CursorHold
 	autocmd CursorHold * silent call CocActionAsync('highlight')
 
-	" Remap for format selected region
-	" vmap <space>f  <Plug>(coc-format-selected)
-	" nmap <space>f  <Plug>(coc-format-selected)
-
  	augroup mygroup
 		autocmd!
 		" Setup formatexpr specified filetype(s).
@@ -62,15 +55,14 @@ function! hooks#coc#init()
 		" Update signature help on jump placeholder
 		autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
-	  autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-
+		autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 	augroup end
 
 	" Use `:Format` for format current buffer
 	command! -nargs=0 Format :call CocAction('format')
 
  	" Use `:Fold` for fold current buffer
-	command! -nargs=? Fold :call	 CocAction('fold', <f-args>)
+	command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 	set updatetime=100
 endfunction

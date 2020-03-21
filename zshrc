@@ -50,6 +50,5 @@ eval "$(goenv init -)"
 # starship
 eval "$(starship init zsh)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.env ] && source ~/.env
 [ -f ~/.zshfuncs ] && source ~/.zshfuncs

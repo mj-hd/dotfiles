@@ -1,4 +1,7 @@
-" 編集
+set ts=4 sw=4
+set softtabstop=4
+set noexpandtab
+
 let mapleader=","
 let maplocalleader=","
 set autoindent

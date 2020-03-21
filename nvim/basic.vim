@@ -1,18 +1,15 @@
-" 基本設定
 if exists('$SHELL')
 	set shell=$SHELL
 else
 	set shell=/bin/sh
 endif
 
-set shortmess=a
-set cmdheight=2
-
-augroup MyAutoCmd
-	autocmd!
-augroup END
-
 set sh=zsh
 
-set termguicolors
-set hidden
+set termencoding=utf-8
+set encoding=utf-8
+set fileencodings=utf-8,iso-2022-jp,cp932,euc-jp
+set fenc=utf-8
+set enc=utf-8
+
+tnoremap <silent> <ESC> <C-\><C-n>
