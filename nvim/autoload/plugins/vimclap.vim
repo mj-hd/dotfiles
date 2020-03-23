@@ -65,11 +65,7 @@ function! plugins#vimclap#load() abort
 	let g:clap_provider_grep_opts = "-H --no-heading --vimgrep --smart-case --no-ignore-dot"
 	let g:clap_no_matches_msg = ' no matches'
 
-	let g:clap_theme = {
-		\ 'current_selection': { 'ctermbg': '236', 'guibg': '#3d425b' },
-		\ }
-
-	let g:clap_fuzzy_match_hl_groups = [[ 255, '#eff0f4' ]]
+	let g:clap_theme = 'dogrun'
 
 	let g:clap_provider_code_action = s:code_actions
 	let g:clap_provider_commands = s:commands

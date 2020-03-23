@@ -10,7 +10,9 @@ execute 'set runtimepath^=' . s:cache_dir
 
 call plug#begin(s:cache_dir)
 
-Plug 'cocopon/iceberg.vim' | au VimEnter * call plugins#iceberg#load() 
+" カラー
+" Plug 'cocopon/iceberg.vim' | au VimEnter * call plugins#iceberg#load() 
+Plug 'wadackel/vim-dogrun' | au VimEnter * colorscheme dogrun
 
 " 編集
 Plug 'editorconfig/editorconfig-vim'

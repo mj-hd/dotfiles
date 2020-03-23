@@ -1,6 +1,6 @@
 function! plugins#lightline#load() abort
 	let g:lightline = {
-		\ 'colorscheme': 'iceberg',
+		\ 'colorscheme': 'dogrun',
 		\ 'active': {
 		\ 'left': [ [ 'mode', 'paste' ],
 			\ [ 'readonly', 'filename', 'modified' ] ],
