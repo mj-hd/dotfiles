@@ -10,5 +10,5 @@
 		"typescript",
 		"typescriptreact"
 	],
-	"tslint.autoFixOnSave": true
+	"eslint.autoFixOnSave": true
 }

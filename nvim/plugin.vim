@@ -32,7 +32,7 @@ Plug 'neoclide/coc-rls', {'do': 'yarn --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn --frozen-lockfile'}
-Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn --frozen-lockfile'}
 
 " 外見
 Plug 'ryanoasis/vim-devicons'
