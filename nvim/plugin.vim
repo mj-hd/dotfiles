@@ -11,8 +11,7 @@ execute 'set runtimepath^=' . s:cache_dir
 call plug#begin(s:cache_dir)
 
 " カラー
-" Plug 'cocopon/iceberg.vim' | au VimEnter * call plugins#iceberg#load() 
-Plug 'wadackel/vim-dogrun' | au VimEnter * colorscheme dogrun
+Plug 'cocopon/iceberg.vim' | au VimEnter * call plugins#iceberg#load() 
 
 " 編集
 Plug 'editorconfig/editorconfig-vim'
@@ -33,6 +32,9 @@ Plug 'neoclide/coc-yaml', {'do': 'yarn --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn --frozen-lockfile'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn --frozen-lockfile'}
+
+" coc 連携
+Plug 'vn-ki/coc-clap'
 
 " 外見
 Plug 'ryanoasis/vim-devicons'

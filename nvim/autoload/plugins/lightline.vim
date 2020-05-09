@@ -1,6 +1,6 @@
 function! plugins#lightline#load() abort
 	let g:lightline = {
-		\ 'colorscheme': 'dogrun',
+		\ 'colorscheme': 'iceberg',
 		\ 'mode_map': {
 			\ 'n' : ' ',
 			\ 'i' : ' ',
