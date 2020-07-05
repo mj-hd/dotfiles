@@ -65,4 +65,6 @@ function! plugins#coc#load()
 	command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 	set updatetime=100
+
+	let g:coc_enable_locationlist = 1
 endfunction

@@ -31,6 +31,16 @@ fi
 
 zplug load
 
+function tm() {
+	if [ -z $TMUX ]; then
+		if $(tmux has-session 2> /dev/null); then
+			tmux attach
+		else
+			tmux
+		fi
+	fi
+}
+
 export YVM_DIR=/usr/local/opt/yvm
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
 
@@ -50,5 +60,11 @@ eval "$(goenv init -)"
 # starship
 eval "$(starship init zsh)"
 
+eval "$(rbenv init -)"
+export PATH="$HOME/.phpenv/bin:$PATH"
+
+eval "$(phpenv init -)"
+
 [ -f ~/.env ] && source ~/.env
 [ -f ~/.zshfuncs ] && source ~/.zshfuncs
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"

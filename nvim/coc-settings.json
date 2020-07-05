@@ -7,7 +7,16 @@
 		"javascript",
 		"javascriptreact",
 		"typescript",
-		"typescriptreact"
+		"typescriptreact",
+		"rust"
 	],
-	"eslint.autoFixOnSave": true
+	"diagnostic.refreshOnInsertMode": true,
+	"diagnostic.refreshAfterSave": true,
+
+	"eslint.autoFixOnSave": true,
+
+	"rust.clippy_preference": "on",
+
+	"tsserver.log": "verbose",
+	"tsserver.maxTsServerMemory": 16384
 }

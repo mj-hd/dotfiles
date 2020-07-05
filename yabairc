@@ -13,7 +13,7 @@ yabai -m config status_bar_clock_icon        
 
 # global settings
 yabai -m config mouse_follows_focus          off
-yabai -m config focus_follows_mouse          autoraise
+yabai -m config focus_follows_mouse          off
 yabai -m config window_placement             first_child
 yabai -m config window_topmost               off
 yabai -m config window_opacity               off
@@ -30,6 +30,8 @@ yabai -m config auto_balance                 off
 yabai -m config mouse_modifier               fn
 yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
+
+yabai -m rule --add app="(Xcode|Finder|Slack|プレビュー|Simulator|システム環境設定)" manage=off
 
 # general space settings
 yabai -m config layout                       bsp

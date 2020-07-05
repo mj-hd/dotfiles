@@ -55,6 +55,9 @@ fn - x : yabai -m space --mirror x-axis
 # toggle desktop offset
 fn - a : yabai -m space --toggle padding; yabai -m space --toggle gap
 
+fn - 1 : yabai -m space --focus 1
+fn - x : yabai -m space --focus recent
+
 # toggle window parent zoom
 fn - d : yabai -m window --toggle zoom-parent
 
@@ -76,7 +79,8 @@ fn - s : yabai -m window --toggle sticky
 
 # toggle sticky, float and resize to picture-in-picture size
 fn - p : yabai -m window --toggle sticky;\
-          yabai -m window --grid 5:5:4:0:1:1
+          yabai -m window --toggle topmost;\
+          yabai -m window --toggle pip;
 
 # change layout of desktop
 fn + shift - a : yabai -m space --layout bsp

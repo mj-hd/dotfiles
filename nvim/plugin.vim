@@ -42,6 +42,7 @@ Plug 'itchyny/lightline.vim' | call plugins#lightline#load()
 Plug 'camspiers/animate.vim' | call plugins#animate#load()
 
 " 統合
+let g:gitgutter_map_keys = 0
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'mcchrish/nnn.vim' | au VimEnter * call plugins#nnn#load()
@@ -61,3 +62,5 @@ Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
 Plug 'cakebaker/scss-syntax.vim', {'for': 'scss'}
 
 call plug#end()
+
+execute 'set runtimepath^=~/Projects/vim-micromap'

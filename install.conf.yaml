@@ -14,3 +14,4 @@
     ~/.zshfuncs: zshfuncs
     ~/.yabairc: yabairc
     ~/.skhdrc: skhdrc
+    ~/.tmux.conf: tmux.conf

@@ -1,3 +1,7 @@
+function! plugins#vimclap#filer() abort
+	execute ':Clap filer ' . expand('%:p:h')
+endfunction
+
 function! plugins#vimclap#load() abort
 	let g:clap_layout = { 'relative': 'editor' }
 	
@@ -28,12 +32,13 @@ function! plugins#vimclap#load() abort
 
 	let g:clap_theme = 'nord'
 
-	nnoremap <silent> <C-p> :Clap files<cr>
+	nnoremap <silent> <C-p> :Clap files +no-cache<cr>
 	nnoremap <silent> <C-b> :Clap buffers<cr>
-	nnoremap <silent> <C-f> :Clap grep2<cr>
+	nnoremap <silent> <C-f> :Clap grep2 +no-cache<cr>
 	nnoremap <silent> <C-y> :Clap yanks<cr>
 	nnoremap <silent> <space>. :Clap coc_actions<cr>
 	nnoremap <silent> <space>p :Clap coc_commands<cr>
 	nnoremap <silent> <space>[ :Clap coc_diagnostics<cr>
 	nnoremap <silent> <space><space> :Clap coc_symbols<cr>
+	nnoremap <silent> <space>e :call plugins#vimclap#filer()<cr>
 endfunction
