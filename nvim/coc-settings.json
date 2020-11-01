@@ -13,6 +13,9 @@
 	"diagnostic.refreshOnInsertMode": true,
 	"diagnostic.refreshAfterSave": true,
 
+	"explorer.floating.border.enable": false,
+	"explorer.icon.enableNerdfont": true,
+
 	"eslint.autoFixOnSave": true,
 
 	"rust.clippy_preference": "on",

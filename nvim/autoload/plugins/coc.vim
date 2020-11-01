@@ -34,6 +34,18 @@ function! plugins#coc#load()
 	nmap <silent> ,l <Plug>(coc-codelens-action)
 	nmap <silent> ,g :CocSearch -w 
 
+	" Open explorer
+	let g:coc_explorer_global_presets = {
+		\   'floating': {
+		\     'position': 'floating',
+		\     'open-action-strategy': 'sourceWindow',
+		\     'quit-on-open': v:true,
+		\     'floating-width': -20,
+		\     'floating-height': 20,
+		\   },
+		\ }
+	nmap <silent> <space>e :CocCommand explorer --preset floating --sources=file+<CR>
+
  	" Use K for show documentation in preview window
 	nnoremap <silent> K :call <SID>show_documentation()<CR>
 

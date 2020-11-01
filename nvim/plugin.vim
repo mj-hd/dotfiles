@@ -32,6 +32,7 @@ Plug 'neoclide/coc-yaml', {'do': 'yarn --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn --frozen-lockfile'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn --frozen-lockfile'}
+Plug 'weirongxu/coc-explorer', {'do': 'yarn --frozen-lockfile'}
 
 " coc 連携
 Plug 'vn-ki/coc-clap'
@@ -45,7 +46,6 @@ Plug 'camspiers/animate.vim' | call plugins#animate#load()
 let g:gitgutter_map_keys = 0
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'mcchrish/nnn.vim' | au VimEnter * call plugins#nnn#load()
 au VimEnter * call plugins#yarn#load()
 
 " シンタックス
