@@ -17,6 +17,7 @@ set listchars=tab:»_,trail:-,extends:»,precedes:«,nbsp:%
 set laststatus=2
 set wildmenu
 set wildmode=full:list
+set noshowmode
 
 set statusline=[%L]\ %t\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
 

@@ -63,4 +63,4 @@ Plug 'cakebaker/scss-syntax.vim', {'for': 'scss'}
 
 call plug#end()
 
-execute 'set runtimepath^=~/Projects/vim-micromap'
+execute 'set runtimepath^=~/Projects/vim-picomap'
