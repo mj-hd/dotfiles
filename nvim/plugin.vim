@@ -33,6 +33,7 @@ Plug 'neoclide/coc-tsserver', {'do': 'yarn --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn --frozen-lockfile'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn --frozen-lockfile'}
 Plug 'weirongxu/coc-explorer', {'do': 'yarn --frozen-lockfile'}
+Plug 'voldikss/vim-skylight' | call plugins#skylight#load()
 
 " coc 連携
 Plug 'vn-ki/coc-clap'
