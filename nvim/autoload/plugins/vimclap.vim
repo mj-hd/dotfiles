@@ -40,5 +40,4 @@ function! plugins#vimclap#load() abort
 	nnoremap <silent> <space>p :Clap coc_commands<cr>
 	nnoremap <silent> <space>[ :Clap coc_diagnostics<cr>
 	nnoremap <silent> <space><space> :Clap coc_symbols<cr>
-	nnoremap <silent> <space>e :call plugins#vimclap#filer()<cr>
 endfunction
