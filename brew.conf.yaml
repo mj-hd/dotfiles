@@ -15,49 +15,47 @@
     # utils
     - htop
     - wget
-    - cmake
-    - k9s
-    - openssl
+    # - cmake
+    # - k9s
+    # - openssl
     - tig
     - zsh
-    - ranger
-    - highlight
-    - ag
-    - github/gh/gh
+    # - ranger
+    # - highlight
+    # - ag
+    # - github/gh/gh
+    - git-fixup
 
     # deps
-    - readline
-    - ncurses
-    - oniguruma
+    # - readline
+    # - ncurses
+    # - oniguruma
 
     # langs
-    - ruby
-    - elixir
-    - erlang
+    # - ruby
+    # - elixir
+    # - erlang
     - go
     - lua
     - python
-    - sbcl
-
-    # golang
-    - dep
+    # - sbcl
 
     # js
     - nodenv
     - yarn
 
     # for work at CyberAgent
-    - bazel
-    - prototool
-    - kubernetes-helm
+    # - bazel
+    # - prototool
+    # - kubernetes-helm
 
     # hobby
-    - heroku
-    - rbenv
+    # - heroku
+    # - rbenv
 
 - cask:
-    - kitty
-    - bartender
+    # - kitty
+    # - bartender
     - caffeine
     # - docker
     - karabiner-elements

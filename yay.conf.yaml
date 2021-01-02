@@ -12,31 +12,32 @@
     # utils
     - htop
     - wget
-    - cmake
-    - k9s-bin
-    - openssl
+    # - cmake
+    # - k9s-bin
+    # - openssl
     - tig
     - zsh
     - zplug
-    - ranger
-    - highlight
+    # - ranger
+    # - highlight
+    - git-fixup
 
     # deps
-    - readline
-    - ncurses
-    - oniguruma
+    # - readline
+    # - ncurses
+    # - oniguruma
 
     # langs
-    - ruby
-    - elixir
-    - erlang
+    # - ruby
+    # - elixir
+    # - erlang
     - go
     - lua
     - python
-    - sbcl
+    # - sbcl
 
     # golang
-    - dep
+    # - dep
 
     # js
     - nodenv
@@ -44,10 +45,10 @@
     - nodenv-node-build
 
     # for work at CyberAgent
-    - bazel
-    - prototool
-    - kubernetes-helm
+    # - bazel
+    # - prototool
+    # - kubernetes-helm
 
     # hobby
-    - heroku
-    - rbenv
+    # - heroku
+    # - rbenv
