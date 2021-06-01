@@ -24,6 +24,9 @@ function! plugins#coc#load()
  	" Use `[c` and `]c` for navigate diagnostics
 	nmap <silent> [c <Plug>(coc-diagnostic-prev)
 	nmap <silent> ]c <Plug>(coc-diagnostic-next)
+	
+	nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
+	nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
 
  	" Remap keys for gotos
 	nmap <silent> gd <Plug>(coc-definition)
@@ -33,6 +36,16 @@ function! plugins#coc#load()
 	nmap <silent> ,r <Plug>(coc-refactor)
 	nmap <silent> ,l <Plug>(coc-codelens-action)
 	nmap <silent> ,g :CocSearch -w 
+
+	" Sessions
+	nmap <silent> <space>q :CocCommand session.save<cr>
+	nmap <silent> <space>w :CocList sessions<cr>
+
+	" Editor
+	nmap <silent> <space>r :CocCommand document.renameCurrentWord<cr>
+	nmap <silent> <space>o :CocCommand editor.action.organizeImport<cr>
+	nmap <silent> <space>. :CocAction quickfix<cr>
+	nmap <silent> <space><space>. :CocAction fixAll<cr>
 
 	" Open explorer
 	let g:coc_explorer_global_presets = {

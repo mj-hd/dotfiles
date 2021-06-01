@@ -18,7 +18,8 @@
 
 	"eslint.autoFixOnSave": true,
 
-	"rust.clippy_preference": "on",
+	"rust-analyzer.enable": true,
+	"rust-analyzer.inlayHints.enable": false,
 
 	"tsserver.log": "verbose",
 	"tsserver.maxTsServerMemory": 16384

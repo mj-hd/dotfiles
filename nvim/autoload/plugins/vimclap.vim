@@ -36,7 +36,7 @@ function! plugins#vimclap#load() abort
 	nnoremap <silent> <C-b> :Clap buffers<cr>
 	nnoremap <silent> <C-f> :Clap grep2 +no-cache<cr>
 	nnoremap <silent> <C-y> :Clap yanks<cr>
-	nnoremap <silent> <space>. :Clap coc_actions<cr>
+	" nnoremap <silent> <space>. :Clap coc_actions<cr>
 	nnoremap <silent> <space>p :Clap coc_commands<cr>
 	nnoremap <silent> <space>[ :Clap coc_diagnostics<cr>
 	nnoremap <silent> <space><space> :Clap coc_symbols<cr>

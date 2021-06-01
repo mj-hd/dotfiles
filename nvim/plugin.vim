@@ -23,5 +23,3 @@ else
 endif
 
 call plug#end()
-
-execute 'set runtimepath^=~/Projects/vim-picomap'
