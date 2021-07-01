@@ -11,13 +11,13 @@ function! plugins#yarn#load()
 	nmap <leader><leader>f :call plugins#yarn#exec('format', 1, 0)<cr>
 
 	" animate
-	nmap <leader>j :call plugins#yarn#terminal()<cr>
-	nmap <leader>d :call plugins#yarn#exec('dev', 0, 1)<cr>
-	nmap <leader>s :call plugins#yarn#exec('ui-catalog', 0, 1)<cr>
-	nmap <leader>t :call plugins#yarn#exec('test:unit:watch ' . expand('%:p:h'), 0, 1)<cr>
-	nmap <leader>c :call plugins#yarn#exec('typecheck', 0, 1)<cr>
-	nmap <leader>l :call plugins#yarn#exec('lint', 0, 1)<cr>
-	nmap <leader>f :call plugins#yarn#exec('format', 0, 1)<cr>
+	" nmap <leader>j :call plugins#yarn#terminal()<cr>
+	" nmap <leader>d :call plugins#yarn#exec('dev', 0, 1)<cr>
+	" nmap <leader>s :call plugins#yarn#exec('ui-catalog', 0, 1)<cr>
+	" nmap <leader>t :call plugins#yarn#exec('test:unit:watch ' . expand('%:p:h'), 0, 1)<cr>
+	" nmap <leader>c :call plugins#yarn#exec('typecheck', 0, 1)<cr>
+	" nmap <leader>l :call plugins#yarn#exec('lint', 0, 1)<cr>
+	" nmap <leader>f :call plugins#yarn#exec('format', 0, 1)<cr>
 endfunction
 
 function! plugins#yarn#coffeebreak()

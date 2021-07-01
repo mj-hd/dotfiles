@@ -3,6 +3,9 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'machakann/vim-sandwich'
 Plug 'ConradIrwin/vim-bracketed-paste'
 
+" チートシート系
+Plug 'tversteeg/registers.nvim'
+
 " 検索
 Plug 'rhysd/clever-f.vim'
 

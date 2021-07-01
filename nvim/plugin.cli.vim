@@ -10,7 +10,7 @@ Plug 'vn-ki/coc-clap'
 " 外見
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim' | call plugins#lightline#load()
-Plug 'camspiers/animate.vim' | call plugins#animate#load()
+" Plug 'camspiers/animate.vim' | call plugins#animate#load()
 
 " 統合
 let g:gitgutter_map_keys = 0
