@@ -11,8 +11,8 @@ function! plugins#floaterm#load() abort
 
 	autocmd FileType floaterm call plugins#floaterm#settings()
 
-	nnoremap <silent> <space>e :FloatermNew nnn '%:p:h'<cr>
-	nnoremap <silent> <space>g :FloatermNew lazygit<cr>
+	nnoremap <silent> <leader>e :FloatermNew nnn '%:p:h'<cr>
+	nnoremap <silent> <leader>g :FloatermNew lazygit<cr>
 endfunction
 
 function! plugins#floaterm#settings() abort

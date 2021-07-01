@@ -38,14 +38,14 @@ function! plugins#coc#load()
 	nmap <silent> ,g :CocSearch -w 
 
 	" Sessions
-	nmap <silent> <space>q :CocCommand session.save<cr>
-	nmap <silent> <space>w :CocList sessions<cr>
+	nmap <silent> <leader>q :CocCommand session.save<cr>
+	nmap <silent> <leader>w :CocList sessions<cr>
 
 	" Editor
-	nmap <silent> <space>r :CocCommand document.renameCurrentWord<cr>
-	nmap <silent> <space>o :CocCommand editor.action.organizeImport<cr>
-	nmap <silent> <space>. :CocAction quickfix<cr>
-	nmap <silent> <space><space>. :CocAction fixAll<cr>
+	nmap <silent> <leader>r :CocCommand document.renameCurrentWord<cr>
+	nmap <silent> <leader>o :CocCommand editor.action.organizeImport<cr>
+	nmap <silent> <leader>. :CocAction quickfix<cr>
+	nmap <silent> <leader><leader>. :CocAction fixAll<cr>
 
 	" Open explorer
 	let g:coc_explorer_global_presets = {
@@ -57,7 +57,7 @@ function! plugins#coc#load()
 		\     'floating-height': 20,
 		\   },
 		\ }
-	nmap <silent> <space>e :CocCommand explorer --preset floating --sources=file+<CR>
+	nmap <silent> <leader>e :CocCommand explorer --preset floating --sources=file+<CR>
 
  	" Use K for show documentation in preview window
 	nnoremap <silent> K :call <SID>show_documentation()<CR>

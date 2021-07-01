@@ -2,8 +2,8 @@ set ts=4 sw=4
 set softtabstop=4
 set noexpandtab
 
-let mapleader=","
-let maplocalleader=","
+let mapleader="\<Space>"
+let maplocalleader="\<Space>"
 set autoindent
 set backspace=indent,eol,start
 set clipboard+=unnamedplus
