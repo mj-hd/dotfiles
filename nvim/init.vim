@@ -20,3 +20,6 @@ source ~/.config/nvim/edit.vim
 
 " プラグイン
 source ~/.config/nvim/plugin.vim
+
+" 言語
+source ~/.config/nvim/language.vim

@@ -10,6 +10,7 @@
 		"typescriptreact",
 		"rust"
 	],
+	"coc.preferences.semanticTokensHighlights": false,
 	"diagnostic.refreshOnInsertMode": true,
 	"diagnostic.refreshAfterSave": true,
 
@@ -22,5 +23,9 @@
 	"rust-analyzer.inlayHints.enable": false,
 
 	"tsserver.log": "verbose",
-	"tsserver.maxTsServerMemory": 16384
+	"tsserver.maxTsServerMemory": 16384,
+
+	"go.goplsOptions": {
+		"completeUnimported": true
+	}
 }

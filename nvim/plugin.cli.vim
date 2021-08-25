@@ -16,6 +16,3 @@ Plug 'itchyny/lightline.vim' | call plugins#lightline#load()
 let g:gitgutter_map_keys = 0
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-
-" 便利
-au VimEnter * call plugins#yarn#load()

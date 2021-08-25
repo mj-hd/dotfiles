@@ -17,6 +17,9 @@ set completeopt=menu,preview
 set tags+=.git/tags
 set tags+=./tags
 
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+
 " 行内でもカーソル移動可能に
 nnoremap <Down> gj
 nnoremap <Up>   gk

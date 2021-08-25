@@ -1,7 +1,7 @@
 # open finder
 cmd + shift - e : nnn
 # open terminal
-cmd + shift - return : /Applications/iTerm.app/Contents/MacOS/iTerm2
+cmd + shift - return : open -a /Applications/iTerm.app/Contents/MacOS/iTerm2
 
 # restart
 cmd + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"

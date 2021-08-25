@@ -45,7 +45,11 @@ function! plugins#coc#load()
 	nmap <silent> <leader>r :CocCommand document.renameCurrentWord<cr>
 	nmap <silent> <leader>o :CocCommand editor.action.organizeImport<cr>
 	nmap <silent> <leader>. :CocAction quickfix<cr>
-	nmap <silent> <leader><leader>. :CocAction fixAll<cr>
+	nmap <silent> <leader>/ <Plug>(coc-codeaction-selected)
+	xmap <silent> <leader>/ <Plug>(coc-codeaction-selected)
+
+	let g:coc_snippet_next = '<c-l>'
+	let g:coc_snippet_prev = '<c-k>'
 
 	" Open explorer
 	let g:coc_explorer_global_presets = {
@@ -80,7 +84,8 @@ function! plugins#coc#load()
 		" Update signature help on jump placeholder
 		autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
-		autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+		autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+		autocmd FileType coc-explorer setl nonumber
 	augroup end
 
 	" Use `:Format` for format current buffer
