@@ -16,6 +16,7 @@ endif
 set completeopt=menu,preview
 set tags+=.git/tags
 set tags+=./tags
+set noea
 
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>

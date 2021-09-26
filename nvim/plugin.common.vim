@@ -3,12 +3,18 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'machakann/vim-sandwich'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'tommcdo/vim-exchange'
+Plug 'mg979/vim-visual-multi'
+Plug 'tomtom/tcomment_vim'
 
 " チートシート系
-Plug 'tversteeg/registers.nvim'
+Plug 'tversteeg/registers.nvim' | call plugins#registers#load()
+
+" スクロールバー
+Plug 'ojroques/vim-scrollstatus'
 
 " 検索
 Plug 'rhysd/clever-f.vim'
+Plug 'markonm/traces.vim'
 
 " LSP
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} | au VimEnter * call plugins#coc#load()

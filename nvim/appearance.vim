@@ -4,7 +4,7 @@ set notitle
 set showmatch
 set showcmd
 set wrap
-set number
+set nonumber
 set ruler
 set termguicolors
 set cursorline

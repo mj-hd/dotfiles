@@ -11,10 +11,17 @@ function! languages#dart#load()
 	command! FlutterHotRestart call s:trigger_hot_restart()
 	
 	nnoremap <leader><leader> :FlutterHotReload<cr>
-	nnoremap <silent> <leader>d :call languages#dart#exec('run:dev', 1, 0)<cr>
+	nnoremap <silent> <leader>da :call languages#dart#dev_and()<cr>
+	nnoremap <silent> <leader>di :call languages#dart#dev_ios()<cr>
 	nnoremap <silent> <leader>s :call languages#dart#exec('develop', 1, 0)<cr>
 	nnoremap <silent> <leader>l :CocCommand flutter.emulators<cr>
 	nnoremap <silent> <leader><cr> :call languages#dart#coffeebreak()<cr>
+
+	augroup dart
+		autocmd!
+	
+		autocmd BufWinEnter output:///flutter-dev wincmd J | resize 3 | setlocal winfixheight | wincmd p
+	augroup end
 endfunction
 
 " TODO refactor
@@ -24,11 +31,19 @@ function! languages#dart#exec(cmd, tab, animate)
 	else
 		new
 	endif
-	set nonumber
+	setlocal nonumber
 	exec ":terminal melos run " . a:cmd
 	if a:animate
 		call languages#dart#animate()
 	endif
+endfunction
+
+function! languages#dart#dev_and() abort
+	exec ":CocCommand flutter.run --flavor development --dart-define=FLAVOR=development --target lib/main.dart -d sdk gphone64 arm64"
+endfunction
+
+function! languages#dart#dev_ios() abort
+	exec ":CocCommand flutter.run --flavor development --dart-define=FLAVOR=development --target lib/main.dart -d iPhone 13"
 endfunction
 
 function! languages#dart#coffeebreak()

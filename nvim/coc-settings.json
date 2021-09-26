@@ -22,6 +22,21 @@
 	"rust-analyzer.enable": true,
 	"rust-analyzer.inlayHints.enable": false,
 
+	"flutter.workspaceFolder.ignore": [
+		"~/.pub-cache",
+		"~/fvm"
+ 	],
+	"flutter.provider.enableSnippet": true,
+	"flutter.runDevToolsAtStartup": true,
+	"flutter.autoOpenDevLog": true,
+	"flutter.autoHideDevLog": true,
+	"flutter.selectedDeviceId": "S",
+	"dart.analysisExcludedFolders": [
+		"~/.pub-cache",
+		"~/fvm"
+ 	],
+	"dart.showTodos": false,
+
 	"tsserver.log": "verbose",
 	"tsserver.maxTsServerMemory": 16384,
 
