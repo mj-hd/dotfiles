@@ -27,10 +27,7 @@
 		"~/fvm"
  	],
 	"flutter.provider.enableSnippet": true,
-	"flutter.runDevToolsAtStartup": true,
 	"flutter.autoOpenDevLog": true,
-	"flutter.autoHideDevLog": true,
-	"flutter.selectedDeviceId": "S",
 	"dart.analysisExcludedFolders": [
 		"~/.pub-cache",
 		"~/fvm"

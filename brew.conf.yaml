@@ -7,7 +7,7 @@
     - autoconf
 
     # env
-    # - docker
+    - docker
 
     # editing
     - neovim
@@ -15,49 +15,20 @@
     # utils
     - htop
     - wget
-    # - cmake
-    # - k9s
-    # - openssl
     - tig
     - zsh
-    # - ranger
-    # - highlight
-    # - ag
-    # - github/gh/gh
-    - git-fixup
-
-    # deps
-    # - readline
-    # - ncurses
-    # - oniguruma
 
     # langs
-    # - ruby
-    # - elixir
-    # - erlang
     - go
     - lua
     - python
-    # - sbcl
 
     # js
     - nodenv
     - yarn
 
-    # for work at CyberAgent
-    # - bazel
-    # - prototool
-    # - kubernetes-helm
-
-    # hobby
-    # - heroku
-    # - rbenv
-
 - cask:
-    # - kitty
-    # - bartender
     - caffeine
-    # - docker
     - karabiner-elements
 
     # fonts

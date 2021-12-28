@@ -1,2 +1,2 @@
-export PATH=$PATH:/opt/flutter/bin:/opt/flutter/.pub-cache/bin
-
+export PATH=$PATH:/opt/flutter/bin:/opt/flutter/.pub-cache/bin:$HOME/.pub-cache/bin
+export NODE_BUILD_DEFINITIONS=$(brew --prefix node-build-update-defs)/share/node-build
