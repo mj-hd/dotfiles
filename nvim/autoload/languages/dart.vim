@@ -14,7 +14,6 @@ function! languages#dart#load()
 	nnoremap <silent> <leader>da :call languages#dart#dev_and()<cr>
 	nnoremap <silent> <leader>di :call languages#dart#dev_ios()<cr>
 	nnoremap <silent> <leader>s :call languages#dart#exec('develop', 1, 0)<cr>
-	nnoremap <silent> <leader>l :CocCommand flutter.emulators<cr>
 	nnoremap <silent> <leader><cr> :call languages#dart#coffeebreak()<cr>
 
 	augroup dart

@@ -6,9 +6,6 @@ Plug 'tommcdo/vim-exchange'
 Plug 'mg979/vim-visual-multi'
 Plug 'tomtom/tcomment_vim'
 
-" チートシート系
-Plug 'tversteeg/registers.nvim' | call plugins#registers#load()
-
 " スクロールバー
 Plug 'ojroques/vim-scrollstatus'
 
@@ -17,18 +14,12 @@ Plug 'rhysd/clever-f.vim'
 Plug 'markonm/traces.vim'
 
 " LSP
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} | au VimEnter * call plugins#coc#load()
-Plug 'neoclide/coc-json', {'do': 'yarn --frozen-lockfile'}
-Plug 'neoclide/coc-html', {'do': 'yarn --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn --frozen-lockfile'}
-Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn --frozen-lockfile'}
-Plug 'neoclide/coc-yaml', {'do': 'yarn --frozen-lockfile'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn --frozen-lockfile'}
-Plug 'neoclide/coc-prettier', {'do': 'yarn --frozen-lockfile'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn --frozen-lockfile'}
-Plug 'weirongxu/coc-explorer', {'do': 'yarn --frozen-lockfile'}
-Plug 'neoclide/coc-lists', {'do': 'yarn --frozen-lockfile'}
-Plug 'voldikss/vim-skylight' | call plugins#skylight#load()
-Plug 'josa42/coc-go', {'do': 'yarn --frozen-lockfile'}
-Plug 'iamcco/coc-flutter', {'do': 'yarn --frozen-lockfile'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn --frozen-lockfile'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer' | call add(g:defers, 'call plugins#nvim_lsp#load()')
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/nvim-cmp' | call add(g:defers, 'call plugins#nvim_cmp#load()')
+Plug 'hrsh7th/cmp-buffer'
+
+" スニペット
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'

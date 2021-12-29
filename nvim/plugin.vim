@@ -8,6 +8,8 @@ endif
 
 execute 'set runtimepath^=' . s:cache_dir
 
+let g:defers = []
+
 call plug#begin(s:cache_dir)
 
 source ~/.dotfiles/nvim/plugin.common.vim
@@ -23,3 +25,7 @@ else
 endif
 
 call plug#end()
+
+for defer in defers
+	execute defer
+endfor

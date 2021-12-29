@@ -9,15 +9,6 @@ function! languages#js#load()
 	nmap <leader><leader>c :call languages#js#exec('typecheck', 1, 0)<cr>
 	nmap <leader><leader>l :call languages#js#exec('lint', 1, 0)<cr>
 	nmap <leader><leader>f :call languages#js#exec('format', 1, 0)<cr>
-
-	" animate
-	" nmap <leader>j :call languages#js#terminal()<cr>
-	" nmap <leader>d :call languages#js#exec('dev', 0, 1)<cr>
-	" nmap <leader>s :call languages#js#exec('ui-catalog', 0, 1)<cr>
-	" nmap <leader>t :call languages#js#exec('test:unit:watch ' . expand('%:p:h'), 0, 1)<cr>
-	" nmap <leader>c :call languages#js#exec('typecheck', 0, 1)<cr>
-	" nmap <leader>l :call languages#js#exec('lint', 0, 1)<cr>
-	" nmap <leader>f :call languages#js#exec('format', 0, 1)<cr>
 endfunction
 
 function! languages#js#coffeebreak()
