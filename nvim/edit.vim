@@ -17,6 +17,7 @@ set completeopt=menu,preview
 set tags+=.git/tags
 set tags+=./tags
 set noea
+set smartcase
 
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
@@ -55,6 +56,11 @@ nnoremap tt :<C-u>terminal<CR>
 " インクリメントデクリメント
 nnoremap - <C-x>
 nnoremap + <C-a>
+
+" 括弧の補完
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap [<Enter> []<Left><CR><ESC><S-o>
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
 
 nmap <Tab> %
 vmap <Tab> %

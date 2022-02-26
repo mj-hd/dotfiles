@@ -11,6 +11,8 @@ lua <<EOF
 		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 	end
 
+	local lspkind = require('lspkind')
+
 	cmp.setup({
 		snippet = {
 			expand = function(args)
@@ -51,12 +53,15 @@ lua <<EOF
 			{ name = 'vsnip' },
 		}, {
 			{ name = 'buffer' },
-		})
-	})
-
-	cmp.setup.cmdline('/', {
-		sources = {
-			{ name = 'buffer' }
+		}),
+		formatting = {
+			format = lspkind.cmp_format({
+				with_text = false,
+				maxwidth = 50,
+				before = function (entry, vim_item)
+					return vim_item
+				end
+			})
 		}
 	})
 

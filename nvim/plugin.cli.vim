@@ -12,6 +12,5 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'itchyny/lightline.vim' | call add(g:defers, 'call plugins#lightline#load()')
 
 " 統合
-let g:gitgutter_map_keys = 0
-Plug 'airblade/vim-gitgutter'
+call plugins#gitgutter#init() | Plug 'airblade/vim-gitgutter' | call add(g:defers, 'call plugins#gitgutter#load()')
 Plug 'tpope/vim-fugitive'

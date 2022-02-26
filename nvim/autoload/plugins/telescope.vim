@@ -14,6 +14,9 @@ function! plugins#telescope#load()
 	nnoremap <leader><leader> <cmd>lua require('telescope.builtin').builtin()<cr>
 	inoremap <C-v> <cmd>lua require('telescope.builtin').registers()<cr>
 
+	hi link TelescopeNormal NormalFloat
+	hi link TelescopePromptCounter Comment
+
 lua << EOF
 	local actions = require('telescope.actions')
 	local actions_set = require('telescope.actions.set')
@@ -69,27 +72,27 @@ lua << EOF
 			file_browser = {
 				mappings = {
 					["i"] = {
-						["<C-d>"] = fb_actions.remove_file,
-						["<C-n>"] = fb_actions.create_file,
+						["<C-d>"] = fb_actions.remove,
+						["<C-n>"] = fb_actions.create,
 						["<C-h>"] = fb_actions.goto_parent_dir,
 						["<C-.>"] = fb_actions.toggle_hidden,
-						["<C-o>"] = fb_actions.open_file,
-						["<C-r>"] = fb_actions.rename_file,
-						["<C-y>"] = fb_actions.copy_file,
+						["<C-o>"] = fb_actions.open,
+						["<C-r>"] = fb_actions.rename,
+						["<C-y>"] = fb_actions.copy,
 						["<C-q>"] = actions.close,
 					},
 					["n"] = {
-						["dd"] = fb_actions.remove_file,
-						["n"] = fb_actions.create_file,
+						["dd"] = fb_actions.remove,
+						["n"] = fb_actions.create,
 						["h"] = fb_actions.goto_parent_dir,
 						["<left>"] = fb_actions.goto_parent_dir,
 						["l"] = actions_set.select,
 						["<right>"] = actions_set.select,
 						["g."] = fb_actions.toggle_hidden,
-						["m"] = fb_actions.move_file,
-						["o"] = fb_actions.open_file,
-						["r"] = fb_actions.rename_file,
-						["y"] = fb_actions.copy_file,
+						["m"] = fb_actions.move,
+						["o"] = fb_actions.open,
+						["r"] = fb_actions.rename,
+						["y"] = fb_actions.copy,
 						["q"] = actions.close,
 					},
 				},
@@ -98,5 +101,6 @@ lua << EOF
 	}
 
 	telescope.load_extension "file_browser"
+	telescope.load_extension "flutter"
 EOF
 endfunction

@@ -15,6 +15,7 @@ function! languages#dart#load()
 	nnoremap <silent> <leader>di :call languages#dart#dev_ios()<cr>
 	nnoremap <silent> <leader>s :call languages#dart#exec('develop', 1, 0)<cr>
 	nnoremap <silent> <leader><cr> :call languages#dart#coffeebreak()<cr>
+	nnoremap <silent> <leader><tab> <cmd>lua require('telescope').extensions.flutter.commands()<cr>
 
 	augroup dart
 		autocmd!
