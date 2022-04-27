@@ -1,6 +1,6 @@
-set ts=4 sw=4
-set softtabstop=4
-set noexpandtab
+set ts=2 sw=2
+set softtabstop=2
+set expandtab
 
 let mapleader="\<Space>"
 let maplocalleader="\<Space>"
@@ -17,7 +17,7 @@ set completeopt=menu,preview
 set tags+=.git/tags
 set tags+=./tags
 set noea
-set smartcase
+set ignorecase
 
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>

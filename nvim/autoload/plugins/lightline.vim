@@ -4,7 +4,7 @@ function! plugins#lightline#load() abort
 	let g:scrollstatus_symbol_bar = '▃'
 
 	let g:lightline = {
-		\ 'colorscheme': 'iceberg',
+		\ 'colorscheme': 'kanagawa',
 		\ 'mode_map': {
 			\ 'n' : ' ',
 			\ 'i' : '﫦',

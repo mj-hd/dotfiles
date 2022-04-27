@@ -22,7 +22,7 @@ set noshowmode
 set statusline=[%L]\ %t\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
 
 set showtabline=2
-set shortmess=a
+set shortmess=aF
 set cmdheight=2
 
 set pumblend=15

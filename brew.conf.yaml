@@ -17,6 +17,7 @@
     - wget
     - tig
     - zsh
+    - gh
 
     # langs
     - go
