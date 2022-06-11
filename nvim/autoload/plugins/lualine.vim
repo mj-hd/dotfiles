@@ -11,12 +11,12 @@ lua << EOF
 	local function status()
 		local result = ''
 
-		if vim.g["notify_command_status"] == "running" then
-			result = result .. ' 喇 '
-		end
-
 		if #vim.lsp.buf_get_clients() > 0 then
   		    result = result .. require('lsp-status').status()
+		end
+
+		if vim.g["notify_command_status"] == "running" then
+			result = result .. ' 喇'
 		end
 
   		return result

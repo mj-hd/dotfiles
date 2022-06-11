@@ -63,7 +63,7 @@ lua << EOF
 	notify.setup({
 		render = "default",
 		stages = custom_stages,
-		timeout = 3000,
+		timeout = 5000,
 		max_width = 80,
 		minimum_width = 50,
 	})
@@ -96,24 +96,25 @@ lua << EOF
 	end
 	local on_data = function(_, data)
 		output = output .. table.concat(data, "\n")
-		notify(output, "info")
+		notify(data, "info")
 	end
 	vim.fn.jobstart(command, {
 		on_stdout = on_data,
 		on_stderr = on_data,
 		on_exit = function(_, code)
 			local level = "info"
-			local message = output
+			local message = "Command finished."
 
 			if code ~= 0 then
 				level = "error"
-			end
-
-			if #output == 0 then
-				message = "Command finished. exit code: " .. code
+				message = message .. " exit code: " .. code
 			end
 
 			notify(message, level)
+
+			vim.g["_notify_command_result"] = output
+
+			vim.cmd("cex g:_notify_command_result")
 
 			vim.g["notify_command_status"] = "completed"
 		end,

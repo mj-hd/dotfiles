@@ -21,7 +21,7 @@ endfunction
 
 function! languages#dart#melos(cmd, tab, background)
 	if a:background
-		call plugins#notify#command(['melos', 'run ' . a:cmd ], [])
+		call plugins#notify#command(['melos', 'run', a:cmd ], [])
 		return
 	endif
 
