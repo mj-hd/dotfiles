@@ -14,15 +14,7 @@ call plug#begin(s:cache_dir)
 
 source ~/.dotfiles/nvim/plugin.common.vim
 
-if !exists('g:vscode')
-	source ~/.dotfiles/nvim/plugin.cli.vim
-endif
-
-if has('nvim-0.5.0')
-	source ~/.dotfiles/nvim/plugin.nvim-0.5.0.vim
-else
-	source ~/.dotfiles/nvim/plugin.nvim-legacy.vim
-endif
+" 今後プラグインを分岐する必要あれば追記
 
 call plug#end()
 

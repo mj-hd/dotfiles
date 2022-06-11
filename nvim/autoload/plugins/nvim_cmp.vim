@@ -28,8 +28,12 @@ lua <<EOF
 				i = cmp.mapping.abort(),
 				c = cmp.mapping.close(),
 			}),
+			['<Down>'] = cmp.mapping.select_next_item(),
+			['<Up>'] = cmp.mapping.select_prev_item(),
+			['<C-j>'] = cmp.mapping.select_next_item(),
+			['<C-k>'] = cmp.mapping.select_prev_item(),
 			['<CR>'] = cmp.mapping.confirm({ select = true }),
-		    ['<Tab>'] = cmp.mapping(function(fallback)
+			['<Tab>'] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_next_item()
 				elseif vim.fn['vsnip#available'](1) == 1 then

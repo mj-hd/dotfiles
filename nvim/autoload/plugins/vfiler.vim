@@ -13,7 +13,7 @@ lua << EOF
 			name = 'around',
 			blend = 20,
 			layout = 'floating',
-			border = 'shadow',
+			border = 'none',
 			columns = 'indent,devicons,name',
 			keep = true,
 		},

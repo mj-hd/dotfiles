@@ -9,11 +9,17 @@ lua << EOF
 	end
 
 	local function status()
-		if #vim.lsp.buf_get_clients() > 0 then
-  		    return require('lsp-status').status():gsub('%[.+%]', '')
+		local result = ''
+
+		if vim.g["notify_command_status"] == "running" then
+			result = result .. ' 喇 '
 		end
 
-  		return ''
+		if #vim.lsp.buf_get_clients() > 0 then
+  		    result = result .. require('lsp-status').status()
+		end
+
+  		return result
 	end
 
 	local function mode()

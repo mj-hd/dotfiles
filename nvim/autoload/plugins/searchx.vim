@@ -10,15 +10,15 @@ function! plugins#searchx#load()
 	nnoremap n <Cmd>call searchx#next_dir()<CR>
 	xnoremap N <Cmd>call searchx#prev_dir()<CR>
 	xnoremap n <Cmd>call searchx#next_dir()<CR>
-	nnoremap <C-k> <Cmd>call searchx#prev()<CR>
-	nnoremap <C-j> <Cmd>call searchx#next()<CR>
-	xnoremap <C-k> <Cmd>call searchx#prev()<CR>
-	xnoremap <C-j> <Cmd>call searchx#next()<CR>
-	cnoremap <C-k> <Cmd>call searchx#prev()<CR>
-	cnoremap <C-j> <Cmd>call searchx#next()<CR>
+	nnoremap <C-,> <Cmd>call searchx#prev()<CR>
+	nnoremap <C-m> <Cmd>call searchx#next()<CR>
+	xnoremap <C-,> <Cmd>call searchx#prev()<CR>
+	xnoremap <C-m> <Cmd>call searchx#next()<CR>
+	cnoremap <C-i> <Cmd>call searchx#prev()<CR>
+	cnoremap <C-m> <Cmd>call searchx#next()<CR>
 	
 	" Clear highlights
-	nnoremap <C-l> <Cmd>call searchx#clear()<CR>
+	nnoremap <C-y> <Cmd>call searchx#clear()<CR>
 	
 	let g:searchx = {}
 	

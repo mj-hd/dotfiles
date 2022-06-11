@@ -38,10 +38,9 @@ lua << EOF
 			buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 			buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 			buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-			buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 			buf_set_keymap('n', ',r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-			buf_set_keymap('n', '<C-k>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-			buf_set_keymap('n', '<C-j>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+			buf_set_keymap('n', '<C-,>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+			buf_set_keymap('n', '<C-m>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 			buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
 			lsp_status.on_attach(client)
@@ -99,8 +98,8 @@ lua << EOF
 					showTodos = false,
 					completeFunctionCalls = true,
 					analysisExcludedFolders = {
-						"~/.pub-cache",
-						"~/fvm"
+						vim.fn.expand("$HOME/.pub-cache"),
+						vim.fn.expand("$HOME/fvm"),
 					}
 				}
 			}
