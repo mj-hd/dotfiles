@@ -42,7 +42,8 @@ Plug 'haya14busa/vim-edgemotion' | call add(g:defers, 'call plugins#edgemotion#l
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer' | call add(g:defers, 'call plugins#nvim_lsp#load()')
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim' | call add(g:defers, 'call plugins#nvim_lsp#load()')
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/nvim-cmp' | call add(g:defers, 'call plugins#nvim_cmp#load()')
 Plug 'hrsh7th/cmp-buffer'
@@ -51,6 +52,7 @@ Plug 'akinsho/flutter-tools.nvim'
 Plug 'onsails/lspkind-nvim'
 Plug 'ray-x/lsp_signature.nvim' | call add(g:defers, 'call plugins#signature#load()')
 Plug 'nvim-lua/lsp-status.nvim'
+Plug 'ziglang/zig.vim'
 
 " スニペット
 Plug 'hrsh7th/cmp-vsnip'
