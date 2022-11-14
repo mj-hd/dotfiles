@@ -14,8 +14,8 @@ function! plugins#searchx#load()
 	nnoremap <C-m> <Cmd>call searchx#next()<CR>
 	xnoremap <C-,> <Cmd>call searchx#prev()<CR>
 	xnoremap <C-m> <Cmd>call searchx#next()<CR>
-	cnoremap <C-i> <Cmd>call searchx#prev()<CR>
-	cnoremap <C-m> <Cmd>call searchx#next()<CR>
+	" cnoremap <C-i> <Cmd>call searchx#prev()<CR>
+	" cnoremap <C-m> <Cmd>call searchx#next()<CR>
 	
 	" Clear highlights
 	nnoremap <C-y> <Cmd>call searchx#clear()<CR>

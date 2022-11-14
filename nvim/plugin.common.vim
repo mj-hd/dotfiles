@@ -29,6 +29,7 @@ Plug 'tommcdo/vim-exchange'
 Plug 'mg979/vim-visual-multi'
 Plug 'tomtom/tcomment_vim'
 Plug 'terryma/vim-expand-region' | call add(g:defers, 'call plugins#expandregion#load()')
+Plug 'thinca/vim-partedit'
 
 " スクロールバー
 Plug 'ojroques/vim-scrollstatus'

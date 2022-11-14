@@ -28,9 +28,8 @@ lua << EOF
 		local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
 		local opts = { noremap=true, silent=true }
-		
+
 		buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-		buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 		buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 		buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 		buf_set_keymap('n', ',r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -46,6 +45,18 @@ lua << EOF
 		ensure_initialized = {
 			"rust-analyzer",
 			"sumneko_lua",
+			"gopls",
+			"typescript-language-server",
+			"yamlls",
+			"dockerfile-language-server",
+			"clangd",
+			"tsserver",
+			"vim-language-server",
+			"golangci-lint-langserver",
+			"bash-language-server",
+			"stylelint-lsp",
+			"json-lsp",
+			"efm"
 		},
 	})
 
@@ -53,8 +64,81 @@ lua << EOF
 	capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
 	capabilities.offsetEncoding = { "utf-16" }
 
+	local util = require("lspconfig/util")
+
 	require("lspconfig").rust_analyzer.setup { on_attach = on_attach, capabilities = capabilities }
-	require("lspconfig").sumneko_lua.setup { on_attach = on_attach, capabilities = capabilities }
+	require("lspconfig").sumneko_lua.setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		filetypes = { "lua" },
+		settings = {
+			Lua = {
+				runtime = {
+					version = 'LuaJIT',
+				},
+				diagnostics = {
+					globals = {'vim'},
+				},
+				workspace = {
+					library = vim.api.nvim_get_runtime_file("", true),
+				},
+				telemetry = {
+					enable = false,
+				},
+			},
+		},
+	}
+	require("lspconfig").gopls.setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		filetypes = { "go", "gomod" },
+		root_dir = util.root_pattern("go.mod", ".git"),
+		settings = {
+			codelenses = {
+				generate = true,
+				gc_details = true
+			}
+		}
+	}
+	require("lspconfig").golangci_lint_ls.setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		filetypes = { "go", "gomod" },
+		root_dir = util.root_pattern('go.mod', '.golangci.yaml', '.git')
+	}
+	require("lspconfig").tsserver.setup { on_attach = on_attach, capabilities = capabilities }
+	require("lspconfig").yamlls.setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		settings = {
+			yaml = {
+				trace = {
+					server = "verbose"
+				},
+				schemaStore = {
+					url = "https://json.schemastore.org/"
+				},
+				schemas = {
+					["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "/.gitlab-ci.yml",
+					kubernetes = "/*manifest*/**/*.yaml"
+				}
+			}
+		},
+	}
+	require("lspconfig").dockerls.setup { on_attach = on_attach, capabilities = capabilities }
+	require("lspconfig").clangd.setup { on_attach = on_attach, capabilities = capabilities }
+	require("lspconfig").tsserver.setup { on_attach = on_attach, capabilities = capabilities }
+	require("lspconfig").vimls.setup { on_attach = on_attach, capabilities = capabilities }
+	require("lspconfig").bashls.setup { on_attach = on_attach, capabilities = capabilities }
+	require("lspconfig").stylelint_lsp.setup { on_attach = on_attach, capabilities = capabilities }
+	require("lspconfig").jsonls.setup { on_attach = on_attach, capabilities = capabilities }
+	require("lspconfig").efm.setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		init_options = {
+			documentFormatting = true
+		},
+	}
 
 	require("flutter-tools").setup {
 		ui = {

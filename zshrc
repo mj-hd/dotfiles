@@ -49,7 +49,6 @@ export PATH=$PATH:$GOPATH/bin
 export EDITOR=nvim
 alias vim="nvim"
 alias ls="ls -G"
-alias r="ranger"
 
 # nodenv
 eval "$(nodenv init -)"
@@ -61,12 +60,8 @@ eval "$(goenv init -)"
 eval "$(starship init zsh)"
 
 eval "$(rbenv init -)"
-export PATH="$HOME/.phpenv/bin:$PATH"
-
-eval "$(phpenv init -)"
 
 eval "$(gh completion -s zsh)"
 
 [ -f ~/.env ] && source ~/.env
 [ -f ~/.zshfuncs ] && source ~/.zshfuncs
-export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"

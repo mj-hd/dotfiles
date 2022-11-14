@@ -9,7 +9,7 @@ lua << EOF
 		},
 		line_opacity = 0.2,
 		set_cursor = false,
-		focus_only = true
+		-- focus_only = true
 	})
 EOF
 endfunction

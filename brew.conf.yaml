@@ -1,6 +1,3 @@
-- tap:
-    - caskroom/fonts
-
 - brew:
     # build-essentials
     - git
@@ -27,12 +24,3 @@
     # js
     - nodenv
     - yarn
-
-- cask:
-    - caffeine
-    - karabiner-elements
-
-    # fonts
-    - caskroom/fonts/font-input
-    - caskroom/fonts/font-noto-sans-cjk-jp
-    - caskroom/fonts/font-awesome-terminal-fonts
