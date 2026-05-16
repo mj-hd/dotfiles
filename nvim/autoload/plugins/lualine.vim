@@ -11,7 +11,7 @@ lua << EOF
 	local function status()
 		local result = ''
 
-		if #vim.lsp.buf_get_clients() > 0 then
+		if #vim.lsp.get_clients() > 0 then
   		    result = result .. require('lsp-status').status()
 		end
 
