@@ -1,0 +1,30 @@
+[user]
+	name = mjhd
+	email = mjhd.devlion@gmail.com
+
+[core]
+	editor = vim
+	ignorecase = true
+
+[rebase]
+	autosquash = true
+
+[alias]
+	aa = !git add .  && git add -u && git status
+	s = status
+	sh = show
+	c = commit
+	co = checkout
+	am = commit --amend
+	fix = fixup
+	r = rebase -i
+	un = reset HEAD^
+	q = reset --hard
+	ch = cherry-pick
+	b = branch
+	pu = pull
+	po = push
+	wip = commit -m 'wip'
+
+[merge]
+	conflictStyle = diff3
