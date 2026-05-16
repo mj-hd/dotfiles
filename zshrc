@@ -21,12 +21,12 @@ zplug "Tarrasch/zsh-autoenv"
 
 # 未インストールプラグインのチェック
 if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    else
-        echo
-    fi
+	printf "Install? [y/N]: "
+	if read -q; then
+		echo; zplug install
+	else
+		echo
+	fi
 fi
 
 zplug load
@@ -41,27 +41,9 @@ function tm() {
 	fi
 }
 
-export YVM_DIR=/usr/local/opt/yvm
-[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
-
-export GOPATH=~/.go
-export PATH=$PATH:$GOPATH/bin
 export EDITOR=nvim
 alias vim="nvim"
 alias ls="ls -G"
-
-# nodenv
-eval "$(nodenv init -)"
-
-# goenv
-eval "$(goenv init -)"
-
-# starship
-eval "$(starship init zsh)"
-
-eval "$(rbenv init -)"
-
-eval "$(gh completion -s zsh)"
 
 [ -f ~/.env ] && source ~/.env
 [ -f ~/.zshfuncs ] && source ~/.zshfuncs

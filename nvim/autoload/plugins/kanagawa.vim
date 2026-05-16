@@ -13,7 +13,6 @@ lua << EOF
 		transparent = false,
 		dimInactive = false,
 		colors = {},
-		overrides = {},
 	})
 
 	vim.cmd("colorscheme kanagawa")

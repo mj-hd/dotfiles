@@ -1,3 +1,11 @@
-export PATH=$PATH:/opt/flutter/bin:/opt/flutter/.pub-cache/bin:$HOME/.pub-cache/bin
-export NODE_BUILD_DEFINITIONS=$(brew --prefix node-build-update-defs)/share/node-build
-export LIBRARY_PATH=/opt/homebrew/lib:$LIBRARY_PATH
+[ -d ~/.local/android-sdk/cmdline-tools/latest/bin ] && export PATH=~/.local/android-sdk/cmdline-tools/latest/bin:$PATH
+[ -d ~/.local/android-sdk ] && export ANDROID_HOME=~/.local/android-sdk
+[ -f ~/.local/bin/mise ] && eval "$(~/.local/bin/mise activate zsh)"
+[ -d ~/.opencode/bin ] && export PATH=~/.opencode/bin:$PATH
+command -v brew >/dev/null 2>&1 && eval $(brew shellenv)
+command -v gh >/dev/null 2>&1 && eval "$(gh completion -s zsh)"
+command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
+if [ -d ~/.go ]; then
+	export GOPATH=~/.go
+	export PATH=$PATH:$GOPATH/bin
+fi

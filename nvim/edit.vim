@@ -7,8 +7,6 @@ let maplocalleader="\<Space>"
 set autoindent
 set backspace=indent,eol,start
 set clipboard+=unnamedplus
-set pastetoggle=<F12>
-set guioptions+=a
 set mouse=a
 if has("mouse_sgr")
 	set ttymouse=sgr

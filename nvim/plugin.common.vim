@@ -37,7 +37,7 @@ Plug 'ojroques/vim-scrollstatus'
 " 移動/検索
 Plug 'rhysd/clever-f.vim'
 Plug 'markonm/traces.vim'
-Plug 'hrsh7th/vim-searchx' | call add(g:defers, 'call plugins#searchx#load()')
+Plug 'hrsh7th/vim-searchx' | call plugins#searchx#load()
 Plug 'Bakudankun/BackAndForward.vim' | call add(g:defers, 'call plugins#BackAndForward#load()')
 Plug 'haya14busa/vim-edgemotion' | call add(g:defers, 'call plugins#edgemotion#load()')
 

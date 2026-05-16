@@ -18,6 +18,4 @@ source ~/.dotfiles/nvim/plugin.common.vim
 
 call plug#end()
 
-for defer in defers
-	execute defer
-endfor
+au VimEnter * ++once for defer in g:defers | execute defer | endfor

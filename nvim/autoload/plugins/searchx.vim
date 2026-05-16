@@ -20,8 +20,8 @@ function! plugins#searchx#load()
 	" Clear highlights
 	nnoremap <C-y> <Cmd>call searchx#clear()<CR>
 	
-	let g:searchx = {}
-	
+	let g:searchx = get(g:, 'searchx', {})
+
 	" Auto jump if the recent input matches to any marker.
 	let g:searchx.auto_accept = v:true
 	
@@ -33,9 +33,9 @@ function! plugins#searchx#load()
 	
 	" Convert search pattern.
 	function g:searchx.convert(input) abort
-	  if a:input !~# '\k'
-	    return '\V' .. a:input
-	  endif
-	  return a:input[0] .. substitute(a:input[1:], '\\\@<! ', '.\\{-}', 'g')
+		if a:input !~# '\k'
+			return '\V' .. a:input
+		endif
+		return a:input[0] .. substitute(a:input[1:], '\\\@<! ', '.\\{-}', 'g')
 	endfunction
 endfunction
