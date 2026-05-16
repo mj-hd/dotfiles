@@ -1,45 +1,17 @@
-source ~/.zplug/init.zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
-# 出力をハイライト
-zplug "zsh-users/zsh-syntax-highlighting"
-
-# fishっぽい補完
-zplug "zsh-users/zsh-autosuggestions"
-
-# 各種補完
-zplug "zsh-users/zsh-completions"
-
-# テーマ
-zplug "mafredri/zsh-async", from:github
-
-# interactiveなtab保管
-zplug "changyuheng/fz", defer:1
-zplug "rupa/z", use:z.sh
-
-# .autoenv.zsh読み込み
-zplug "Tarrasch/zsh-autoenv"
-
-# 未インストールプラグインのチェック
-if ! zplug check --verbose; then
-	printf "Install? [y/N]: "
-	if read -q; then
-		echo; zplug install
-	else
-		echo
-	fi
-fi
-
-zplug load
-
-function tm() {
-	if [ -z $TMUX ]; then
-		if $(tmux has-session 2> /dev/null); then
-			tmux attach
-		else
-			tmux
-		fi
-	fi
-}
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit ice pick"async.zsh" src"pure.zsh"
+zinit light sindresorhus/pure
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
 
 export EDITOR=nvim
 alias vim="nvim"
